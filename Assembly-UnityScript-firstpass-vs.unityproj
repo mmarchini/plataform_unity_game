@@ -45,13 +45,20 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\CharacterMotor.js" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericChar.js" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericCharController.js" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericCharMotor.js" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericJump.js" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericWalk.js" />
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonController.js" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
-     <None Include="Assets\SpartanKing\animations.txt" />
+     <None Include="Assets\Characters\Player\animations.txt" />
+     <None Include="Assets\Characters\Monsters\Creatures\Skeleton\Model\N-Materials\Bumped Anisotropic Specular.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
      <None Include="Assets\Standard Assets\Shaders\DifSpecTransp.shader" />
+     <None Include="Assets\Characters\Monsters\Creatures\BasicSkeletons\SkeletonData\animations.txt" />
      <None Include="Assets\Toon World Texture Pack\Bumped Spec Mapped Shader\Bumped Specular mapped.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

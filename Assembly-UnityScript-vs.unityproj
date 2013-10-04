@@ -47,10 +47,12 @@
      <Compile Include="Assets\Toon World Texture Pack\Sample\Rotater.js" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
-     <None Include="Assets\SpartanKing\animations.txt" />
+     <None Include="Assets\Characters\Player\animations.txt" />
+     <None Include="Assets\Characters\Monsters\Creatures\Skeleton\Model\N-Materials\Bumped Anisotropic Specular.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
      <None Include="Assets\Standard Assets\Shaders\DifSpecTransp.shader" />
+     <None Include="Assets\Characters\Monsters\Creatures\BasicSkeletons\SkeletonData\animations.txt" />
      <None Include="Assets\Toon World Texture Pack\Bumped Spec Mapped Shader\Bumped Specular mapped.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
