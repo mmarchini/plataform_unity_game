@@ -1,10 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericChar.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericCharController.js">
     <Files>
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericChar.js" Line="2" Column="1" />
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericCharMotor.js" Line="3" Column="19" />
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericCharController.js" Line="4" Column="23" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericCharController.js" Line="387" Column="1" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonController.js" Line="17" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

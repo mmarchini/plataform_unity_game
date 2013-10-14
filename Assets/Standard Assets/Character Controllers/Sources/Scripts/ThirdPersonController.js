@@ -15,13 +15,6 @@ public var landAnimationSpeed : float = 1.0;
 
 private var _animation : Animation;
 
-enum CharacterState {
-	Idle = 0,
-	Walking = 1,
-	Trotting = 2,
-	Running = 3,
-	Jumping = 4,
-}
 
 private var _characterState : CharacterState;
 
