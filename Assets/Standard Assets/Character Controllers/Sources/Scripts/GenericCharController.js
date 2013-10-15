@@ -20,6 +20,7 @@ enum CharacterState {
 	Trotting = 2,
 	Running = 3,
 	Jumping = 4,
+	Attacking = 5,
 }
 
 private var _characterState : CharacterState;
@@ -116,6 +117,9 @@ function Awake ()
 			
 }
 
+function getHorizontalSpeed(){
+	return Input.GetAxisRaw("Horizontal");
+}
 
 function UpdateSmoothedMovementDirection ()
 {
@@ -131,7 +135,7 @@ function UpdateSmoothedMovementDirection ()
 	// Always orthogonal to the forward vector
 	var right = Vector3(forward.z, 0, -forward.x);
 
-	var h = Input.GetAxisRaw("Horizontal");
+	var h = this.GetHorizontalSpeed();
 
 	var wasMoving = isMoving;
 	isMoving = Mathf.Abs (h) > 0.1;
@@ -175,14 +179,11 @@ function UpdateSmoothedMovementDirection ()
 	
 		_characterState = CharacterState.Idle;
 		
-		targetSpeed *= walkSpeed;
+		targetSpeed *= this.GetWalkSpeed();
 		_characterState = CharacterState.Walking;
 				
 		moveSpeed = Mathf.Lerp(moveSpeed, targetSpeed, curSmooth);
 		
-		// Reset walk time start when we slow down
-		if (moveSpeed < walkSpeed * 0.3)
-			walkTimeStart = Time.time;
 	}
 	// In air controls
 	else
@@ -257,6 +258,10 @@ function DidJump ()
 	_characterState = CharacterState.Jumping;
 }
 
+function JumpAction(){
+	return Input.GetButtonDown ("Jump");
+}
+
 function Update() {
 	
 	if (!isControllable)
@@ -265,7 +270,7 @@ function Update() {
 		Input.ResetInputAxes();
 	}
 
-	if (Input.GetButtonDown ("Jump"))
+	if (this.JumpAction())
 	{
 		lastJumpButtonTime = Time.time;
 	}
@@ -368,6 +373,10 @@ function GetSpeed () {
 	return moveSpeed;
 }
 
+function GetWalkSpeed () {
+	return walkSpeed;
+}
+
 function IsJumping () {
 	return jumping;
 }
@@ -387,7 +396,7 @@ function GetLockCameraTimer ()
 
 function IsMoving ()  : boolean
 {
-	return Mathf.Abs(Input.GetAxisRaw("Vertical")) + Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0.5;
+	return Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0.5;
 }
 
 function HasJumpReachedApex ()
