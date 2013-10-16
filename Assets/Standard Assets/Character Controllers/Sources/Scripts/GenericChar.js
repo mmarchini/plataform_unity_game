@@ -1,8 +1,8 @@
 ﻿#pragma strict
 
-enum CharacterFaction {
-	Player = 0,
-	Enemy = 1,
+enum ControllerType {
+	Player = 1,
+	Enemy = 2,
 }
 
 class GenericChar extends GenericCharController{
@@ -21,7 +21,7 @@ class GenericChar extends GenericCharController{
 	public var MovementSpeed : float = 1;
 	public var Jump : float = 1;
 	
-	public var Faction : CharacterFaction;
+	public var Type : ControllerType;
 	
 	function getSpear(){
 	
@@ -52,24 +52,14 @@ class GenericChar extends GenericCharController{
 		return false;
 	}
 	
-	function TakeDamage(char_controller : GenericChar){
-		this.HP = this.HP - char_controller.ATK;
+	function TakeDamage(char_controller : GenericChar){		
+		if(!damaged)
+			this.HP = this.HP - char_controller.ATK;
+		StartDamage();
 	}
 	
 	function DealDamage(char_controller : GenericChar){
-		char_controller.HP = char_controller.HP - this.ATK;
+		char_controller.TakeDamage(this);
 	}
 	
-	function OnAnotherControllerHit(hit : ControllerColliderHit){
-		var char_controller : GenericChar = hit.gameObject.GetComponent("GenericChar");
-		if(char_controller.Faction != this.Faction){
-			if(this.attacking)
-				this.DealDamage(char_controller);
-			else
-				this.TakeDamage(char_controller);
-			
-		}
-			
-	}
 }
-

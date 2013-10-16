@@ -4,11 +4,13 @@
 public var idleAnimation : AnimationClip;
 public var walkAnimation : AnimationClip;
 public var attackAnimation : AnimationClip;
+public var onHitAnimation : AnimationClip;
 public var jumpPoseAnimation : AnimationClip;
 
 public var walkMaxAnimationSpeed : float = 0.75;
 public var jumpAnimationSpeed : float = 1.15;
 public var attackAnimationSpeed : float = 1.15;
+public var onHitAnimationSpeed : float = 1.15;
 public var landAnimationSpeed : float = 1.0;
 
 private var _animation : Animation;
@@ -20,6 +22,7 @@ enum CharacterState {
 	Walking = 1,
 	Jumping = 2,
 	Attacking = 3,
+	Hitted = 4,
 }
 
 private var _characterState : CharacterState;
@@ -62,6 +65,9 @@ protected var jumping = false;
 private var jumpingReachedApex = false;
 
 protected var attacking = false;
+
+protected var damaged = false;
+public var onHitTakenSpeed : float = 5;
 
 // Is the user pressing any keys?
 private var isMoving = false;
@@ -107,7 +113,11 @@ function Awake ()
 	event.functionName = "EndAttack";
 	event.time = attackAnimation.length-0.1f;
 	attackAnimation.AddEvent(event);
-			
+	
+	event2 = AnimationEvent();
+	event2.functionName = "EndDamage";
+	event2.time = onHitAnimation.length-0.1f;
+	onHitAnimation.AddEvent(event2);
 }
 
 function getHorizontalSpeed(){
@@ -198,13 +208,19 @@ function UpdateSmoothedMovementDirection ()
 		
 }
 
+function ApplyDamage ()
+{
+	if(damaged){
+		_characterState = CharacterState.Hitted;
+	}
+}
+
 function ApplyAttack ()
 {
 	if (isControllable)	// don't move player at all if not controllable.
 	{
 		// When we reach the apex of the jump we send out a message
-		if (this.ExecuteAttack())
-		{
+		if (this.ExecuteAttack()){
 			this.StartAttack();
 		}
 		if(attacking){
@@ -266,12 +282,22 @@ function DidJump ()
 	_characterState = CharacterState.Jumping;
 }
 
+
+function EndDamage (){
+	damaged = false;
+}
+
+function StartDamage () {
+	damaged = true;
+	attacking = false;
+	jumping = false;
+}
+
 function EndAttack (){
 	attacking = false;
 }
 
-function StartAttack ()
-{
+function StartAttack () {
 	attacking = true;
 }
 
@@ -283,6 +309,8 @@ function MoveChar(){
 	// Calculate actual motion
 	if(attacking && IsGrounded()){
 		moveSpeed = 0;
+	} else if(damaged){
+		moveSpeed = -1*onHitTakenSpeed;
 	}
 	
 	var movement = moveDirection * moveSpeed + Vector3 (0, verticalSpeed, 0) + inAirVelocity;
@@ -290,29 +318,29 @@ function MoveChar(){
 	
 	collisionFlags = _controller.Move(movement);
 	
-		// Set rotation to the move direction
-	if (IsGrounded())
-	{
-		transform.rotation = Quaternion.LookRotation(moveDirection);
-			
-	}	
-	else
-	{
-		var xzMove = movement;
-		xzMove.y = 0;
-		if (xzMove.sqrMagnitude > 0.001)
+	// Set rotation to the move direction
+	if(!damaged)
+		if (IsGrounded())
 		{
-			transform.rotation = Quaternion.LookRotation(xzMove);
+			transform.rotation = Quaternion.LookRotation(moveDirection);
+				
+		}	
+		else
+		{
+			var xzMove = movement;
+			xzMove.y = 0;
+			if (xzMove.sqrMagnitude > 0.001)
+			{
+				transform.rotation = Quaternion.LookRotation(xzMove);
+			}
 		}
-	}
 	
 	// We are in jump mode but just became grounded
 	if (IsGrounded())
 	{
 		lastGroundedTime = Time.time;
 		inAirVelocity = Vector3.zero;
-		if (this.IsJumping())
-		{
+		if (this.IsJumping()) {
 			jumping = false;
 			SendMessage("DidLand", SendMessageOptions.DontRequireReceiver);
 		}
@@ -322,7 +350,10 @@ function MoveChar(){
 function UpdateAnimation(){
 	// ANIMATION sector
 	if(_animation) {
-		if(_characterState == CharacterState.Attacking) {
+		if(_characterState == CharacterState.Hitted) {
+			_animation[onHitAnimation.name].speed = onHitAnimationSpeed;
+			_animation.CrossFade(onHitAnimation.name);
+		} else if(_characterState == CharacterState.Attacking) {
 			_animation[attackAnimation.name].speed = attackAnimationSpeed;
 			_animation.CrossFade(attackAnimation.name);
 		} else if(_characterState == CharacterState.Jumping) 
@@ -367,8 +398,9 @@ function Action(){
 	
 	MoveChar();
 	
-	
 	ApplyAttack();
+	
+	ApplyDamage();
 }
 
 function Update() {
@@ -391,8 +423,7 @@ function OnAnotherControllerHit(hit : ControllerColliderHit){
 	
 }
 
-function OnControllerColliderHit (hit : ControllerColliderHit )
-{
+function OnControllerColliderHit (hit : ControllerColliderHit ) {
 	char_controller = hit.gameObject.GetComponent("GenericCharController");
 	if(char_controller)
 		this.OnAnotherControllerHit(hit);
