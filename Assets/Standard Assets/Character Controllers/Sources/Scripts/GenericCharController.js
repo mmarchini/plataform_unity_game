@@ -56,7 +56,7 @@ private var moveSpeed = 0.0;
 private var collisionFlags : CollisionFlags; 
 
 // Are we jumping? (Initiated with jump button and not grounded yet)
-private var jumping = false;
+protected var jumping = false;
 private var jumpingReachedApex = false;
 
 // Is the user pressing any keys?
@@ -178,7 +178,7 @@ function UpdateSmoothedMovementDirection ()
 	else
 	{
 		// Lock camera while in air
-		if (jumping)
+		if (this.IsJumping())
 			lockCameraTimer = 0.0;
 
 		if (isMoving)
@@ -216,7 +216,7 @@ function ApplyGravity ()
 		
 		
 		// When we reach the apex of the jump we send out a message
-		if (jumping && !jumpingReachedApex && verticalSpeed <= 0.0)
+		if (this.IsJumping() && !jumpingReachedApex && verticalSpeed <= 0.0)
 		{
 			jumpingReachedApex = true;
 			SendMessage("DidJumpReachApex", SendMessageOptions.DontRequireReceiver);
@@ -279,7 +279,7 @@ function MoveChar(){
 	{
 		lastGroundedTime = Time.time;
 		inAirVelocity = Vector3.zero;
-		if (jumping)
+		if (this.IsJumping())
 		{
 			jumping = false;
 			SendMessage("DidLand", SendMessageOptions.DontRequireReceiver);
@@ -319,14 +319,12 @@ function UpdateAnimation(){
 
 function Update() {
 	
-	if (!isControllable)
-	{
+	if (!isControllable) {
 		// kill all inputs if not controllable.
 		Input.ResetInputAxes();
 	}
 
-	if (this.JumpAction())
-	{
+	if (this.IsJumping()) {
 		lastJumpButtonTime = Time.time;
 	}
 
@@ -335,15 +333,14 @@ function Update() {
 	// Apply gravity
 	// - extra power jump modifies gravity
 	// - controlledDescent mode modifies gravity
-	ApplyGravity ();
+	ApplyGravity();
 
 	// Apply jumping logic
-	ApplyJumping ();
+	ApplyJumping();
 	
 	MoveChar();
 	
 	UpdateAnimation();
-
 }
 
 function OnControllerColliderHit (hit : ControllerColliderHit )

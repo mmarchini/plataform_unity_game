@@ -41,7 +41,7 @@ class GenericChar extends GenericCharController{
 		return Input.GetAxisRaw("Horizontal");
 	}
 	function IsJumping(){
-		return Input.GetButtonDown ("Jump");
+		return (Input.GetButtonDown ("Jump") && this.IsGrounded()) || (Input.GetButtonDown ("Jump") && this.jumping);
 	}
 }
 
