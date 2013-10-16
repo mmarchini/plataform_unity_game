@@ -8,15 +8,12 @@ private var _target : Transform;
 var distance = 7.0;
 
 // the height we want the camera to be above the target
-var height = 3.0;
+var height = 1.5;
 
 var angularSmoothLag = 0.3;
 var angularMaxSpeed = 15.0;
 
-var heightSmoothLag = 0.3;
-
-var snapSmoothLag = 0.2;
-var snapMaxSpeed = 720.0;
+var heightSmoothLag = 0.0;
 
 var clampHeadPositionScreenSpace = 0.75;
 
@@ -27,7 +24,6 @@ private var centerOffset = Vector3.zero;
 
 private var heightVelocity = 0.0;
 private var angleVelocity = 0.0;
-private var snap = false;
 private var controller : GenericCharController;
 private var targetHeight = 100000.0; 
 
@@ -44,7 +40,7 @@ function Awake ()
 	_target = transform;
 	if (_target)
 	{
-		controller = _target.GetComponent(GenericCharController);
+		controller = _target.GetComponent("GenericCharController");
 	}
 	
 	if (controller)
@@ -55,16 +51,10 @@ function Awake ()
 		headOffset.y = characterController.bounds.max.y - _target.position.y;
 	}
 	else
-		Debug.Log("Please assign a target to the camera that has a ThirdPersonController script attached.");
+		Debug.Log("Please assign a target to the camera that has a GenericCharController script attached.");
 
 	
 	Cut(_target, centerOffset);
-}
-
-function DebugDrawStuff ()
-{
-	Debug.DrawLine(_target.position, _target.position + headOffset);
-
 }
 
 function AngleDistance (a : float, b : float)
@@ -84,8 +74,6 @@ function Apply (dummyTarget : Transform, dummyCenter : Vector3)
 	var targetCenter = _target.position + centerOffset;
 	var targetHead = _target.position + headOffset;
 
-//	DebugDrawStuff();
-
 	// Calculate the current & target rotation angles
 	var originalTargetAngle = _target.eulerAngles.y;
 	var currentAngle = cameraTransform.eulerAngles.y;
@@ -93,49 +81,15 @@ function Apply (dummyTarget : Transform, dummyCenter : Vector3)
 	// Adjust real target angle when camera is locked
 	var targetAngle = originalTargetAngle; 
 	
-	// When pressing Fire2 (alt) the camera will snap to the target direction real quick.
-	// It will stop snapping when it reaches the target
-	if (Input.GetButton("Fire2"))
-		snap = true;
 	
-	if (snap)
-	{
-		// We are close to the target, so we can stop snapping now!
-		if (AngleDistance (currentAngle, originalTargetAngle) < 3.0)
-			snap = false;
-		
-		currentAngle = Mathf.SmoothDampAngle(currentAngle, targetAngle, angleVelocity, snapSmoothLag, snapMaxSpeed);
-	}
-	// Normal camera motion
-	else
-	{
-		if (controller.GetLockCameraTimer () < lockCameraTimeout)
-		{
-			targetAngle = currentAngle;
-		}
+	//if (controller.GetLockCameraTimer () < lockCameraTimeout)
+	//{
+	//	targetAngle = currentAngle;
+	//}
 
-		// Lock the camera when moving backwards!
-		// * It is really confusing to do 180 degree spins when turning around.
-		if (AngleDistance (currentAngle, targetAngle) > 160 && controller.IsMovingBackwards ())
-			targetAngle += 180;
-
-		currentAngle = Mathf.SmoothDampAngle(currentAngle, targetAngle, angleVelocity, angularSmoothLag, angularMaxSpeed);
-	}
-
-
-	// When jumping don't move camera upwards but only down!
-	if (controller.IsJumping ())
-	{
-		// We'd be moving the camera upwards, do that only if it's really high
-		var newTargetHeight = targetCenter.y + height;
-		if (newTargetHeight < targetHeight || newTargetHeight - targetHeight > 5)
-			targetHeight = targetCenter.y + height;
-	}
-	// When walking always update the target height
-	else
-	{
-		targetHeight = targetCenter.y + height;
-	}
+	currentAngle = Mathf.SmoothDampAngle(currentAngle, targetAngle, angleVelocity, angularSmoothLag, angularMaxSpeed);
+	
+	targetHeight = targetCenter.y + height;
 
 	// Damp the height
 	var currentHeight = cameraTransform.position.y;
@@ -163,19 +117,12 @@ function LateUpdate () {
 function Cut (dummyTarget : Transform, dummyCenter : Vector3)
 {
 	var oldHeightSmooth = heightSmoothLag;
-	var oldSnapMaxSpeed = snapMaxSpeed;
-	var oldSnapSmooth = snapSmoothLag;
 	
-	snapMaxSpeed = 10000;
-	snapSmoothLag = 0.001;
 	heightSmoothLag = 0.001;
 	
-	snap = true;
 	Apply (transform, Vector3.zero);
 	
 	heightSmoothLag = oldHeightSmooth;
-	snapMaxSpeed = oldSnapMaxSpeed;
-	snapSmoothLag = oldSnapSmooth;
 }
 
 function SetUpRotation (centerPos : Vector3, headPos : Vector3)
