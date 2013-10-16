@@ -1,5 +1,10 @@
 ﻿#pragma strict
 
+enum CharacterFaction {
+	Player = 0,
+	Enemy = 1,
+}
+
 class GenericChar extends GenericCharController{
 
 	// Atributos
@@ -15,6 +20,8 @@ class GenericChar extends GenericCharController{
 	public var BAT : float = 1;
 	public var MovementSpeed : float = 1;
 	public var Jump : float = 1;
+	
+	public var Faction : CharacterFaction;
 	
 	function getSpear(){
 	
@@ -35,13 +42,34 @@ class GenericChar extends GenericCharController{
 		return horizontalSpeed;
 	}
 	
-		
-
 	function GetHorizontalSpeed(){
-		return Input.GetAxisRaw("Horizontal");
+		return 0;
 	}
 	function IsJumping(){
-		return (Input.GetButtonDown ("Jump") && this.IsGrounded()) || (Input.GetButtonDown ("Jump") && this.jumping);
+		return false;
+	}
+	function ExecuteAttack(){
+		return false;
+	}
+	
+	function TakeDamage(char_controller : GenericChar){
+		this.HP = this.HP - char_controller.ATK;
+	}
+	
+	function DealDamage(char_controller : GenericChar){
+		char_controller.HP = char_controller.HP - this.ATK;
+	}
+	
+	function OnAnotherControllerHit(hit : ControllerColliderHit){
+		var char_controller : GenericChar = hit.gameObject.GetComponent("GenericChar");
+		if(char_controller.Faction != this.Faction){
+			if(this.attacking)
+				this.DealDamage(char_controller);
+			else
+				this.TakeDamage(char_controller);
+			
+		}
+			
 	}
 }
 

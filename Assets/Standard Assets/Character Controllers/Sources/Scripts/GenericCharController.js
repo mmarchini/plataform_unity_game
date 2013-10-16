@@ -3,10 +3,12 @@
 
 public var idleAnimation : AnimationClip;
 public var walkAnimation : AnimationClip;
+public var attackAnimation : AnimationClip;
 public var jumpPoseAnimation : AnimationClip;
 
 public var walkMaxAnimationSpeed : float = 0.75;
 public var jumpAnimationSpeed : float = 1.15;
+public var attackAnimationSpeed : float = 1.15;
 public var landAnimationSpeed : float = 1.0;
 
 private var _animation : Animation;
@@ -31,10 +33,10 @@ var inAirControlAcceleration = 3.0;
 var jumpHeight = 0.5;
 
 // The gravity for the character
-var gravity = 20.0;
+var gravity = 25.0;
 // The gravity in controlled descent mode
-var speedSmoothing = 10.0;
-var rotateSpeed = 500.0;
+var speedSmoothing = 70.0;
+var rotateSpeed = 5000.0;
 
 var canJump = true;
 
@@ -58,6 +60,8 @@ private var collisionFlags : CollisionFlags;
 // Are we jumping? (Initiated with jump button and not grounded yet)
 protected var jumping = false;
 private var jumpingReachedApex = false;
+
+protected var attacking = false;
 
 // Is the user pressing any keys?
 private var isMoving = false;
@@ -98,6 +102,11 @@ function Awake ()
 		_animation = null;
 		Debug.Log("No jump animation found and the character has canJump enabled. Turning off animations.");
 	}
+	
+	event = AnimationEvent();
+	event.functionName = "EndAttack";
+	event.time = attackAnimation.length-0.1f;
+	attackAnimation.AddEvent(event);
 			
 }
 
@@ -189,6 +198,21 @@ function UpdateSmoothedMovementDirection ()
 		
 }
 
+function ApplyAttack ()
+{
+	if (isControllable)	// don't move player at all if not controllable.
+	{
+		// When we reach the apex of the jump we send out a message
+		if (this.ExecuteAttack())
+		{
+			this.StartAttack();
+		}
+		if(attacking){
+			_characterState = CharacterState.Attacking;
+		}
+	}
+}
+
 function ApplyJumping ()
 {
 	// Prevent jumping too fast after each other
@@ -206,15 +230,10 @@ function ApplyJumping ()
 	}
 }
 
-
 function ApplyGravity ()
 {
 	if (isControllable)	// don't move player at all if not controllable.
 	{
-		// Apply gravity
-		var jumpButton = Input.GetButton("Jump");
-		
-		
 		// When we reach the apex of the jump we send out a message
 		if (this.IsJumping() && !jumpingReachedApex && verticalSpeed <= 0.0)
 		{
@@ -247,12 +266,25 @@ function DidJump ()
 	_characterState = CharacterState.Jumping;
 }
 
+function EndAttack (){
+	attacking = false;
+}
+
+function StartAttack ()
+{
+	attacking = true;
+}
+
 function JumpAction(){
 	return Input.GetButtonDown ("Jump");
 }
 
 function MoveChar(){
 	// Calculate actual motion
+	if(attacking && IsGrounded()){
+		moveSpeed = 0;
+	}
+	
 	var movement = moveDirection * moveSpeed + Vector3 (0, verticalSpeed, 0) + inAirVelocity;
 	movement *= Time.deltaTime;
 	
@@ -290,7 +322,10 @@ function MoveChar(){
 function UpdateAnimation(){
 	// ANIMATION sector
 	if(_animation) {
-		if(_characterState == CharacterState.Jumping) 
+		if(_characterState == CharacterState.Attacking) {
+			_animation[attackAnimation.name].speed = attackAnimationSpeed;
+			_animation.CrossFade(attackAnimation.name);
+		} else if(_characterState == CharacterState.Jumping) 
 		{
 			if(!jumpingReachedApex) {
 				_animation[jumpPoseAnimation.name].speed = jumpAnimationSpeed;
@@ -317,6 +352,25 @@ function UpdateAnimation(){
 
 }
 
+function Action(){
+	
+
+	UpdateSmoothedMovementDirection();
+
+	// Apply gravity
+	// - extra power jump modifies gravity
+	// - controlledDescent mode modifies gravity
+	ApplyGravity();
+	
+	// Apply jumping logic
+	ApplyJumping();
+	
+	MoveChar();
+	
+	
+	ApplyAttack();
+}
+
 function Update() {
 	
 	if (!isControllable) {
@@ -327,25 +381,21 @@ function Update() {
 	if (this.IsJumping()) {
 		lastJumpButtonTime = Time.time;
 	}
-
-	UpdateSmoothedMovementDirection();
 	
-	// Apply gravity
-	// - extra power jump modifies gravity
-	// - controlledDescent mode modifies gravity
-	ApplyGravity();
-
-	// Apply jumping logic
-	ApplyJumping();
-	
-	MoveChar();
+	Action();
 	
 	UpdateAnimation();
 }
 
+function OnAnotherControllerHit(hit : ControllerColliderHit){
+	
+}
+
 function OnControllerColliderHit (hit : ControllerColliderHit )
 {
-//	Debug.DrawRay(hit.point, hit.normal);
+	char_controller = hit.gameObject.GetComponent("GenericCharController");
+	if(char_controller)
+		this.OnAnotherControllerHit(hit);
 	if (hit.moveDirection.y > 0.01) 
 		return;
 }
@@ -388,6 +438,10 @@ function HasJumpReachedApex ()
 function IsGroundedWithTimeout ()
 {
 	return lastGroundedTime + groundedTimeout > Time.time;
+}
+
+function ExecuteAttack(){
+	return false;
 }
 
 function Reset ()
