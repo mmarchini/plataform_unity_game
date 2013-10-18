@@ -38,18 +38,13 @@ class Enemy extends GenericChar{
 	}
 	
 	function DealDamage(char_controller : GenericChar){
-		this.AIMovementDuration = Random.Range(0.7, 1.6);
+		this.AIMovementDuration = Random.Range(1.3, 2.8);
 		this.AIMovementDirection = 0.0;
 		this.lastAIMovement = Time.time;
 		super.DealDamage(char_controller);
 	}
 	
 	function OnAnotherControllerHit(hit : ControllerColliderHit){
-		Debug.Log("Enemy");
-		var char_controller : GenericChar = hit.gameObject.GetComponent("GenericChar");
-		if(char_controller && char_controller.Type && char_controller.Type == ControllerType.Player){
-			if((this.attacking || (!char_controller.attacking)) && !this.damaged)
-				DealDamage(char_controller);
-		}
+		
 	}
 }

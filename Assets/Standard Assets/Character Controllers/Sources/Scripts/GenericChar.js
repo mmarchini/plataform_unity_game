@@ -22,7 +22,14 @@ class GenericChar extends GenericCharController{
 	public var Jump : float = 1;
 	
 	public var Type : ControllerType;
-	
+
+	function GetATKRange(){
+		//var currentAttackTime = Time.time - this.startAttackingTime;
+		//var endAttackTime = this.attackAnimation.length;
+		//return ATKRange*(currentAttackTime/endAttackTime);
+		return ATKRange;
+	}
+			
 	function getSpear(){
 	
 	}

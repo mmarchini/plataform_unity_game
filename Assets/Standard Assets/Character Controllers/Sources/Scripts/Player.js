@@ -17,10 +17,20 @@ class Player extends GenericChar{
 	
 	function OnAnotherControllerHit(hit : ControllerColliderHit){
 		var char_controller : GenericChar = hit.gameObject.GetComponent("GenericChar");
-		if(char_controller && char_controller.Type && char_controller.Type != ControllerType.Player){
-			if(this.attacking)
-				this.DealDamage(char_controller);
+		if(char_controller && char_controller.Type && char_controller.Type == ControllerType.Enemy){
+			if((this.attacking && (!char_controller.attacking)) && !this.damaged && !char_controller.damaged)
+				DealDamage(char_controller);
+			else if(!this.damaged){
+				char_controller.DealDamage(this);
+			}
 		}
+	
+		//Debug.Log("Player");
+		//var char_controller : GenericChar = hit.gameObject.GetComponent("GenericChar");
+		//if(char_controller && char_controller.Type && char_controller.Type != ControllerType.Player){
+		//	if(this.attacking)
+		//		this.DealDamage(char_controller);
+		//}
 	}
 	
 }

@@ -2,11 +2,11 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericChar.js">
     <Files>
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericChar.js" Line="60" Column="18" />
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericCharController.js" Line="396" Column="1" />
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonCamera.js" Line="112" Column="36" />
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Player.js" Line="4" Column="32" />
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Enemy.js" Line="28" Column="3" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericChar.js" Line="30" Column="19" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericCharController.js" Line="403" Column="1" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonCamera.js" Line="112" Column="1" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Player.js" Line="19" Column="16" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Enemy.js" Line="41" Column="48" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

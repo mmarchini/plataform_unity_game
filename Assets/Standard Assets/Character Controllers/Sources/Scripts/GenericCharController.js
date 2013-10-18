@@ -65,6 +65,8 @@ protected var jumping = false;
 private var jumpingReachedApex = false;
 
 protected var attacking = false;
+protected var startAttackingTime = -10;
+protected var middleOfAttack = false;
 
 protected var damaged = false;
 public var onHitTakenSpeed : float = 5;
@@ -191,7 +193,6 @@ function UpdateSmoothedMovementDirection ()
 		_characterState = CharacterState.Walking;
 				
 		moveSpeed = Mathf.Lerp(moveSpeed, targetSpeed, curSmooth);
-		
 	}
 	// In air controls
 	else
@@ -299,6 +300,8 @@ function EndAttack (){
 
 function StartAttack () {
 	attacking = true;
+	startAttackingTime = Time.time;
+	middleOfAttack = false;
 }
 
 function JumpAction(){
@@ -310,14 +313,14 @@ function MoveChar(){
 	if(attacking && IsGrounded()){
 		moveSpeed = 0;
 	} else if(damaged){
-		moveSpeed = -1*onHitTakenSpeed;
+		moveSpeed = 0;
 	}
 	
 	var movement = moveDirection * moveSpeed + Vector3 (0, verticalSpeed, 0) + inAirVelocity;
 	movement *= Time.deltaTime;
 	
 	collisionFlags = _controller.Move(movement);
-	
+		
 	// Set rotation to the move direction
 	if(!damaged)
 		if (IsGrounded())
@@ -385,8 +388,23 @@ function UpdateAnimation(){
 
 function Action(){
 	
+	if(!(attacking && IsGrounded()))
+		UpdateSmoothedMovementDirection();
 
-	UpdateSmoothedMovementDirection();
+	if(this.attacking){
+		Debug.DrawRay(GetCharPosition(), moveDirection*this.GetATKRange(), Color.black, 0);
+		var raycasthit : RaycastHit;
+		
+		Physics.Raycast(GetCharPosition(), moveDirection, raycasthit, this.GetATKRange());
+		if(raycasthit.collider != null)
+			if(raycasthit.collider.gameObject != null)
+				if(raycasthit.collider.gameObject.GetComponent("GenericChar") != null)
+					char_controller = raycasthit.collider.gameObject.GetComponent("GenericChar");
+					if(char_controller != null)
+						if(!char_controller.damaged){
+							this.DealDamage(char_controller);
+						}
+	}
 
 	// Apply gravity
 	// - extra power jump modifies gravity
@@ -401,6 +419,10 @@ function Action(){
 	ApplyAttack();
 	
 	ApplyDamage();
+}
+
+function GetCharPosition() {
+	return Vector3(this.gameObject.transform.position.x,this.gameObject.transform.position.y+0.7,this.gameObject.transform.position.z) ;
 }
 
 function Update() {
@@ -424,9 +446,9 @@ function OnAnotherControllerHit(hit : ControllerColliderHit){
 }
 
 function OnControllerColliderHit (hit : ControllerColliderHit ) {
-	char_controller = hit.gameObject.GetComponent("GenericCharController");
-	if(char_controller)
-		this.OnAnotherControllerHit(hit);
+	//char_controller = hit.gameObject.GetComponent("GenericCharController");
+	//if(char_controller)
+	//	this.OnAnotherControllerHit(hit);
 	if (hit.moveDirection.y > 0.01) 
 		return;
 }
