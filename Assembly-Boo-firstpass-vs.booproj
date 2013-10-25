@@ -44,8 +44,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\TestChar.boo" />
-     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\TestCharMotor.boo" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Boo\Enemy.boo" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Boo\FreezeAxis.boo" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Boo\GenericChar.boo" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Boo\GenericCharController.boo" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Boo\Player.boo" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Boo\ThirdPersonCamera.boo" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
      <None Include="Assets\Characters\Player\animations.txt" />
