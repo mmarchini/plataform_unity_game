@@ -3,6 +3,13 @@
 class Player (GenericChar): 
 
 	public SelOrbs as List = ["Wind", "Fire", "Water"]
+	private _paused = false
+
+	paused:
+		get:
+			return _paused
+		set:
+			_paused = value
 
 	def GetHorizontalSpeed():
 		if damaged:

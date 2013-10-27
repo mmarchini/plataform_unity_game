@@ -1,12 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Character Controllers\Sources\Scripts\HUD\CurrentSkill.boo">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\MainMenu\MainMenu.boo">
     <Files>
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\HUD\HPBar.boo" Line="16" Column="26" />
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\HUD\MPBar.boo" Line="21" Column="17" />
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\HUD\SelectedOrbs.boo" Line="10" Column="38" />
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\HUD\CurrentSkill.boo" Line="19" Column="45" />
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Player.boo" Line="5" Column="33" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\InterfaceElement.boo" Line="1" Column="1" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\MainMenu\MainMenu.boo" Line="11" Column="15" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\MainMenu\StartGame.boo" Line="10" Column="28" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\MainMenu\About.boo" Line="10" Column="16" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\MainMenu\RotateCamera.boo" Line="6" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -17,8 +17,10 @@
                 <Node name="Character Controllers" expanded="True">
                   <Node name="Sources" expanded="True">
                     <Node name="Scripts" expanded="True">
-                      <Node name="HUD" expanded="True">
-                        <Node name="CurrentSkill.boo" selected="True" />
+                      <Node name="Interface" expanded="True">
+                        <Node name="MainMenu" expanded="True">
+                          <Node name="MainMenu.boo" selected="True" />
+                        </Node>
                       </Node>
                     </Node>
                   </Node>
