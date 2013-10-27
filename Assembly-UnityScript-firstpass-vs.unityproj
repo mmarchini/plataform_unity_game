@@ -44,12 +44,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Enemy.js" />
-     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\FreezeAxis.js" />
-     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericChar.js" />
-     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericCharController.js" />
-     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Player.js" />
-     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonCamera.js" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\GUITest.js" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
      <None Include="Assets\Characters\Player\animations.txt" />

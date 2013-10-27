@@ -19,6 +19,7 @@ class GenericChar(GenericCharController):
 	public MovementSpeed = 1;
 	public Jump = 1;
 	
+	
 	public Type as ControllerType;
 	
 	def GetATKRange():

@@ -44,12 +44,16 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Boo\Enemy.boo" />
-     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Boo\FreezeAxis.boo" />
-     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Boo\GenericChar.boo" />
-     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Boo\GenericCharController.boo" />
-     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Boo\Player.boo" />
-     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Boo\ThirdPersonCamera.boo" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Enemy.boo" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\FreezeAxis.boo" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericChar.boo" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericCharController.boo" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\HUD\CurrentSkill.boo" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\HUD\HPBar.boo" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\HUD\MPBar.boo" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\HUD\SelectedOrbs.boo" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Player.boo" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonCamera.boo" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
      <None Include="Assets\Characters\Player\animations.txt" />

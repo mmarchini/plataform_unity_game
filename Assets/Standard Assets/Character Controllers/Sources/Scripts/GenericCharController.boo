@@ -116,7 +116,7 @@ class GenericCharController(MonoBehaviour):
 		event2.time = onHitAnimation.length-0.1f
 		onHitAnimation.AddEvent(event2)
 	
-	def GetHorizontalSpeed():
+	virtual def GetHorizontalSpeed():
 		return Input.GetAxisRaw("Horizontal")
 	
 	def GetRightVector():
@@ -309,10 +309,10 @@ class GenericCharController(MonoBehaviour):
 					_animation[walkAnimation.name].speed = Mathf.Clamp(_controller.velocity.magnitude, 0.0, walkMaxAnimationSpeed)
 					_animation.CrossFade(walkAnimation.name)
 	
-	def GetATKRange():
+	virtual def GetATKRange():
 		#TODO apagar essa merda depois
 		return 0.0f
-	def DealDamage(lala as CharacterController):
+	virtual def DealDamage(lala as GenericChar):
 		#TODO apagar essa merda depois
 		return 0.0f
 			
@@ -328,11 +328,11 @@ class GenericCharController(MonoBehaviour):
 			if raycasthit.collider != null:
 				if raycasthit.collider.gameObject != null:
 					if raycasthit.collider.gameObject.GetComponent("GenericChar") != null:
-						char_controller = raycasthit.collider.gameObject.GetComponent("GenericChar")
+						char_controller as GenericChar = raycasthit.collider.gameObject.GetComponent("GenericChar")
 						if char_controller != null:
 							#TODO
-							#if not char_controller.damaged:
-							self.DealDamage(char_controller)
+							if not char_controller.damaged:
+								self.DealDamage(char_controller)
 	
 		// Apply gravity
 		// - extra power jump modifies gravity
@@ -380,7 +380,7 @@ class GenericCharController(MonoBehaviour):
 	def GetWalkSpeed():
 		return walkSpeed
 	
-	def IsJumping():
+	virtual def IsJumping():
 		return jumping
 	
 	def IsGrounded():
@@ -401,7 +401,7 @@ class GenericCharController(MonoBehaviour):
 	def IsGroundedWithTimeout():
 		return lastGroundedTime + groundedTimeout > Time.time
 	
-	def ExecuteAttack():
+	virtual def ExecuteAttack():
 		return false
 	
 	def Reset ():
