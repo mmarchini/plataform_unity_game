@@ -54,8 +54,8 @@
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\HUD\SelectedOrbs.boo" />
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\InterfaceElement.boo" />
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\MainMenu\About.boo" />
-     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\MainMenu\ControlMenu.boo" />
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\MainMenu\MainMenu.boo" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\MainMenu\MainMenuItem.boo" />
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\MainMenu\RotateCamera.boo" />
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\MainMenu\StartGame.boo" />
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\Pause\PauseMenu.boo" />
