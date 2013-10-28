@@ -21,16 +21,9 @@ class GenericCharController(MonoBehaviour):
 	public attackAnimationSpeed = 1.15f
 	public onHitAnimationSpeed  = 1.15f
 	public landAnimationSpeed  = 1.0f
-	
-	private _animation as Animation
-	
-	private _controller as CharacterController
-	
-	private _characterState as CharacterState
+	public onHitTakenSpeed = 5f
 
 	public walkSpeed = 4.0
-	
-	public inAirControlAcceleration = 3.0
 	
 	// How high do we jump when pressing jump and letting go immediately
 	public jumpHeight = 0.5
@@ -42,7 +35,11 @@ class GenericCharController(MonoBehaviour):
 	public rotateSpeed = 5000.0
 	
 	public canJump = true
-	
+			
+	private _animation as Animation
+	private _controller as CharacterController
+	private _characterState as CharacterState
+
 	private jumpRepeatTime = 0.05
 	private jumpTimeout = 0.15
 	private groundedTimeout = 0.25
@@ -50,12 +47,8 @@ class GenericCharController(MonoBehaviour):
 	// The camera doesnt start following the target immediately but waits for a split second to avoid too much waving around.
 	private lockCameraTimer = 0.0
 	
-	// The current move direction in x-z
-	private moveDirection = Vector3.zero
 	// The current vertical speed
 	private verticalSpeed = 0.0
-	// The current x-z move speed
-	private moveSpeed = 0.0
 	
 	// The last collision flags returned from controller.Move
 	private collisionFlags as CollisionFlags 
@@ -69,10 +62,8 @@ class GenericCharController(MonoBehaviour):
 	protected middleOfAttack = false
 	
 	protected damaged = false
-	public onHitTakenSpeed = 5f
 	
-	// Is the user pressing any keys?
-	private isMoving = false
+	
 	// Last time the jump button was clicked down
 	private lastJumpButtonTime = -10.0
 	// Last time we performed a jump
@@ -82,20 +73,17 @@ class GenericCharController(MonoBehaviour):
 	private lastJumpStartHeight = 0.0
 	
 	
-	private inAirVelocity = Vector3.zero
-	
 	private lastGroundedTime = 0.0
 		
 	private isControllable = true
 	
 	def Awake():
-		moveDirection = transform.TransformDirection(Vector3.forward)
 		
 		_animation = GetComponent(Animation)
 		_controller = GetComponent(CharacterController)
 		if not _animation:
 			Debug.Log("The character you would like to control doesn't have animations. Moving her might look weird.")
-		
+	
 		if not idleAnimation:
 			_animation = null
 			Debug.Log("No idle animation found. Turning off animations.")
@@ -116,9 +104,6 @@ class GenericCharController(MonoBehaviour):
 		event2.time = onHitAnimation.length-0.1f
 		onHitAnimation.AddEvent(event2)
 	
-	virtual def GetHorizontalSpeed():
-		return Input.GetAxisRaw("Horizontal")
-	
 	def GetRightVector():
 		cameraTransform = Camera.main.transform
 
@@ -133,69 +118,44 @@ class GenericCharController(MonoBehaviour):
 		
 		return right
 	
-	def UpdateSmoothedMovementDirection():
-		grounded = IsGrounded()
-		
-		right = GetRightVector()
+	targetDirection:
+		get:
+			return self.GetHorizontalSpeed() * GetRightVector()
 	
-		h = self.GetHorizontalSpeed()
-	
-		wasMoving = isMoving
-		isMoving = Mathf.Abs (h) > 0.1
+	isMoving :
+		get:
+			return Mathf.Abs (self.GetHorizontalSpeed()) > 0.1
 			
-		// Target direction relative to the camera
-		targetDirection = h * right
-		
-		// Grounded controls
-		if grounded:
-			// Lock camera for short period when transitioning moving & standing still
-			lockCameraTimer += Time.deltaTime
-			if isMoving != wasMoving:
-				lockCameraTimer = 0.0
-	
-			// We store speed and direction seperately,
-			// so that when the character stands still we still have a valid forward direction
-			// moveDirection is always normalized, and we only update it if there is user input.
-			if targetDirection != Vector3.zero:
+	moveDirection:
+		get:
+			_moveDirection as Vector3
+			if targetDirection != Vector3.zero and not ((attacking and IsGrounded()) or damaged):
 				// If we are really slow, just snap to the target direction
-				if moveSpeed < self.GetWalkSpeed() * 0.9 and grounded:
-					moveDirection = targetDirection.normalized
+				if moveSpeed < self.GetWalkSpeed() * 0.9 and IsGrounded():
+					_moveDirection = targetDirection.normalized
 				// Otherwise smoothly turn towards it
 				else:
-					moveDirection = Vector3.RotateTowards(moveDirection, targetDirection, rotateSpeed * Mathf.Deg2Rad * Time.deltaTime, 1000)
-					moveDirection = moveDirection.normalized
+					_moveDirection = Vector3.RotateTowards(_moveDirection, targetDirection, rotateSpeed * Mathf.Deg2Rad * Time.deltaTime, 1000)
+			else:
+				_moveDirection = self.transform.forward
 			
-			// Smooth the speed based on the current target direction
-			curSmooth = speedSmoothing * Time.deltaTime
+			return _moveDirection.normalized
 			
-			// Choose target speed
-			//* We want to support analog input but make sure you cant walk faster diagonally than just forward or sideways
-			targetSpeed = Mathf.Min(targetDirection.magnitude, 1.0)
-		
-			targetSpeed *= self.GetWalkSpeed()
-			_characterState = CharacterState.Walking
-					
-			moveSpeed = Mathf.Lerp(moveSpeed, targetSpeed, curSmooth)
-		// In air controls
-		else:
-			// Lock camera while in air
-			if self.IsJumping():
-				lockCameraTimer = 0.0
-	
-			if isMoving:
-				inAirVelocity += targetDirection.normalized * Time.deltaTime * inAirControlAcceleration
-		
+	moveSpeed:
+		get:
+			if (attacking and IsGrounded()) or damaged:
+				return 0
+			return Mathf.Min(targetDirection.magnitude, 1.0) * self.GetWalkSpeed()
 	
 	def ApplyDamage():
 		if damaged:
 			_characterState = CharacterState.Hitted
 	
-	def ApplyAttack ():
-		if isControllable:
-			if self.ExecuteAttack():
-				self.StartAttack()
-			if attacking:
-				_characterState = CharacterState.Attacking
+	def ApplyAttack():
+		if self.ExecuteAttack():
+			self.StartAttack()
+		if attacking:
+			_characterState = CharacterState.Attacking
 	
 	def ApplyJumping():
 		// Prevent jumping too fast after each other
@@ -206,21 +166,19 @@ class GenericCharController(MonoBehaviour):
 			// Jump
 			// - Only when pressing the button down
 			// - With a timeout so you can press the button slightly before landing		
-			if canJump and Time.time < lastJumpButtonTime + jumpTimeout:
+			if Time.time < lastJumpButtonTime + jumpTimeout:
 				verticalSpeed = CalculateJumpVerticalSpeed (jumpHeight)
 				SendMessage("DidJump", SendMessageOptions.DontRequireReceiver)
 	
 	def ApplyGravity():
-		if isControllable:	// don't move player at all if not controllable.
-			// When we reach the apex of the jump we send out a message
-			if self.IsJumping() and not jumpingReachedApex and verticalSpeed <= 0.0:
-				jumpingReachedApex = true
-				SendMessage("DidJumpReachApex", SendMessageOptions.DontRequireReceiver)
+		if self.IsJumping() and not jumpingReachedApex and verticalSpeed <= 0.0:
+			jumpingReachedApex = true
+			SendMessage("DidJumpReachApex", SendMessageOptions.DontRequireReceiver)
 
-			if IsGrounded():
-				verticalSpeed = 0.0
-			else:
-				verticalSpeed -= gravity * Time.deltaTime
+		if IsGrounded():
+			verticalSpeed = 0.0
+		else:
+			verticalSpeed -= gravity * Time.deltaTime
 	
 	def CalculateJumpVerticalSpeed (targetJumpHeight as single):
 		// From the jump height and gravity we deduce the upwards speed 
@@ -256,13 +214,12 @@ class GenericCharController(MonoBehaviour):
 		return Input.GetButtonDown ("Jump")
 	
 	def MoveChar():
-		// Calculate actual motion
-		if attacking and IsGrounded():
-			moveSpeed = 0
-		elif damaged:
-			moveSpeed = 0
 		
-		movement = moveDirection * moveSpeed + Vector3 (0, verticalSpeed, 0) + inAirVelocity
+		movement = moveDirection * moveSpeed
+		if(attacking and IsGrounded()):
+			movement *= 0
+		movement += Vector3 (0, verticalSpeed, 0)
+		
 		movement *= Time.deltaTime
 		
 		collisionFlags = _controller.Move(movement)
@@ -280,7 +237,6 @@ class GenericCharController(MonoBehaviour):
 		// We are in jump mode but just became grounded
 		if IsGrounded():
 			lastGroundedTime = Time.time
-			inAirVelocity = Vector3.zero
 			if self.IsJumping():
 				jumping = false
 				SendMessage("DidLand", SendMessageOptions.DontRequireReceiver)
@@ -317,9 +273,6 @@ class GenericCharController(MonoBehaviour):
 		return 0.0f
 			
 	def Action():
-		if not (attacking and IsGrounded()):
-			UpdateSmoothedMovementDirection()
-	
 		if self.attacking:
 			Debug.DrawRay(GetCharPosition(), moveDirection * self.GetATKRange(), Color.black, 0)
 			raycasthit as RaycastHit
@@ -335,8 +288,6 @@ class GenericCharController(MonoBehaviour):
 								self.DealDamage(char_controller)
 	
 		// Apply gravity
-		// - extra power jump modifies gravity
-		// - controlledDescent mode modifies gravity
 		ApplyGravity()
 		
 		// Apply jumping logic
@@ -374,9 +325,6 @@ class GenericCharController(MonoBehaviour):
 		if hit.moveDirection.y > 0.01:
 			return
 	
-	def GetSpeed():
-		return moveSpeed
-	
 	def GetWalkSpeed():
 		return walkSpeed
 	
@@ -400,6 +348,9 @@ class GenericCharController(MonoBehaviour):
 	
 	def IsGroundedWithTimeout():
 		return lastGroundedTime + groundedTimeout > Time.time
+	
+	virtual def GetHorizontalSpeed():
+		return Input.GetAxisRaw("Horizontal")
 	
 	virtual def ExecuteAttack():
 		return false
