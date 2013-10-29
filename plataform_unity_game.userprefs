@@ -1,10 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericCharController.boo">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericChar.boo">
     <Files>
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericCharController.boo" Line="220" Column="17" />
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Player.boo" Line="6" Column="1" />
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericChar.boo" Line="55" Column="2" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericCharController.boo" Line="316" Column="2" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Player.boo" Line="20" Column="1" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericChar.boo" Line="13" Column="9" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\HUD\HPBar.boo" Line="7" Column="20" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\HUD\MPBar.boo" Line="8" Column="29" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,9 +18,10 @@
                   <Node name="Sources" expanded="True">
                     <Node name="Scripts" expanded="True">
                       <Node name="Interface" expanded="True">
+                        <Node name="HUD" expanded="True" />
                         <Node name="MainMenu" expanded="True" />
                       </Node>
-                      <Node name="GenericCharController.boo" selected="True" />
+                      <Node name="GenericChar.boo" selected="True" />
                     </Node>
                   </Node>
                 </Node>

@@ -37,8 +37,7 @@ class GenericCharController(MonoBehaviour):
 	public canJump = true
 			
 	private _animation as Animation
-	private _controller as CharacterController
-	private _characterState as CharacterState
+	protected _controller as CharacterController
 
 	private jumpRepeatTime = 0.05
 	private jumpTimeout = 0.15
@@ -54,7 +53,7 @@ class GenericCharController(MonoBehaviour):
 	private collisionFlags as CollisionFlags 
 	
 	// Are we jumping? (Initiated with jump button and not grounded yet)
-	protected jumping = false
+	protected _jumping = false
 	private jumpingReachedApex = false
 	
 	protected attacking = false
@@ -67,7 +66,7 @@ class GenericCharController(MonoBehaviour):
 	// Last time the jump button was clicked down
 	private lastJumpButtonTime = -10.0
 	// Last time we performed a jump
-	private lastJumpTime = -1.0
+	protected lastJumpTime = -1.0
 	
 	// the height we jumped from (Used to determine for how long to apply extra jump power after jumping.)
 	private lastJumpStartHeight = 0.0
@@ -129,9 +128,9 @@ class GenericCharController(MonoBehaviour):
 	moveDirection:
 		get:
 			_moveDirection as Vector3
-			if targetDirection != Vector3.zero and not ((attacking and IsGrounded()) or damaged):
+			if targetDirection != Vector3.zero and not ((attacking and Grounded) or damaged):
 				// If we are really slow, just snap to the target direction
-				if moveSpeed < self.GetWalkSpeed() * 0.9 and IsGrounded():
+				if moveSpeed < self.GetWalkSpeed() * 0.9 and Grounded:
 					_moveDirection = targetDirection.normalized
 				// Otherwise smoothly turn towards it
 				else:
@@ -143,26 +142,37 @@ class GenericCharController(MonoBehaviour):
 			
 	moveSpeed:
 		get:
-			if (attacking and IsGrounded()) or damaged:
+			if (attacking and Grounded) or damaged:
 				return 0
 			return Mathf.Min(targetDirection.magnitude, 1.0) * self.GetWalkSpeed()
+			
+	_characterState:
+		get:
+			if damaged:
+				return CharacterState.Hitted
+			elif attacking:
+				return CharacterState.Attacking
+			elif Jumping:
+				return CharacterState.Jumping
+			elif moveSpeed != 0:
+				return CharacterState.Walking
+			else:
+				return CharacterState.Idle
 	
 	def ApplyDamage():
 		if damaged:
-			_characterState = CharacterState.Hitted
+			pass
 	
 	def ApplyAttack():
 		if self.ExecuteAttack():
 			self.StartAttack()
-		if attacking:
-			_characterState = CharacterState.Attacking
 	
 	def ApplyJumping():
 		// Prevent jumping too fast after each other
 		if lastJumpTime + jumpRepeatTime > Time.time:
 			return
 	
-		if IsGrounded():
+		if Grounded and Jumping:
 			// Jump
 			// - Only when pressing the button down
 			// - With a timeout so you can press the button slightly before landing		
@@ -171,11 +181,11 @@ class GenericCharController(MonoBehaviour):
 				SendMessage("DidJump", SendMessageOptions.DontRequireReceiver)
 	
 	def ApplyGravity():
-		if self.IsJumping() and not jumpingReachedApex and verticalSpeed <= 0.0:
+		if self.Jumping and not jumpingReachedApex and verticalSpeed <= 0.0:
 			jumpingReachedApex = true
 			SendMessage("DidJumpReachApex", SendMessageOptions.DontRequireReceiver)
 
-		if IsGrounded():
+		if Grounded:
 			verticalSpeed = 0.0
 		else:
 			verticalSpeed -= gravity * Time.deltaTime
@@ -186,13 +196,11 @@ class GenericCharController(MonoBehaviour):
 		return Mathf.Sqrt(2 * targetJumpHeight * gravity)
 	
 	def DidJump():
-		jumping = true
+		_jumping = true
 		jumpingReachedApex = false
 		lastJumpTime = Time.time
 		lastJumpStartHeight = transform.position.y
 		lastJumpButtonTime = -10
-		
-		_characterState = CharacterState.Jumping
 	
 	def EndDamage():
 		damaged = false
@@ -210,13 +218,14 @@ class GenericCharController(MonoBehaviour):
 		startAttackingTime = Time.time
 		middleOfAttack = false
 	
-	def JumpAction():
-		return Input.GetButtonDown ("Jump")
+	virtual JumpAction:
+		get:
+			return false
 	
 	def MoveChar():
 		
 		movement = moveDirection * moveSpeed
-		if(attacking and IsGrounded()):
+		if(attacking and Grounded):
 			movement *= 0
 		movement += Vector3 (0, verticalSpeed, 0)
 		
@@ -226,7 +235,7 @@ class GenericCharController(MonoBehaviour):
 			
 		// Set rotation to the move direction
 		if not damaged:
-			if IsGrounded():
+			if Grounded:
 				transform.rotation = Quaternion.LookRotation(moveDirection)
 			else:
 				xzMove = movement
@@ -235,10 +244,10 @@ class GenericCharController(MonoBehaviour):
 					transform.rotation = Quaternion.LookRotation(xzMove)
 		
 		// We are in jump mode but just became grounded
-		if IsGrounded():
+		if Grounded:
 			lastGroundedTime = Time.time
-			if self.IsJumping():
-				jumping = false
+			if Jumping:
+				_jumping = false
 				SendMessage("DidLand", SendMessageOptions.DontRequireReceiver)
 	
 	def UpdateAnimation():
@@ -251,19 +260,14 @@ class GenericCharController(MonoBehaviour):
 				_animation[attackAnimation.name].speed = attackAnimationSpeed
 				_animation.CrossFade(attackAnimation.name)
 			elif _characterState == CharacterState.Jumping:
-				if not jumpingReachedApex:
-					_animation[jumpPoseAnimation.name].speed = jumpAnimationSpeed
-					_animation[jumpPoseAnimation.name].wrapMode = WrapMode.ClampForever
-					_animation.CrossFade(jumpPoseAnimation.name)
-				else:
-					_animation[jumpPoseAnimation.name].speed = -landAnimationSpeed
-					_animation[jumpPoseAnimation.name].wrapMode = WrapMode.ClampForever
-					_animation.CrossFade(jumpPoseAnimation.name)
-			elif _controller.velocity.sqrMagnitude < 0.1:
-					_animation.CrossFade(idleAnimation.name)
+				_animation[jumpPoseAnimation.name].speed = jumpAnimationSpeed
+				#_animation[jumpPoseAnimation.name].wrapMode = WrapMode.ClampForever
+				_animation.CrossFade(jumpPoseAnimation.name)
 			elif(_characterState == CharacterState.Walking):
-					_animation[walkAnimation.name].speed = Mathf.Clamp(_controller.velocity.magnitude, 0.0, walkMaxAnimationSpeed)
-					_animation.CrossFade(walkAnimation.name)
+				_animation[walkAnimation.name].speed = Mathf.Clamp(_controller.velocity.magnitude, 0.0, walkMaxAnimationSpeed)
+				_animation.CrossFade(walkAnimation.name)
+			elif(_characterState == CharacterState.Idle):
+				_animation.CrossFade(idleAnimation.name)
 	
 	virtual def GetATKRange():
 		#TODO apagar essa merda depois
@@ -303,36 +307,34 @@ class GenericCharController(MonoBehaviour):
 		return Vector3(self.gameObject.transform.position.x,self.gameObject.transform.position.y+0.7,self.gameObject.transform.position.z)
 	
 	def Update():
-		
-		if not isControllable:
-			// kill all inputs if not controllable.
-			Input.ResetInputAxes()
-	
-		if self.IsJumping():
+		if self.Jumping:
 			lastJumpButtonTime = Time.time
 		
 		Action()
 		
 		UpdateAnimation()
 	
-	def OnAnotherControllerHit(hit as ControllerColliderHit):
-		pass
-	
 	def OnControllerColliderHit(hit as	ControllerColliderHit):
-		//char_controller = hit.gameObject.GetComponent("GenericCharController")
-		//if(char_controller)
-		//	self.OnAnotherControllerHit(hit)
 		if hit.moveDirection.y > 0.01:
 			return
 	
 	def GetWalkSpeed():
 		return walkSpeed
 	
-	virtual def IsJumping():
-		return jumping
+	Jumping:
+		get:
+			if self.damaged:
+				return false
+			elif self.JumpAction:
+				return true
+			elif _jumping:
+				return true
+			else:
+				return false
 	
-	def IsGrounded():
-		return (collisionFlags & CollisionFlags.CollidedBelow) != 0
+	Grounded:
+		get:
+			return self._controller.isGrounded
 	
 	def GetDirection():
 		return moveDirection

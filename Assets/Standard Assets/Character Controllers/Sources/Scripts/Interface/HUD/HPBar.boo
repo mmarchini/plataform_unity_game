@@ -3,8 +3,8 @@
 class HPBar (InterfaceElement): 
 	text as string:
 		get:
-			cur_HP = self.player.HP
-			max_HP = self.player.HP
+			cur_HP as single = self.player.CurrentHP
+			max_HP as single = self.player.MaxHP
 			percent = (cur_HP/max_HP)
 			color = ""
 			if percent > 0.5:

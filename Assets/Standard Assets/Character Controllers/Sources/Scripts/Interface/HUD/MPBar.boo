@@ -3,8 +3,8 @@
 class MPBar (InterfaceElement): 
 	text as string:
 		get:
-			cur_MP = self.player.MP
-			max_MP = self.player.MP
+			cur_MP as single = self.player.CurrentMP
+			max_MP as single = self.player.MaxMP
 			percent = (cur_MP/max_MP)
 			color = ""
 			if percent > 0.5:

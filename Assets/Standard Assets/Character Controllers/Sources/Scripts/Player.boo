@@ -16,10 +16,10 @@ class Player (GenericChar):
 			return 0
 		return Input.GetAxisRaw("Horizontal")
 	
-	def IsJumping():
-		#TODO o.O
-		return (Input.GetButtonDown ("Jump") and self.IsGrounded()) or (Input.GetButtonDown ("Jump") and self.jumping) and not self.damaged
-	
+	JumpAction:
+		get:
+			return Input.GetButtonDown ("Jump")
+		
 	def ExecuteAttack():
 		return Input.GetButtonDown ("Attack") and not damaged
 
