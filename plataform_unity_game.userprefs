@@ -1,12 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericChar.boo">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\InterfaceElement.boo">
     <Files>
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericCharController.boo" Line="316" Column="2" />
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Player.boo" Line="20" Column="1" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\InterfaceElement.boo" Line="37" Column="88" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericCharController.boo" Line="1" Column="1" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Player.boo" Line="1" Column="1" />
       <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericChar.boo" Line="13" Column="9" />
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\HUD\HPBar.boo" Line="7" Column="20" />
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\HUD\MPBar.boo" Line="8" Column="29" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\HUD\HPBar.boo" Line="1" Column="1" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\HUD\MPBar.boo" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -20,8 +21,8 @@
                       <Node name="Interface" expanded="True">
                         <Node name="HUD" expanded="True" />
                         <Node name="MainMenu" expanded="True" />
+                        <Node name="InterfaceElement.boo" selected="True" />
                       </Node>
-                      <Node name="GenericChar.boo" selected="True" />
                     </Node>
                   </Node>
                 </Node>

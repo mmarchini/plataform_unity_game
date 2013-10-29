@@ -34,7 +34,7 @@ class InterfaceElement (MonoBehaviour):
 			return Screen.height*self.TextY/100
 	FS as single:
 		get:
-			return Screen.height*self.FontSize/100
+			return ((Screen.height cast single)/(Screen.width cast single)) * self.FontSize * 10
 	
 	style as GUIStyle:
 		get:
