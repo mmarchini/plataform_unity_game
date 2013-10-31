@@ -1,9 +1,17 @@
-﻿
+﻿import UnityEngine
+
 class CurrentSkill (InterfaceElement): 
 	
-	DrawBox:
-		get:
-			return not self.player.paused
+	def Awake():
+		super.Awake()
+		self.x = 22
+		self.y = 12
+		self.width = 30
+		self.height = 11
+		self.FontSize = 5
+		self.TextX = 2
+		self.TextY= 1.55
+		self.texture = Resources.Load("$(self.gui_path)/Label") as Texture	
 	
 	private elements_list = ["Fire", "Wind", "Water"]
 	private skills_dict = {

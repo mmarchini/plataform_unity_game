@@ -3,11 +3,12 @@
 class PassiveController (MonoBehaviour):
 	
 	
-	passives = {}
+	public passives = {}
 	
 	
 	def Awake():
 		self.passives = {}
+		
 		passives_names = ["ATK", "DEF", "HP", "MP", "CritDamage"]
 		for pn in passives_names:
 			aux_passive as Passive = self.gameObject.AddComponent("Passive$(pn)")
@@ -19,9 +20,8 @@ class PassiveController (MonoBehaviour):
 				aux_list += [aux_passive]
 					
 				self.passives[aux_passive.AffectAttribute] = aux_list
-				
-		print(self.passives)
 		
+				
 	def CallPassives(character as GenericChar, caller as string):
 		attribute_passives as List = passives[caller]
 		extra_attribute = 0.0

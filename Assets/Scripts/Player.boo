@@ -37,18 +37,3 @@ class Player (GenericChar):
 		
 	def ExecuteAttack():
 		return Input.GetButtonDown ("Attack") and not damaged
-
-	def OnAnotherControllerHit(hit as ControllerColliderHit):
-		char_controller as GenericChar = hit.gameObject.GetComponent("GenericChar")
-		if char_controller and char_controller.Type and char_controller.Type == ControllerType.Enemy:
-			if (self.attacking and (not char_controller.attacking)) and not self.damaged and not char_controller.damaged:
-				DealDamage(char_controller)
-			elif not self.damaged:
-				char_controller.DealDamage(self)
-	
-		//Debug.Log("Player")
-		//var char_controller : GenericChar = hit.gameObject.GetComponent("GenericChar")
-		//if(char_controller and char_controller.Type and char_controller.Type != ControllerType.Player){
-		//	if(self.attacking)
-		//		self.DealDamage(char_controller)
-		//}

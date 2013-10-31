@@ -6,12 +6,15 @@ class InterfaceElement (MonoBehaviour):
 	public y as single = 10.0f
 	public width as single = 10.0f
 	public height as single = 10.0f
-	public FontSize as single = 10.0f
+	public FontSize as single = 5.0f
 	
 	public TextX as single = 1.0f
 	public TextY as single = 1.0f
 	
 	public texture as Texture2D
+	
+	protected gui_path as string = "NecromancerGUI/controls"
+	
 	private _style as GUIStyle
 	
 	X as single:
@@ -34,7 +37,7 @@ class InterfaceElement (MonoBehaviour):
 			return Screen.height*self.TextY/100
 	FS as single:
 		get:
-			return ((Screen.height cast single)/(Screen.width cast single)) * self.FontSize * 10
+			return (Screen.width cast single) * self.FontSize/200
 	
 	style as GUIStyle:
 		get:
@@ -51,6 +54,7 @@ class InterfaceElement (MonoBehaviour):
 	virtual text as string:
 		get:
 			return ""
+			
 	virtual DrawBox:
 		get:
 			return true
@@ -63,10 +67,10 @@ class InterfaceElement (MonoBehaviour):
 	virtual def AfterBoxDraw():
 		pass
 		
-	def Start():
+	def Awake():
 		player = self.GetComponent("Player")
-
-	def OnGUI():
+		
+	virtual def DrawInterfaceElement():
 		self.BeforeBoxDraw()
 		if self.DrawBox:
 			GUI.Box(Rect(X,Y,W,H), self.text, self.style)

@@ -1,21 +1,36 @@
 ﻿import UnityEngine
 
-class MainMenu(InterfaceElement): 
+class MainMenu(InterfaceWindow): 
 	
-	SelectedMenu as string:
+	private lastTime as double = -10
+	public changeItemTime as double = 0.25
+	
+	SelectedMenu as MainMenuItem:
 		get:
-			return menuItems[0]
-	private menuItems as List = ["StartGame", "About"]
-	private menuItem as InterfaceElement
+			return self._interface_elements[0]
+
+	def Awake():
+		self.WindowID = 0
+		self.x = 25
+		self.y = 10
+		self.width = 50
+		self.height = 75
+		for ie as string in ["StartGame", "About"]:
+			new_ie = self.gameObject.AddComponent(ie)
+			self._interface_elements.Add(new_ie)
 	
 	def Update():
 		if Input.GetButtonDown("Attack"):
-			clickedItem as MainMenuItem = self.GetComponent(self.SelectedMenu)
+			clickedItem as MainMenuItem = self.SelectedMenu
 			clickedItem.Action()
-		elif Input.GetAxis("Vertical") > 0.2:
-			self.menuItems = [self.menuItems[-1]]+self.menuItems[:-1]
-		elif Input.GetAxis("Vertical") < -0.2:
-			self.menuItems = self.menuItems[1:]+[self.menuItems[0]]
+		
+		if Time.time - self.lastTime >= self.changeItemTime:
+			if Input.GetAxis("Vertical") > 0.2:
+				self._interface_elements = [self._interface_elements[-1]]+self._interface_elements[:-1]
+				self.lastTime = Time.time
+			elif Input.GetAxis("Vertical") < -0.2:
+				self._interface_elements = self._interface_elements[1:]+[self._interface_elements[0]]
+				self.lastTime = Time.time
 			
 	
 	

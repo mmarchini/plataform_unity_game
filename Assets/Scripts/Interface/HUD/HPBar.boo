@@ -1,8 +1,18 @@
-﻿
+﻿import UnityEngine
+
+
 class HPBar (InterfaceElement): 
-	DrawBox:
-		get:
-			return not self.player.paused
+
+	def Awake():
+		super.Awake()
+		self.x = 1
+		self.y = 1
+		self.width = 22
+		self.height = 11
+		self.FontSize = 5
+		self.TextX = 2
+		self.TextY= 1.55
+		self.texture = Resources.Load("$(self.gui_path)/Label") as Texture
 	
 	text as string:
 		get:

@@ -1,8 +1,17 @@
-﻿
+﻿import UnityEngine
+
 class SelectedOrbs(InterfaceElement): 
-	DrawBox:
-		get:
-			return not self.player.paused
+	
+	def Awake():
+		super.Awake()
+		self.x = 22
+		self.y = 1
+		self.width = 30
+		self.height = 11
+		self.FontSize = 5
+		self.TextX = 2
+		self.TextY= 1.55
+		self.texture = Resources.Load("$(self.gui_path)/Label") as Texture
 
 	private orbs_colors = {"Water":"blue", "Fire":"red", "Wind":"green"}
 	

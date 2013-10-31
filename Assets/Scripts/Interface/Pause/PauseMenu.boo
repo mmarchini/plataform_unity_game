@@ -8,8 +8,7 @@ class PauseMenu(InterfaceElement):
 	
 	text as string:
 		get:
-			return """<color='black'>
-HP: $(player.CurrentHP)/$(player.MaxHP)
+			return """<color='black'>HP: $(player.CurrentHP)/$(player.MaxHP)
 MP: $(player.CurrentMP)/$(player.MaxMP)
 ATK: $(player.ATK)
 DEF: $(player.DEF)
@@ -17,10 +16,23 @@ Spear: $(player.Spear*100)%
 Shield: $(player.Shield*100)%
 CritChance: $(player.CritChance*100)%
 CritDamage: $(player.CritDamage)x
+
+Attack: Passive Menu      Pause: Exit
 </color>"""
 	
+	
+	def Awake():
+		super.Awake()
+		self.x = 0
+		self.y = 15
+		self.width = 75
+		self.height = 95
+		self.FontSize = 5
+		self.TextX = 0
+		self.TextY= 1
+
+		
 	def Update():
 		if Input.GetButtonDown("Pause"):
 			self.player.paused = not self.player.paused
 			Time.timeScale = Mathf.Abs(Mathf.Abs(Time.timeScale)-1)
-		

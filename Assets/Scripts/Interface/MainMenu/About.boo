@@ -4,5 +4,10 @@ class About(MainMenuItem):
 		get:
 			return "About"
 			
+	def Awake():
+		super.Awake()
+		self.x = 15
+		self.y = 44
+	
 	def Action():
 		print("It's me!")
