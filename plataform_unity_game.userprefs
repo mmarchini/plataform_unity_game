@@ -1,6 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemy.boo">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Interface\Pause\PassiveMenuPointsLeft.boo">
     <Files>
       <File FileName="Assets\Scripts\Enemy.boo" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GenericChar.boo" Line="1" Column="1" />
@@ -8,11 +8,11 @@
       <File FileName="Assets\Scripts\Interface\HUD\HUDWindow.boo" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Interface\HUD\Level.boo" Line="20" Column="53" />
       <File FileName="Assets\Scripts\PassiveController.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Interface\Pause\PassiveMenuItem.boo" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Interface\Pause\PassiveMenuItem.boo" Line="12" Column="1" />
       <File FileName="Assets\Scripts\Passive.boo" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Interface\Pause\PauseWindow.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Interface\Pause\PauseMenu.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Interface\Pause\PassiveMenu.boo" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Interface\Pause\PassiveMenu.boo" Line="61" Column="42" />
+      <File FileName="Assets\Scripts\Interface\Pause\PassiveMenuPointsLeft.boo" Line="17" Column="18" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -22,10 +22,10 @@
               <Node name="Scripts" expanded="True">
                 <Node name="Interface" expanded="True">
                   <Node name="HUD" expanded="True" />
-                  <Node name="Pause" expanded="True" />
+                  <Node name="Pause" expanded="True">
+                    <Node name="PassiveMenuPointsLeft.boo" selected="True" />
+                  </Node>
                 </Node>
-                <Node name="Passives" expanded="True" />
-                <Node name="Enemy.boo" selected="True" />
               </Node>
             </Node>
           </Node>
