@@ -17,7 +17,7 @@ Shield: $(player.Shield*100)%
 CritChance: $(player.CritChance*100)%
 CritDamage: $(player.CritDamage)x
 
-Attack: Passive Menu      Pause: Exit
+Botao de Ataque: Passive Menu
 </color>"""
 	
 	
@@ -32,7 +32,3 @@ Attack: Passive Menu      Pause: Exit
 		self.TextY= 1
 
 		
-	def Update():
-		if Input.GetButtonDown("Pause"):
-			self.player.paused = not self.player.paused
-			Time.timeScale = Mathf.Abs(Mathf.Abs(Time.timeScale)-1)

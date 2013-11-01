@@ -53,6 +53,7 @@ class InterfaceWindow (MonoBehaviour):
 			GUI.Window(self.WindowID, Rect(self.X, self.Y, self.W, self.H), self.DrawInterfaceElements, "", self.style)
 
 	def DrawInterfaceElements():
-		for interface_element as InterfaceElement in self.interface_elements:
-			interface_element.DrawInterfaceElement()
+		if self.interface_elements != []:
+			for interface_element as InterfaceElement in self.interface_elements:
+				interface_element.DrawInterfaceElement()
 		

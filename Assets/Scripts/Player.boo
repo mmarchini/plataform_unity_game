@@ -27,7 +27,6 @@ class Player (GenericChar):
 			self.SelOrbs = ["Water"] + self.SelOrbs[:-1]
 		if Input.GetButtonDown("Wind"):
 			self.SelOrbs = ["Wind"] + self.SelOrbs[:-1]
-		Debug.Log(self.SelOrbs)
 			
 		super.Update()
 	

@@ -44,6 +44,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Pause Menu\PauseMenu.js" />
      <Compile Include="Assets\Resources\NecromancerGUI\GUITestScript.js" />
      <Compile Include="Assets\Toon World Texture Pack\Sample\Rotater.js" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />

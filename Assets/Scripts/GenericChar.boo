@@ -141,6 +141,8 @@ class GenericChar(GenericCharController):
 	def TakeDamage(char_controller as GenericChar):
 		if not damaged:
 			self.LostHP = self.LostHP + char_controller.DMG
+		if self.CurrentHP <= 0:
+			Destroy(self.gameObject)
 		self.StartDamage()
 	
 	def DealDamage(char_controller as GenericChar):

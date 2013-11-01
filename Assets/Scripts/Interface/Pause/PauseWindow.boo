@@ -5,26 +5,25 @@ class PauseWindow (InterfaceWindow):
 	protected player as Player
 	
 	possible as Hash = {}
+	possibleList as List
+	
 	
 	protected currentWindow as string = "Pause"
 
 	def Awake():
-		self.possible = {
-			"Pause":self.gameObject.AddComponent("PauseMenu"),
-			"Passive":self.gameObject.AddComponent("PassiveMenu"),
-		}
-		print(self.possible.ContainsKey("PauseMenu"))
-		
-		
+		possibleList = ["Pause", "Passive"]
 		
 		self.player = self.GetComponent("Player")
 	
 	interface_elements:
 		get:
+			if not self.player.paused:
+				return []
 			if Input.GetButtonDown("Pause"):
 				self.currentWindow = "Pause"
 			elif Input.GetButtonDown("Attack") and self.currentWindow == "Pause":
 				self.currentWindow = "Passive"
+				Input.ResetInputAxes()
 			elif Input.GetButtonDown("Skill") and self.currentWindow == "Passive":
 				self.currentWindow = "Pause"
 				
@@ -38,6 +37,19 @@ class PauseWindow (InterfaceWindow):
 		super.DrawInterfaceElements()
 		GUI.BringWindowToFront(self.WindowID)
 		
+	def Update():
+		if Input.GetButtonDown("Pause"):
+			if self.player .paused:
+				for p in possibleList:
+					Destroy(self.possible[p])
+				self.possible = {}
+			else:
+				for p in possibleList:
+					self.possible[p]=self.gameObject.AddComponent("$(p)Menu")
+			self.player.paused = not self.player.paused
+			Input.ResetInputAxes()
+			Time.timeScale = Mathf.Abs(Mathf.Abs(Time.timeScale)-1)
+	
 	def Reset():
 		self.WindowID = 1
 		self.x = 15

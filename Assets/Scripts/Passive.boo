@@ -2,7 +2,12 @@ import UnityEngine
 
 class Passive (MonoBehaviour):
 	
-	label = ""
+	public label = "Passiva"
+	public description = """Essa eh a classe base
+para habilidades passivas.
+Favor extende-la caso queira
+criar uma nova habilidade passiva.
+	"""
 	
 	public Level as int = 0
 	public PerLevel as single = 0.0f

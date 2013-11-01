@@ -1,15 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Interface\InterfaceWindow.boo">
-    <Files>
-      <File FileName="Assets\Scripts\Interface\InterfaceElement.boo" Line="73" Column="10" />
-      <File FileName="Assets\Scripts\Interface\Pause\PassiveMenu.boo" Line="5" Column="29" />
-      <File FileName="Assets\Scripts\Interface\Pause\PauseWindow.boo" Line="31" Column="13" />
-      <File FileName="Assets\Scripts\Interface\Pause\PauseMenu.boo" Line="38" Column="59" />
-      <File FileName="Assets\Scripts\PassiveController.boo" Line="23" Column="3" />
-      <File FileName="Assets\Scripts\Player.boo" Line="22" Column="1" />
-      <File FileName="Assets\Scripts\Interface\InterfaceWindow.boo" Line="57" Column="4" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
@@ -17,10 +8,10 @@
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
                 <Node name="Interface" expanded="True">
-                  <Node name="HUD" expanded="True" />
-                  <Node name="MainMenu" expanded="True" />
+                  <Node name="MainMenu" expanded="True">
+                    <Node name="MainMenu.boo" selected="True" />
+                  </Node>
                   <Node name="Pause" expanded="True" />
-                  <Node name="InterfaceWindow.boo" selected="True" />
                 </Node>
               </Node>
             </Node>

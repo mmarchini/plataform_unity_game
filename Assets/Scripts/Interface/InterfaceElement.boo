@@ -17,10 +17,10 @@ class InterfaceElement (MonoBehaviour):
 	
 	private _style as GUIStyle
 	
-	X as single:
+	virtual X as single:
 		get:
 			return Screen.width*self.x/100
-	Y as single:
+	virtual Y as single:
 		get:
 			return Screen.height*self.y/100
 	W as single:

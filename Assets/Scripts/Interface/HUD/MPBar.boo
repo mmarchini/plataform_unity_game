@@ -27,4 +27,4 @@ class MPBar (InterfaceElement):
 			else:
 				color = "red"
 				
-			return "<color=$(color)>$(cur_MP)</color> <color='white'> / $(max_MP)</color>"
+			return "MP: <color=$(color)>$(cur_MP)</color> <color='white'> / $(max_MP)</color>"

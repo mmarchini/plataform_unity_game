@@ -62,6 +62,8 @@
      <Compile Include="Assets\Scripts\Interface\MainMenu\RotateCamera.boo" />
      <Compile Include="Assets\Scripts\Interface\MainMenu\StartGame.boo" />
      <Compile Include="Assets\Scripts\Interface\Pause\PassiveMenu.boo" />
+     <Compile Include="Assets\Scripts\Interface\Pause\PassiveMenuDescription.boo" />
+     <Compile Include="Assets\Scripts\Interface\Pause\PassiveMenuItem.boo" />
      <Compile Include="Assets\Scripts\Interface\Pause\PauseMenu.boo" />
      <Compile Include="Assets\Scripts\Interface\Pause\PauseWindow.boo" />
      <Compile Include="Assets\Scripts\Passive.boo" />
