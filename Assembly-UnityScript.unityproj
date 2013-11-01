@@ -59,10 +59,6 @@
      <None Include="Assets\Characters\Monsters\Creatures\BasicSkeletons\SkeletonData\animations.txt" />
      <None Include="Assets\Toon World Texture Pack\Bumped Spec Mapped Shader\Bumped Specular mapped.shader" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Assembly-Boo-firstpass.booproj">
-      <Project>{CF942607-C3AC-EB68-8CA8-4A5059F1B36F}</Project>      <Name>Assembly-Boo-firstpass</Name>    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
 	   Other similar extension points exist, see Microsoft.Common.targets.

@@ -208,7 +208,7 @@ class GenericCharController(MonoBehaviour):
 	def StartDamage():
 		damaged = true
 		attacking = false
-		jumping = false
+		_jumping = false
 	
 	def EndAttack():
 		attacking = false
@@ -318,7 +318,7 @@ class GenericCharController(MonoBehaviour):
 		if hit.moveDirection.y > 0.01:
 			return
 	
-	def GetWalkSpeed():
+	virtual def GetWalkSpeed():
 		return walkSpeed
 	
 	Jumping:

@@ -1,6 +1,9 @@
-﻿import UnityEngine
-
+﻿
 class CurrentSkill (InterfaceElement): 
+	
+	DrawBox:
+		get:
+			return not self.player.paused
 	
 	private elements_list = ["Fire", "Wind", "Water"]
 	private skills_dict = {
@@ -21,13 +24,16 @@ class CurrentSkill (InterfaceElement):
 			
 			orbs = player.SelOrbs
 			cur_skill as List
-			for skill as List in skills_dict.Keys:
-				this_skill = true
-				for element in elements_list:
-					if len(skill.Collect({item | return item == element})) != len(orbs.Collect({item | return item == element})):
-						this_skill = false
-				if this_skill:
-					cur_skill = skill
-					break
-			_text as string = skills_dict[cur_skill]
+			if orbs:
+				for skill as List in skills_dict.Keys:
+					this_skill = true
+					for element in elements_list:
+						if len(skill.Collect({item | return item == element})) != len(orbs.Collect({item | return item == element})):
+							this_skill = false
+					if this_skill:
+						cur_skill = skill
+						break
+				_text as string = skills_dict[cur_skill]
+			else:
+				_text = ""
 			return _text

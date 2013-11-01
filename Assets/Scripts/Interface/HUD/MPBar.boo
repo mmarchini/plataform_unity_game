@@ -1,6 +1,9 @@
-﻿import UnityEngine
-
+﻿
 class MPBar (InterfaceElement): 
+	
+	DrawBox:
+		get:
+			return not self.player.paused
 	text as string:
 		get:
 			cur_MP as single = self.player.CurrentMP

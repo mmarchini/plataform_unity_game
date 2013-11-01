@@ -1,5 +1,4 @@
-﻿import UnityEngine
-
+﻿
 class MainMenuItem (InterfaceElement): 
 
 	virtual itemText as string:

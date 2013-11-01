@@ -61,8 +61,7 @@ class ThirdPersonCamera(MonoBehaviour):
 			return
 		
 		targetCenter = _target.position + centerOffset
-		targetHead = _target.position + headOffset
-	
+		
 		// Calculate the current & target rotation angles
 		originalTargetAngle = _target.eulerAngles.y
 		currentAngle = cameraTransform.eulerAngles.y

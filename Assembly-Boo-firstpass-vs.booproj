@@ -60,6 +60,10 @@
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\MainMenu\RotateCamera.boo" />
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\MainMenu\StartGame.boo" />
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\Pause\PauseMenu.boo" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Passive.boo" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\PassiveController.boo" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Passives\Teste1.boo" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Passives\Teste2.boo" />
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\Player.boo" />
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonCamera.boo" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />

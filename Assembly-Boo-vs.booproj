@@ -5,11 +5,11 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{366A576D-37CA-C9BE-CC16-2FB7793F41F1}</ProjectGuid>
+	<ProjectGuid>{25E3F865-9B11-58A3-9C72-C19389D95714}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-UnityScript</AssemblyName>
+	<AssemblyName>Assembly-Boo</AssemblyName>
 	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
 	<FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -44,8 +44,33 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Necromancer GUI\GUITestScript.js" />
-     <Compile Include="Assets\Toon World Texture Pack\Sample\Rotater.js" />
+     <Compile Include="Assets\Scripts\CameraFade.boo" />
+     <Compile Include="Assets\Scripts\Enemy.boo" />
+     <Compile Include="Assets\Scripts\FreezeAxis.boo" />
+     <Compile Include="Assets\Scripts\GenericChar.boo" />
+     <Compile Include="Assets\Scripts\GenericCharController.boo" />
+     <Compile Include="Assets\Scripts\Interface\HUD\CurrentSkill.boo" />
+     <Compile Include="Assets\Scripts\Interface\HUD\HPBar.boo" />
+     <Compile Include="Assets\Scripts\Interface\HUD\MPBar.boo" />
+     <Compile Include="Assets\Scripts\Interface\HUD\SelectedOrbs.boo" />
+     <Compile Include="Assets\Scripts\Interface\InterfaceElement.boo" />
+     <Compile Include="Assets\Scripts\Interface\MainMenu\About.boo" />
+     <Compile Include="Assets\Scripts\Interface\MainMenu\MainMenu.boo" />
+     <Compile Include="Assets\Scripts\Interface\MainMenu\MainMenuItem.boo" />
+     <Compile Include="Assets\Scripts\Interface\MainMenu\RotateCamera.boo" />
+     <Compile Include="Assets\Scripts\Interface\MainMenu\StartGame.boo" />
+     <Compile Include="Assets\Scripts\Interface\Pause\PauseMenu.boo" />
+     <Compile Include="Assets\Scripts\Passive.boo" />
+     <Compile Include="Assets\Scripts\PassiveController.boo" />
+     <Compile Include="Assets\Scripts\Passives\PassiveATK.boo" />
+     <Compile Include="Assets\Scripts\Passives\PassiveCritDamage.boo" />
+     <Compile Include="Assets\Scripts\Passives\PassiveCritToHP.boo" />
+     <Compile Include="Assets\Scripts\Passives\PassiveDEF.boo" />
+     <Compile Include="Assets\Scripts\Passives\PassiveHP.boo" />
+     <Compile Include="Assets\Scripts\Passives\PassiveHPtoDMG.boo" />
+     <Compile Include="Assets\Scripts\Passives\PassiveMP.boo" />
+     <Compile Include="Assets\Scripts\Player.boo" />
+     <Compile Include="Assets\Scripts\ThirdPersonCamera.boo" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />

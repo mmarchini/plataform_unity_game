@@ -1,31 +1,19 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\InterfaceElement.boo">
-    <Files>
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\InterfaceElement.boo" Line="37" Column="88" />
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericCharController.boo" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Player.boo" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\GenericChar.boo" Line="13" Column="9" />
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\HUD\HPBar.boo" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\Interface\HUD\MPBar.boo" Line="1" Column="1" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Assembly-Boo-firstpass" expanded="True">
+          <Node name="Assembly-Boo" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="Standard Assets" expanded="True">
-                <Node name="Character Controllers" expanded="True">
-                  <Node name="Sources" expanded="True">
-                    <Node name="Scripts" expanded="True">
-                      <Node name="Interface" expanded="True">
-                        <Node name="HUD" expanded="True" />
-                        <Node name="MainMenu" expanded="True" />
-                        <Node name="InterfaceElement.boo" selected="True" />
-                      </Node>
-                    </Node>
-                  </Node>
+              <Node name="Scripts" expanded="True">
+                <Node name="Interface" expanded="True">
+                  <Node name="HUD" expanded="True" />
+                  <Node name="MainMenu" expanded="True" />
+                  <Node name="Pause" expanded="True" />
                 </Node>
+                <Node name="Passives" expanded="True" />
+                <Node name="Passive.boo" selected="True" />
               </Node>
             </Node>
           </Node>

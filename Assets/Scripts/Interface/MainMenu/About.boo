@@ -1,5 +1,4 @@
-﻿import UnityEngine
-
+﻿
 class About(MainMenuItem): 
 	itemText as string:
 		get:

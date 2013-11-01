@@ -11,10 +11,25 @@ class Player (GenericChar):
 		set:
 			_paused = value
 
+	def Awake():
+		self.passive_controller = self.GetComponent("PassiveController")
+		super.Awake()
+
 	def GetHorizontalSpeed():
 		if damaged:
 			return 0
 		return Input.GetAxisRaw("Horizontal")
+	
+	def Update():
+		if Input.GetButtonDown("Fire"):
+			self.SelOrbs = ["Fire"] + self.SelOrbs[:-1]
+		if Input.GetButtonDown("Water"):
+			self.SelOrbs = ["Water"] + self.SelOrbs[:-1]
+		if Input.GetButtonDown("Wind"):
+			self.SelOrbs = ["Wind"] + self.SelOrbs[:-1]
+		Debug.Log(self.SelOrbs)
+			
+		super.Update()
 	
 	JumpAction:
 		get:

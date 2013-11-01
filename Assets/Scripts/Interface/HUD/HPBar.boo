@@ -1,6 +1,9 @@
-﻿import UnityEngine
-
+﻿
 class HPBar (InterfaceElement): 
+	DrawBox:
+		get:
+			return not self.player.paused
+	
 	text as string:
 		get:
 			cur_HP as single = self.player.CurrentHP
