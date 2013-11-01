@@ -8,7 +8,23 @@ class GenericChar(GenericCharController):
 	
 	public passive_controller as PassiveController
 	
-	public Level = 1
+	public Level as int = 1
+	
+	public _currentEXP as single = 0.0f
+	
+	currentEXP:
+		get:
+			return _currentEXP
+		set:
+			while value >= self.nextLevelEXP:
+				self.Level += 1
+			self._currentEXP = value
+	
+	public nextLevelEXP:
+		get:
+			return self.Level*5 + (self.Level*self.Level)*1.5
+		set:
+			pass
 	
 	// Base Attributes
 	public BaseHP = 500
@@ -62,13 +78,13 @@ class GenericChar(GenericCharController):
 	
 	ATK:
 		get:	
-			return self.BaseATK + self.PerLevelATK*self.Level + self.Passives("ATK") + self.SpearATK
+			return self.BaseATK + self.PerLevelATK*self.Level + self.Passives("ATK")
 	
 	DMG:
 		get:
 			if Random.Range(0,100) <= self.CritChance:
 				return self.ATK*self.CritDamage
-			return self.ATK
+			return self.ATK + self.SpearATK
 						
 	DEF:
 		get:
@@ -84,6 +100,7 @@ class GenericChar(GenericCharController):
 	SpearATK:
 		get:
 			return self.Spear * self.CurrentMP
+			
 	ShieldDEF:
 		get:
 			return self.Spear * self.CurrentHP
@@ -109,6 +126,14 @@ class GenericChar(GenericCharController):
 	
 	public Type as ControllerType;
 	
+	passivePoints:
+		get:
+			points = 0
+			for i in List(self.passive_controller.passives.Values):
+				for p as Passive in i:
+					points += p.Level
+			return points
+			
 	
 	def Passives(attribute as string) as single:
 		if self.passive_controller:

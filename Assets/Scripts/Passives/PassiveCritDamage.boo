@@ -9,6 +9,7 @@ Aumenta o Dano Critico
 ganho por level em: 
 $(self.PerLevel) x level da passiva
 """
+		self.PerLevel = 0.1
 	
 		self.affects = "CritDamage"
 	

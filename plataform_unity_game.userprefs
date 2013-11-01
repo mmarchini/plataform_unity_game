@@ -1,6 +1,19 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemy.boo">
+    <Files>
+      <File FileName="Assets\Scripts\Enemy.boo" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GenericChar.boo" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player.boo" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Interface\HUD\HUDWindow.boo" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Interface\HUD\Level.boo" Line="20" Column="53" />
+      <File FileName="Assets\Scripts\PassiveController.boo" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Interface\Pause\PassiveMenuItem.boo" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Passive.boo" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Interface\Pause\PauseWindow.boo" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Interface\Pause\PauseMenu.boo" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Interface\Pause\PassiveMenu.boo" Line="1" Column="1" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
@@ -8,11 +21,11 @@
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
                 <Node name="Interface" expanded="True">
-                  <Node name="MainMenu" expanded="True">
-                    <Node name="MainMenu.boo" selected="True" />
-                  </Node>
+                  <Node name="HUD" expanded="True" />
                   <Node name="Pause" expanded="True" />
                 </Node>
+                <Node name="Passives" expanded="True" />
+                <Node name="Enemy.boo" selected="True" />
               </Node>
             </Node>
           </Node>

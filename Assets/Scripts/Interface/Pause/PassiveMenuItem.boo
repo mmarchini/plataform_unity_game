@@ -14,7 +14,7 @@ class PassiveMenuItem(InterfaceElement):
 	
 	text as string:
 		get:
-			return "<color='"+(self.position==0 and "yellow" or "white")+"'>$(self.passive.label)</color>"
+			return "<color='"+(self.position==0 and "yellow" or "white")+"'>$(self.passive.label)"+$(self.position==0 and " ($(self.passive.Level))" or "")+"</color>"
 	
 	Y:
 		get:
@@ -27,7 +27,8 @@ class PassiveMenuItem(InterfaceElement):
 		self.DrawInterfaceElement()
 	
 	def LevelUp():
-		Debug.Log("Clicou: $(self.passive.label)")
+		if self.player.Level > self.player.passivePoints:
+			self.passive.Level += 1
 	
 	def Awake():
 		super.Awake()

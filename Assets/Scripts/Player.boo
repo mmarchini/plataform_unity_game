@@ -13,6 +13,7 @@ class Player (GenericChar):
 
 	def Awake():
 		self.passive_controller = self.GetComponent("PassiveController")
+		self.passive_controller.generic_char = self
 		super.Awake()
 
 	def GetHorizontalSpeed():

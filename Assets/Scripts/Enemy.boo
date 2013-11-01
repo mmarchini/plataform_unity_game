@@ -4,6 +4,13 @@ class Enemy (GenericChar):
 	private lastAIMovement = -10
 	private AIMovementDuration = 0
 	private AIMovementDirection = 0
+	public dropEXP as single = 15.0f
+	
+	def OnDestroy():
+		playergo = GameObject.FindGameObjectWithTag("Player")
+		player as Player = playergo.GetComponent("Player")
+		player.currentEXP += self.dropEXP
+		
 	
 	def Update():
 		if lastAIMovement + AIMovementDuration < Time.time:

@@ -2,9 +2,9 @@
 
 class PassiveController (MonoBehaviour):
 	
-	
 	public passives = {}
 	
+	public generic_char as GenericChar
 	
 	def Awake():
 		self.passives = {}

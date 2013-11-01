@@ -5,6 +5,7 @@ class PassiveMenu (InterfaceElement):
 	
 	
 	passive_items as List
+	points_left as PassiveMenuPointsLeft
 	_current_item as int
 	
 	lastTime as single
@@ -27,6 +28,7 @@ class PassiveMenu (InterfaceElement):
 				self.passive_items.Add(self.gameObject.AddComponent("PassiveMenuItem"))
 				(passive_items[-1] as PassiveMenuItem).passive = passive
 		self.current_item = 0
+		self.points_left = self.gameObject.AddComponent("PassiveMenuPointsLeft")
 		
 	def OnDestroy():
 		for p in passive_items:
@@ -55,4 +57,6 @@ class PassiveMenu (InterfaceElement):
 			(passive_items[0] as PassiveMenuItem).DrawItem(1)
 		else:
 			(passive_items[self.current_item+1] as PassiveMenuItem).DrawItem(1)
+		
+		self.points_left.DrawInterfaceElement()
 		

@@ -8,6 +8,7 @@ class PassiveMP (Passive):
 Aumenta o MP ganho por level em: 
 $(self.PerLevel) x level da passiva
 """
+		self.PerLevel = 15
 		self.affects = "MP"
 	
 		self.required_passives = {}
