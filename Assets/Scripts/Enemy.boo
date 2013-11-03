@@ -8,8 +8,10 @@ class Enemy (GenericChar):
 	
 	def OnDestroy():
 		playergo = GameObject.FindGameObjectWithTag("Player")
-		player as Player = playergo.GetComponent("Player")
-		player.currentEXP += self.dropEXP
+		if playergo:
+			player as Player = playergo.GetComponent("Player")
+			if player:
+				player.currentEXP += self.dropEXP
 		
 	
 	def Update():

@@ -21,7 +21,6 @@ class GenericCharController(MonoBehaviour):
 	public attackAnimationSpeed = 1.15f
 	public onHitAnimationSpeed  = 1.15f
 	public landAnimationSpeed  = 1.0f
-	public onHitTakenSpeed = 5f
 
 	public walkSpeed = 4.0
 	
@@ -36,7 +35,7 @@ class GenericCharController(MonoBehaviour):
 	
 	public canJump = true
 			
-	private _animation as Animation
+	protected _animation as Animation
 	protected _controller as CharacterController
 
 	private jumpRepeatTime = 0.05
@@ -60,7 +59,9 @@ class GenericCharController(MonoBehaviour):
 	protected startAttackingTime = -10
 	protected middleOfAttack = false
 	
-	protected damaged = false
+	damaged:
+		get:
+			return _animation.IsPlaying(onHitAnimation.name)
 	
 	
 	// Last time the jump button was clicked down
@@ -98,10 +99,10 @@ class GenericCharController(MonoBehaviour):
 		_event.time = attackAnimation.length-0.1f
 		attackAnimation.AddEvent(_event)
 		
-		event2 = AnimationEvent()
-		event2.functionName = "EndDamage"
-		event2.time = onHitAnimation.length-0.1f
-		onHitAnimation.AddEvent(event2)
+		#event2 = AnimationEvent()
+		#event2.functionName = "EndDamage"
+		#event2.time = -1
+		#onHitAnimation.AddEvent(event2)
 	
 	def GetRightVector():
 		cameraTransform = Camera.main.transform
@@ -119,7 +120,10 @@ class GenericCharController(MonoBehaviour):
 	
 	targetDirection:
 		get:
-			return self.GetHorizontalSpeed() * GetRightVector()
+			if not attacking:
+				return self.GetHorizontalSpeed() * GetRightVector()
+			else:
+				return self.transform.forward.normalized
 	
 	isMoving :
 		get:
@@ -148,7 +152,7 @@ class GenericCharController(MonoBehaviour):
 			
 	_characterState:
 		get:
-			if damaged:
+			if damaged :
 				return CharacterState.Hitted
 			elif attacking:
 				return CharacterState.Attacking
@@ -166,6 +170,21 @@ class GenericCharController(MonoBehaviour):
 	def ApplyAttack():
 		if self.ExecuteAttack():
 			self.StartAttack()
+			
+		if self.attacking:
+			Debug.DrawRay(GetCharPosition(), moveDirection * self.GetATKRange(), Color.black, 0)
+			raycasthit as RaycastHit
+			
+			Physics.Raycast(GetCharPosition(), moveDirection, raycasthit, self.GetATKRange())
+			if raycasthit.collider != null:
+				if raycasthit.collider.gameObject != null:
+					if raycasthit.collider.gameObject.GetComponent("GenericChar") != null:
+						char_controller as GenericChar = raycasthit.collider.gameObject.GetComponent("GenericChar")
+						if char_controller != null:
+							#TODO
+							if not char_controller.damaged:
+								self.DealDamage(char_controller)
+	
 	
 	def ApplyJumping():
 		// Prevent jumping too fast after each other
@@ -181,14 +200,8 @@ class GenericCharController(MonoBehaviour):
 				SendMessage("DidJump", SendMessageOptions.DontRequireReceiver)
 	
 	def ApplyGravity():
-		if self.Jumping and not jumpingReachedApex and verticalSpeed <= 0.0:
-			jumpingReachedApex = true
-			SendMessage("DidJumpReachApex", SendMessageOptions.DontRequireReceiver)
 
-		if Grounded:
-			verticalSpeed = 0.0
-		else:
-			verticalSpeed -= gravity * Time.deltaTime
+		verticalSpeed -= gravity * Time.deltaTime
 	
 	def CalculateJumpVerticalSpeed (targetJumpHeight as single):
 		// From the jump height and gravity we deduce the upwards speed 
@@ -202,15 +215,13 @@ class GenericCharController(MonoBehaviour):
 		lastJumpStartHeight = transform.position.y
 		lastJumpButtonTime = -10
 	
-	def EndDamage():
-		damaged = false
-	
 	def StartDamage():
-		damaged = true
 		attacking = false
 		_jumping = false
+		_animation[onHitAnimation.name].speed = onHitAnimationSpeed
+		_animation.Play(onHitAnimation.name)
 	
-	def EndAttack():
+	virtual def EndAttack():
 		attacking = false
 	
 	def StartAttack():
@@ -223,7 +234,6 @@ class GenericCharController(MonoBehaviour):
 			return false
 	
 	def MoveChar():
-		
 		movement = moveDirection * moveSpeed
 		if(attacking and Grounded):
 			movement *= 0
@@ -254,8 +264,9 @@ class GenericCharController(MonoBehaviour):
 		// ANIMATION sector
 		if _animation:
 			if _characterState == CharacterState.Hitted:
-				_animation[onHitAnimation.name].speed = onHitAnimationSpeed
-				_animation.CrossFade(onHitAnimation.name)
+				if not _animation.IsPlaying(onHitAnimation.name):
+					_animation[onHitAnimation.name].speed = onHitAnimationSpeed
+					_animation.Play(onHitAnimation.name)
 			elif _characterState == CharacterState.Attacking:
 				_animation[attackAnimation.name].speed = attackAnimationSpeed
 				_animation.CrossFade(attackAnimation.name)
@@ -271,26 +282,16 @@ class GenericCharController(MonoBehaviour):
 	
 	virtual def GetATKRange():
 		#TODO apagar essa merda depois
-		return 0.0f
+		return 0.0f cast double
+		
 	virtual def DealDamage(lala as GenericChar):
 		#TODO apagar essa merda depois
 		return 0.0f
-			
-	def Action():
-		if self.attacking:
-			Debug.DrawRay(GetCharPosition(), moveDirection * self.GetATKRange(), Color.black, 0)
-			raycasthit as RaycastHit
-			
-			Physics.Raycast(GetCharPosition(), moveDirection, raycasthit, self.GetATKRange())
-			if raycasthit.collider != null:
-				if raycasthit.collider.gameObject != null:
-					if raycasthit.collider.gameObject.GetComponent("GenericChar") != null:
-						char_controller as GenericChar = raycasthit.collider.gameObject.GetComponent("GenericChar")
-						if char_controller != null:
-							#TODO
-							if not char_controller.damaged:
-								self.DealDamage(char_controller)
+		
 	
+					
+	def Action():
+		
 		// Apply gravity
 		ApplyGravity()
 		
@@ -334,7 +335,7 @@ class GenericCharController(MonoBehaviour):
 	
 	Grounded:
 		get:
-			return self._controller.isGrounded
+ 	 		return (not self._jumping) or (self._controller.isGrounded)
 	
 	def GetDirection():
 		return moveDirection

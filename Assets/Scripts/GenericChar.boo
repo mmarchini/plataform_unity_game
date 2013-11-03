@@ -5,7 +5,9 @@ enum ControllerType:
 	Enemy = 2
 
 class GenericChar(GenericCharController):
-	
+
+	private already_hitted as List = []
+			
 	public passive_controller as PassiveController
 	
 	public Level as int = 1
@@ -141,9 +143,9 @@ class GenericChar(GenericCharController):
 		return 0
 		
 	def GetATKRange():
-		//var currentAttackTime = Time.time - self.startAttackingTime;
-		//var endAttackTime = self.attackAnimation.length;
-		//return ATKRange*(currentAttackTime/endAttackTime);
+		#currentAttackTime = Time.time - self.startAttackingTime
+		#endAttackTime = self._animation[self.attackAnimation.name].length
+		#return (ATKRange cast double)*((currentAttackTime cast double)/(endAttackTime cast double))
 		return ATKRange
 
 	def GetWalkSpeed():
@@ -162,6 +164,10 @@ class GenericChar(GenericCharController):
 		
 	def ExecuteAttack():
 		return false
+		
+	def EndAttack():
+		self.already_hitted = []
+		super.EndAttack()
 	
 	def TakeDamage(char_controller as GenericChar):
 		if not damaged:
@@ -171,5 +177,7 @@ class GenericChar(GenericCharController):
 		self.StartDamage()
 	
 	def DealDamage(char_controller as GenericChar):
-		char_controller.TakeDamage(self)
+		if char_controller not in self.already_hitted:
+			self.already_hitted.Add(char_controller)
+			char_controller.TakeDamage(self)
 	
