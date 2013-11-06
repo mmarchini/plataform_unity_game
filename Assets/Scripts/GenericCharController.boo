@@ -215,7 +215,7 @@ class GenericCharController(MonoBehaviour):
 		lastJumpStartHeight = transform.position.y
 		lastJumpButtonTime = -10
 	
-	def StartDamage():
+	virtual def StartDamage():
 		attacking = false
 		_jumping = false
 		_animation[onHitAnimation.name].speed = onHitAnimationSpeed
@@ -224,7 +224,7 @@ class GenericCharController(MonoBehaviour):
 	virtual def EndAttack():
 		attacking = false
 	
-	def StartAttack():
+	virtual def StartAttack():
 		attacking = true
 		startAttackingTime = Time.time
 		middleOfAttack = false

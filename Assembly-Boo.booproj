@@ -44,6 +44,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Buff.boo" />
+     <Compile Include="Assets\Scripts\Buffs\BuffLavaSword.boo" />
      <Compile Include="Assets\Scripts\CameraFade.boo" />
      <Compile Include="Assets\Scripts\Enemy.boo" />
      <Compile Include="Assets\Scripts\FreezeAxis.boo" />
@@ -78,6 +80,8 @@
      <Compile Include="Assets\Scripts\Passives\PassiveHPtoDMG.boo" />
      <Compile Include="Assets\Scripts\Passives\PassiveMP.boo" />
      <Compile Include="Assets\Scripts\Player.boo" />
+     <Compile Include="Assets\Scripts\Skill.boo" />
+     <Compile Include="Assets\Scripts\Skills\SkillLavaSword.boo" />
      <Compile Include="Assets\Scripts\ThirdPersonCamera.boo" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />

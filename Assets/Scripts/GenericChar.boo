@@ -7,6 +7,8 @@ enum ControllerType:
 class GenericChar(GenericCharController):
 
 	private already_hitted as List = []
+	
+	private buffs as List = []
 			
 	public passive_controller as PassiveController
 	
@@ -67,20 +69,20 @@ class GenericChar(GenericCharController):
 
 	MaxHP:
 		get:
-			return self.BaseHP + self.PerLevelHP*self.Level + self.Passives("HP")
+			return self.BaseHP + self.PerLevelHP*self.Level + self.Modificators("HP")
 	CurrentHP:
 		get:
 			return self.MaxHP - self.LostHP
 	MaxMP:
 		get:
-			return self.BaseMP + self.PerLevelMP*self.Level + self.Passives("MP")
+			return self.BaseMP + self.PerLevelMP*self.Level + self.Modificators("MP")
 	CurrentMP:
 		get:
 			return self.MaxMP - self.LostMP
 	
 	ATK:
 		get:	
-			return self.BaseATK + self.PerLevelATK*self.Level + self.Passives("ATK")
+			return self.BaseATK + self.PerLevelATK*self.Level + self.Modificators("ATK")
 	
 	DMG:
 		get:
@@ -90,7 +92,7 @@ class GenericChar(GenericCharController):
 						
 	DEF:
 		get:
-			return self.BaseDEF + self.PerLevelDEF*self.Level + self.Passives("DEF") + self.ShieldDEF
+			return self.BaseDEF + self.PerLevelDEF*self.Level + self.Modificators("DEF") + self.ShieldDEF
 			
 	Spear:
 		get:
@@ -115,7 +117,7 @@ class GenericChar(GenericCharController):
 			return self.BaseCritChance
 	CritDamage:
 		get:
-			return self.BaseCritDamage + self.PerLevelCritDamage*self.Level + self.Passives("CritDamage")
+			return self.BaseCritDamage + self.PerLevelCritDamage*self.Level + self.Modificators("CritDamage")
 	BAT:
 		get:
 			return self.BaseBAT
@@ -135,9 +137,8 @@ class GenericChar(GenericCharController):
 				for p as Passive in i:
 					points += p.Level
 			return points
-			
 	
-	def Passives(attribute as string) as single:
+	def Modificators(attribute as string) as single:
 		if self.passive_controller:
 			return passive_controller.CallPassives(self, attribute)
 		return 0
@@ -169,14 +170,14 @@ class GenericChar(GenericCharController):
 		self.already_hitted = []
 		super.EndAttack()
 	
-	def TakeDamage(char_controller as GenericChar):
+	virtual def TakeDamage(char_controller as GenericChar):
 		if not damaged:
 			self.LostHP = self.LostHP + char_controller.DMG
 		if self.CurrentHP <= 0:
 			Destroy(self.gameObject)
 		self.StartDamage()
 	
-	def DealDamage(char_controller as GenericChar):
+	virtual def DealDamage(char_controller as GenericChar):
 		if char_controller not in self.already_hitted:
 			self.already_hitted.Add(char_controller)
 			char_controller.TakeDamage(self)

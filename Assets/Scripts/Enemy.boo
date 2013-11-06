@@ -5,6 +5,7 @@ class Enemy (GenericChar):
 	private AIMovementDuration = 0
 	private AIMovementDirection = 0
 	public dropEXP as single = 15.0f
+	public damageClip as AudioClip
 	
 	def OnDestroy():
 		playergo = GameObject.FindGameObjectWithTag("Player")
@@ -41,6 +42,11 @@ class Enemy (GenericChar):
 		self.AIMovementDirection = 0.0
 		self.lastAIMovement = Time.time
 		super.DealDamage(char_controller)
+	
+	def StartDamage():
+		if not self.damaged:
+			(self.GetComponent("AudioSource") as AudioSource).PlayOneShot(self.damageClip,1.0)
+			super.StartDamage()
 	
 	def OnAnotherControllerHit(hit as ControllerColliderHit):
 		pass

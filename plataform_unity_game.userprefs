@@ -1,22 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GenericCharController.boo">
-    <Files>
-      <File FileName="Assets\Scripts\GenericCharController.boo" Line="337" Column="7" />
-      <File FileName="Assets\Scripts\GenericChar.boo" Line="149" Column="18" />
-      <File FileName="Assets\Scripts\Player.boo" Line="16" Column="30" />
-      <File FileName="Assets\Scripts\Enemy.boo" Line="39" Column="8" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-Boo" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Interface" expanded="True">
-                  <Node name="HUD" expanded="True" />
-                </Node>
-                <Node name="GenericCharController.boo" selected="True" />
+                <Node name="Buffs" expanded="True" />
+                <Node name="Skills" expanded="True" />
+                <Node name="Player.boo" selected="True" />
               </Node>
             </Node>
           </Node>
