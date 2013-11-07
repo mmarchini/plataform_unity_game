@@ -133,12 +133,7 @@ class GenericCharController(MonoBehaviour):
 		get:
 			_moveDirection as Vector3
 			if targetDirection != Vector3.zero and not ((attacking and Grounded) or damaged):
-				// If we are really slow, just snap to the target direction
-				if moveSpeed < self.GetWalkSpeed() * 0.9 and Grounded:
-					_moveDirection = targetDirection.normalized
-				// Otherwise smoothly turn towards it
-				else:
-					_moveDirection = Vector3.RotateTowards(_moveDirection, targetDirection, rotateSpeed * Mathf.Deg2Rad * Time.deltaTime, 1000)
+				_moveDirection = targetDirection.normalized
 			else:
 				_moveDirection = self.transform.forward
 			
@@ -149,7 +144,7 @@ class GenericCharController(MonoBehaviour):
 			if (attacking and Grounded) or damaged:
 				return 0
 			return Mathf.Min(targetDirection.magnitude, 1.0) * self.GetWalkSpeed()
-			
+	
 	_characterState:
 		get:
 			if damaged :
@@ -167,24 +162,32 @@ class GenericCharController(MonoBehaviour):
 		if damaged:
 			pass
 	
-	def ApplyAttack():
-		if self.ExecuteAttack():
-			self.StartAttack()
-			
-		if self.attacking:
-			Debug.DrawRay(GetCharPosition(), moveDirection * self.GetATKRange(), Color.black, 0)
-			raycasthit as RaycastHit
-			
-			Physics.Raycast(GetCharPosition(), moveDirection, raycasthit, self.GetATKRange())
+	def Raycast(direction as Vector3, range as single):
+		ray = Ray(GetCharPosition(), direction)
+		
+		Debug.DrawRay(ray.origin, ray.direction*range, Color.black, 0)
+		
+		raycasthit as RaycastHit
+		
+		if Physics.Raycast(ray, raycasthit, range):
 			if raycasthit.collider != null:
 				if raycasthit.collider.gameObject != null:
 					if raycasthit.collider.gameObject.GetComponent("GenericChar") != null:
 						char_controller as GenericChar = raycasthit.collider.gameObject.GetComponent("GenericChar")
 						if char_controller != null:
-							#TODO
-							if not char_controller.damaged:
-								self.DealDamage(char_controller)
-	
+							return char_controller
+		return null
+		
+		
+	def ApplyAttack():
+		if self.ExecuteAttack():
+			self.StartAttack()
+			
+		if self.attacking:
+			char_controller = self.Raycast(moveDirection, self.GetATKRange())
+			if char_controller != null:
+				if not char_controller.damaged:
+					self.DealDamage(char_controller)
 	
 	def ApplyJumping():
 		// Prevent jumping too fast after each other

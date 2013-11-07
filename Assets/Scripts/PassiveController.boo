@@ -28,8 +28,6 @@ class PassiveController (MonoBehaviour):
 		if attribute_passives:
 			for ap as Passive in attribute_passives:
 				extra_attribute += ap.Effect(character)
-		else:
-			Debug.Log("$(caller) has no passives!")
 		return extra_attribute
 
 	

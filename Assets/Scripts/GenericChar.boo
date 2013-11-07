@@ -5,12 +5,16 @@ enum ControllerType:
 	Enemy = 2
 
 class GenericChar(GenericCharController):
-
+	
 	private already_hitted as List = []
 	
 	private buffs as List = []
 			
 	public passive_controller as PassiveController
+	
+	public buff_controller as BuffController
+	
+	public skill_controller as SkillController
 	
 	public Level as int = 1
 	
@@ -31,35 +35,44 @@ class GenericChar(GenericCharController):
 			pass
 	
 	// Base Attributes
-	public BaseHP = 500
-	public BaseMP = 150
-	public BaseATK = 14
-	public BaseDEF = 1
-	public BaseSpear = 0.05
-	public BaseShield = 0.05
-	public BaseATKRange = 1
-	public BaseCritChance = 0.10
-	public BaseCritDamage = 1.5
-	public BaseBAT = 1
-	public BaseMovementSpeed = 1
-	public BaseJump = 1
-
+	public baseAttributes = {
+		"HP" : 500,
+		"MP" : 150,
+		"ATK" : 14,
+		"DEF" : 1,
+		"Spear" : 0.05,
+		"Shield" : 0.05,
+		"ATKRange" : 1,
+		"CritChance" : 0.10,
+		"CritDamage" : 1.5,
+		"BAT" : 1,
+		"MovementSpeed" : 1,
+		"Jump" : 1,
+	}
+	
 	// Per Level attrbute gain
-	public PerLevelHP = 0
-	public PerLevelMP = 0
-	public PerLevelATK = 0
-	public PerLevelDEF = 0
-	public PerLevelSpear = 0
-	public PerLevelShield = 0
-	public PerLevelCritDamage = 0
-
+	public perLevelAttributes = {
+		"HP" : 0,
+		"MP" : 0,
+		"ATK" : 0,
+		"DEF" : 0,
+		"Spear" : 0,
+		"Shield" : 0,
+		"ATKRange" : 0,
+		"CritChance" : 0,
+		"CritDamage" : 0,
+		"BAT" : 0,
+		"MovementSpeed" : 0,
+		"Jump" : 0,
+	}
+	
 	public _LostHP = 0
 	LostHP:
 		get:
 			return _LostHP
 		set:
-			if _LostHP + value > self.MaxHP:
-				_LostHP = self.MaxHP
+			if _LostHP + value > self.GetCharAttribute("HP"):
+				_LostHP = self.GetCharAttribute("HP")
 			elif _LostHP + value < 0:
 				_LostHP = 0
 			else:
@@ -67,66 +80,29 @@ class GenericChar(GenericCharController):
 
 	public LostMP = 0
 
-	MaxHP:
-		get:
-			return self.BaseHP + self.PerLevelHP*self.Level + self.Modificators("HP")
 	CurrentHP:
 		get:
-			return self.MaxHP - self.LostHP
-	MaxMP:
-		get:
-			return self.BaseMP + self.PerLevelMP*self.Level + self.Modificators("MP")
+			return self.GetCharAttribute("HP") - self.LostHP
 	CurrentMP:
 		get:
-			return self.MaxMP - self.LostMP
-	
-	ATK:
-		get:	
-			return self.BaseATK + self.PerLevelATK*self.Level + self.Modificators("ATK")
+			return self.GetCharAttribute("MP") - self.LostMP
+			
+	def GetCharAttribute(attr as string):
+		return (self.baseAttributes[attr] cast single) + (self.perLevelAttributes[attr] cast single)*self.Level + self.Modificators("$(attr)")
 	
 	DMG:
 		get:
-			if Random.Range(0,100) <= self.CritChance:
-				return self.ATK*self.CritDamage
-			return self.ATK + self.SpearATK
-						
-	DEF:
-		get:
-			return self.BaseDEF + self.PerLevelDEF*self.Level + self.Modificators("DEF") + self.ShieldDEF
-			
-	Spear:
-		get:
-			return self.BaseSpear + self.PerLevelSpear*self.Level
-	Shield:
-		get:
-			return self.BaseShield + self.PerLevelShield*self.Level
-	
+			if Random.Range(0,100) <= self.GetCharAttribute("CritChance"):
+				return self.GetCharAttribute("ATK")*self.GetCharAttribute("CritDamage") + self.SpearATK
+			return self.GetCharAttribute("ATK") + self.SpearATK
+
 	SpearATK:
 		get:
-			return self.Spear * self.CurrentMP
+			return self.GetCharAttribute("Spear") * self.CurrentMP
 			
 	ShieldDEF:
 		get:
-			return self.Spear * self.CurrentHP
-	
-	ATKRange:
-		get:
-			return self.BaseATKRange
-	CritChance:
-		get:
-			return self.BaseCritChance
-	CritDamage:
-		get:
-			return self.BaseCritDamage + self.PerLevelCritDamage*self.Level + self.Modificators("CritDamage")
-	BAT:
-		get:
-			return self.BaseBAT
-	MovementSpeed:
-		get:
-			return self.BaseMovementSpeed
-	Jump:
-		get:
-			return self.BaseJump
+			return self.GetCharAttribute("Shield") * self.CurrentHP
 	
 	public Type as ControllerType;
 	
@@ -139,18 +115,22 @@ class GenericChar(GenericCharController):
 			return points
 	
 	def Modificators(attribute as string) as single:
+		modificators = 0
 		if self.passive_controller:
-			return passive_controller.CallPassives(self, attribute)
-		return 0
+			modificators += passive_controller.CallPassives(self, attribute)
+		if self.buff_controller:
+			modificators += buff_controller.BuffEffects(self, attribute)
+		return modificators
 		
+	
 	def GetATKRange():
 		#currentAttackTime = Time.time - self.startAttackingTime
 		#endAttackTime = self._animation[self.attackAnimation.name].length
 		#return (ATKRange cast double)*((currentAttackTime cast double)/(endAttackTime cast double))
-		return ATKRange
+		return self.GetCharAttribute("ATKRange")
 
 	def GetWalkSpeed():
-		horizontalSpeed as single = self.walkSpeed * self.MovementSpeed
+		horizontalSpeed as single = self.walkSpeed * self.GetCharAttribute("MovementSpeed")
 		if Mathf.Abs(horizontalSpeed) > 5.5:
 			return 5.5*(horizontalSpeed/Mathf.Abs(horizontalSpeed))
 		if Mathf.Abs(horizontalSpeed) < 3 and horizontalSpeed != 0:
@@ -181,4 +161,3 @@ class GenericChar(GenericCharController):
 		if char_controller not in self.already_hitted:
 			self.already_hitted.Add(char_controller)
 			char_controller.TakeDamage(self)
-	

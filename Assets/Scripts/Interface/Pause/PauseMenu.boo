@@ -8,14 +8,22 @@ class PauseMenu(InterfaceElement):
 	
 	text as string:
 		get:
-			return """<color='black'>HP: $(player.CurrentHP)/$(player.MaxHP)
-MP: $(player.CurrentMP)/$(player.MaxMP)
-ATK: $(player.ATK)
-DEF: $(player.DEF)
-Spear: $(player.Spear*100)%
-Shield: $(player.Shield*100)%
-CritChance: $(player.CritChance*100)%
-CritDamage: $(player.CritDamage)x
+			max_HP = player.GetCharAttribute("HP")
+			max_MP = player.GetCharAttribute("MP")
+			ATK = player.GetCharAttribute("ATK")
+			DEF = player.GetCharAttribute("DEF")
+			Spear = player.GetCharAttribute("Spear")*100
+			Shield = player.GetCharAttribute("Shield")*100
+			CritChance = player.GetCharAttribute("CritChance")*100
+			CritDamage = player.GetCharAttribute("CritDamage")
+			return """<color='black'>HP: $(player.CurrentHP)/$(max_HP))
+MP: $(player.CurrentMP)/$(max_MP)
+ATK: $(ATK)
+DEF: $(DEF)
+Spear: $(Spear*100)%
+Shield: $(Shield*100)%
+CritChance: $(CritChance*100)%
+CritDamage: $(CritDamage)x
 
 Botao de Ataque: Passive Menu
 </color>"""

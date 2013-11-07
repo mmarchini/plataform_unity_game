@@ -1,10 +1,12 @@
 ﻿import UnityEngine
+import CurrentSkill
 
 class Player (GenericChar): 
 
 	public attackClip as AudioClip
 
 	public SelOrbs as List = ["Wind", "Fire", "Water"]
+	
 	private _paused = false
 
 	paused:
@@ -15,6 +17,8 @@ class Player (GenericChar):
 
 	def Awake():
 		self.passive_controller = self.GetComponent("PassiveController")
+		self.skill_controller = self.GetComponent("SkillController")
+		self.buff_controller = self.GetComponent("BuffController")
 		self.passive_controller.generic_char = self
 		super.Awake()
 
@@ -30,6 +34,9 @@ class Player (GenericChar):
 			self.SelOrbs = ["Water"] + self.SelOrbs[:-1]
 		if Input.GetButtonDown("Wind"):
 			self.SelOrbs = ["Wind"] + self.SelOrbs[:-1]
+		if Input.GetButtonDown("Skill"):
+			if self.skill_controller:
+				self.skill_controller.Execute(self, GetCurrentSkill(self))
 			
 		super.Update()
 	

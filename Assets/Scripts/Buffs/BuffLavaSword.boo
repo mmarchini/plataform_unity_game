@@ -4,6 +4,7 @@ class BuffLavaSword (Buff):
 
 	def Awake():
 		self.label = "Lava Sword"
+		self.affected_attributes = ["ATK", "ATKRange"]
 	
-	virtual def Effect() as single:
-		return 0.0
+	virtual def Effect(char_controller as GenericChar) as single:
+		return 5
