@@ -12,9 +12,9 @@ class PauseMenu(InterfaceElement):
 			max_MP = player.GetCharAttribute("MP")
 			ATK = player.GetCharAttribute("ATK")
 			DEF = player.GetCharAttribute("DEF")
-			Spear = player.GetCharAttribute("Spear")*100
-			Shield = player.GetCharAttribute("Shield")*100
-			CritChance = player.GetCharAttribute("CritChance")*100
+			Spear = player.GetCharAttribute("Spear")
+			Shield = player.GetCharAttribute("Shield")
+			CritChance = player.GetCharAttribute("CritChance")
 			CritDamage = player.GetCharAttribute("CritDamage")
 			return """<color='black'>HP: $(player.CurrentHP)/$(max_HP))
 MP: $(player.CurrentMP)/$(max_MP)

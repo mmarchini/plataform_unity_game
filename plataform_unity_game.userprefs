@@ -1,21 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Buff.boo">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Buffs\BuffLavaSword.boo">
     <Files>
-      <File FileName="Assets\Scripts\SkillController.boo" Line="12" Column="30" />
-      <File FileName="Assets\Scripts\GenericCharController.boo" Line="18" Column="1" />
-      <File FileName="Assets\Scripts\GenericChar.boo" Line="119" Column="3" />
-      <File FileName="Assets\Scripts\Player.boo" Line="52" Column="1" />
-      <File FileName="Assets\Scripts\Interface\HUD\HPBar.boo" Line="20" Column="55" />
-      <File FileName="Assets\Scripts\Interface\HUD\MPBar.boo" Line="20" Column="57" />
-      <File FileName="Assets\Scripts\Interface\Pause\PauseMenu.boo" Line="26" Column="15" />
-      <File FileName="Assets\Scripts\BuffController.boo" Line="11" Column="17" />
-      <File FileName="Assets\Scripts\Buff.boo" Line="14" Column="11" />
-      <File FileName="Assets\Scripts\Interface\HUD\CurrentSkill.boo" Line="52" Column="15" />
-      <File FileName="Assets\Scripts\Buffs\BuffLavaSword.boo" Line="5" Column="11" />
-      <File FileName="Assets\Scripts\Interface\HUD\SelectedOrbs.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Skills\SkillLavaSword.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PassiveController.boo" Line="30" Column="44" />
+      <File FileName="Assets\Scripts\Buffs\BuffLavaSword.boo" Line="10" Column="72" />
+      <File FileName="Assets\Scripts\SkillController.boo" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GenericCharController.boo" Line="191" Column="37" />
+      <File FileName="Assets\Scripts\GenericChar.boo" Line="150" Column="12" />
+      <File FileName="Assets\Scripts\Interface\HUD\EnemyHP.boo" Line="22" Column="15" />
+      <File FileName="Assets\Scripts\Interface\InterfaceElement.boo" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Enemy.boo" Line="29" Column="36" />
+      <File FileName="Assets\Scripts\GiantSkeleton.boo" Line="6" Column="1" />
+      <File FileName="Assets\Scripts\Interface\Pause\PauseMenu.boo" Line="17" Column="54" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -23,13 +18,14 @@
           <Node name="Assembly-Boo" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Buffs" expanded="True" />
+                <Node name="Buffs" expanded="True">
+                  <Node name="BuffLavaSword.boo" selected="True" />
+                </Node>
                 <Node name="Interface" expanded="True">
                   <Node name="HUD" expanded="True" />
                   <Node name="Pause" expanded="True" />
                 </Node>
                 <Node name="Skills" expanded="True" />
-                <Node name="Buff.boo" selected="True" />
               </Node>
             </Node>
           </Node>

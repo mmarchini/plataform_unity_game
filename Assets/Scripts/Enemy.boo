@@ -2,11 +2,15 @@
 
 class Enemy (GenericChar): 
 	private lastAIMovement = -10
+	private lastAIAttack = -10
 	private AIMovementDuration = 0
+	public AIAttackDelay = 6
 	private AIMovementDirection = 0
 	public dropEXP as single = 15.0f
 	public damageClip as AudioClip
 	
+	public chanceOfAttack as single = 15.0f
+			
 	def OnDestroy():
 		playergo = GameObject.FindGameObjectWithTag("Player")
 		if playergo:
@@ -35,6 +39,10 @@ class Enemy (GenericChar):
 		return false
 	
 	def ExecuteAttack():
+		if Time.time - lastAIAttack > AIAttackDelay:
+			if Random.Range(0.0F, 100.0F) <= self.chanceOfAttack:
+				lastAIAttack = Time.time
+				return true
 		return false
 	
 	def DealDamage(char_controller as GenericChar):

@@ -186,8 +186,9 @@ class GenericCharController(MonoBehaviour):
 		if self.attacking:
 			char_controller = self.Raycast(moveDirection, self.GetATKRange())
 			if char_controller != null:
-				if not char_controller.damaged:
-					self.DealDamage(char_controller)
+				if char_controller.tag != self.tag:
+					if not char_controller.damaged:
+						self.DealDamage(char_controller)
 	
 	def ApplyJumping():
 		// Prevent jumping too fast after each other

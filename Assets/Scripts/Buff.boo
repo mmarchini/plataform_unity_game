@@ -4,7 +4,7 @@ class Buff (MonoBehaviour):
 
 	public label as string
 	public description as string
-	public time = 10
+	public time = 4
 	private current_time = -1
 	public affected_attributes = []
 	

@@ -52,7 +52,9 @@
      <Compile Include="Assets\Scripts\FreezeAxis.boo" />
      <Compile Include="Assets\Scripts\GenericChar.boo" />
      <Compile Include="Assets\Scripts\GenericCharController.boo" />
+     <Compile Include="Assets\Scripts\GiantSkeleton.boo" />
      <Compile Include="Assets\Scripts\Interface\HUD\CurrentSkill.boo" />
+     <Compile Include="Assets\Scripts\Interface\HUD\EnemyHP.boo" />
      <Compile Include="Assets\Scripts\Interface\HUD\HPBar.boo" />
      <Compile Include="Assets\Scripts\Interface\HUD\HUDWindow.boo" />
      <Compile Include="Assets\Scripts\Interface\HUD\Level.boo" />

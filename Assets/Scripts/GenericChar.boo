@@ -38,13 +38,14 @@ class GenericChar(GenericCharController):
 	public baseAttributes = {
 		"HP" : 500,
 		"MP" : 150,
-		"ATK" : 14,
+		"ATK" : 50,
 		"DEF" : 1,
 		"Spear" : 0.05,
 		"Shield" : 0.05,
 		"ATKRange" : 1,
 		"CritChance" : 0.10,
 		"CritDamage" : 1.5,
+		"Evasion":0.01,
 		"BAT" : 1,
 		"MovementSpeed" : 1,
 		"Jump" : 1,
@@ -61,6 +62,7 @@ class GenericChar(GenericCharController):
 		"ATKRange" : 0,
 		"CritChance" : 0,
 		"CritDamage" : 0,
+		"Evasion":0,
 		"BAT" : 0,
 		"MovementSpeed" : 0,
 		"Jump" : 0,
@@ -92,9 +94,17 @@ class GenericChar(GenericCharController):
 	
 	DMG:
 		get:
-			if Random.Range(0,100) <= self.GetCharAttribute("CritChance"):
+			if Random.Range(0,100) <= self.GetCharAttribute("CritChance")*100:
 				return self.GetCharAttribute("ATK")*self.GetCharAttribute("CritDamage") + self.SpearATK
 			return self.GetCharAttribute("ATK") + self.SpearATK
+
+	Block:
+		get:
+			#if Random.Range(0,100) <= self.GetCharAttribute("Evasion")*100:
+			#	
+			#	return self.GetCharAttribute("ATK")*self.GetCharAttribute("CritDamage") + self.SpearATK
+			return self.GetCharAttribute("DEF") + self.ShieldDEF
+
 
 	SpearATK:
 		get:
@@ -152,7 +162,8 @@ class GenericChar(GenericCharController):
 	
 	virtual def TakeDamage(char_controller as GenericChar):
 		if not damaged:
-			self.LostHP = self.LostHP + char_controller.DMG
+			Debug.Log(self.Block)
+			self.LostHP = self.LostHP + (char_controller.DMG - self.Block)
 		if self.CurrentHP <= 0:
 			Destroy(self.gameObject)
 		self.StartDamage()
