@@ -69,12 +69,6 @@ class ThirdPersonCamera(MonoBehaviour):
 		// Adjust real target angle when camera is locked
 		targetAngle = originalTargetAngle 
 		
-		
-		//if (controller.GetLockCameraTimer () < lockCameraTimeout)
-		//{
-		//	targetAngle = currentAngle
-		//}
-	
 		currentAngle = Mathf.SmoothDampAngle(currentAngle, targetAngle, angleVelocity, angularSmoothLag, angularMaxSpeed)
 		
 		targetHeight = targetCenter.y + height

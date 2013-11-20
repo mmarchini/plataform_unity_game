@@ -6,8 +6,6 @@ enum ControllerType:
 
 class GenericChar(GenericCharController):
 	
-	private already_hitted as List = []
-	
 	private buffs as List = []
 			
 	public passive_controller as PassiveController
@@ -47,7 +45,7 @@ class GenericChar(GenericCharController):
 		"CritDamage" : 1.5,
 		"Evasion":0.01,
 		"BAT" : 1,
-		"MovementSpeed" : 1,
+		"MovementSpeed" : 10,
 		"Jump" : 1,
 	}
 	
@@ -135,26 +133,8 @@ class GenericChar(GenericCharController):
 		return modificators
 		
 	
-	def GetATKRange():
-		#currentAttackTime = Time.time - self.startAttackingTime
-		#endAttackTime = self._animation[self.attackAnimation.name].length
-		#return (ATKRange cast double)*((currentAttackTime cast double)/(endAttackTime cast double))
-		return self.GetCharAttribute("ATKRange")
-
-	def GetWalkSpeed():
-		horizontalSpeed as single = self.walkSpeed * self.GetCharAttribute("MovementSpeed")
-		if Mathf.Abs(horizontalSpeed) > 5.5:
-			return 5.5*(horizontalSpeed/Mathf.Abs(horizontalSpeed))
-		if Mathf.Abs(horizontalSpeed) < 3 and horizontalSpeed != 0:
-			return 3*(horizontalSpeed/Mathf.Abs(horizontalSpeed))
-		return horizontalSpeed
-	
-	def GetHorizontalSpeed():
-		return 0
-	
-	def IsJumping():
-		return false
-		
+	/*
+				
 	def ExecuteAttack():
 		return false
 		
@@ -162,23 +142,19 @@ class GenericChar(GenericCharController):
 		self.already_hitted = []
 		super.EndAction()
 	
+	*/
+	
 	virtual def TakeDamage(char_controller as GenericChar, dmg as single):
-		
-		if not damaged:
+		Debug.Log(":D:D")
+		Debug.Log(self.action_controller)
+		if self.action_controller and not self.action_controller.Executing("Damaged"):
 			block as single = self.Block
 			if dmg - block < 0:
 				block = dmg
-			Debug.Log("****")
-			Debug.Log(dmg)
-			Debug.Log(block)
 			self.LostHP = self.LostHP + (dmg - block)
 			
-		if self.CurrentHP <= 0:
-			Destroy(self.gameObject)
-		self.StartDamage()
+			if self.CurrentHP <= 0:
+				Destroy(self.gameObject)
+			if self.action_controller:
+				self.action_controller.Execute("Damaged")
 	
-	virtual def DealDamage(char_controller as GenericChar):
-		if char_controller not in self.already_hitted:
-			self.already_hitted.Add(char_controller)
-			dmg as single = self.DMG
-			char_controller.TakeDamage(self, dmg)

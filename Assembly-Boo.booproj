@@ -46,8 +46,10 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Actions\Action.boo" />
      <Compile Include="Assets\Scripts\Actions\ActionBaseAttack.boo" />
+     <Compile Include="Assets\Scripts\Actions\ActionDamaged.boo" />
      <Compile Include="Assets\Scripts\Buffs\Buff.boo" />
      <Compile Include="Assets\Scripts\Buffs\BuffLavaSword.boo" />
+     <Compile Include="Assets\Scripts\Characters\Controllers\ActionController.boo" />
      <Compile Include="Assets\Scripts\Characters\Controllers\BuffController.boo" />
      <Compile Include="Assets\Scripts\Characters\Controllers\GenericCharController.boo" />
      <Compile Include="Assets\Scripts\Characters\Controllers\PassiveController.boo" />

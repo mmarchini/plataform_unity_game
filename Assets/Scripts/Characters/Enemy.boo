@@ -38,6 +38,8 @@ class Enemy (GenericChar):
 	def IsJumping():
 		return false
 	
+	/*
+	
 	def ExecuteAttack():
 		if Time.time - lastAIAttack > AIAttackDelay:
 			if Random.Range(0.0F, 100.0F) <= self.chanceOfAttack:
@@ -56,6 +58,4 @@ class Enemy (GenericChar):
 			(self.GetComponent("AudioSource") as AudioSource).PlayOneShot(self.damageClip,1.0)
 			super.StartDamage()
 	
-	def OnAnotherControllerHit(hit as ControllerColliderHit):
-		pass
-	
+	*/

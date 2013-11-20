@@ -1,12 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Actions\Action.boo">
-    <Files>
-      <File FileName="Assets\Scripts\Skills\SkillLavaSword.boo" Line="10" Column="3" />
-      <File FileName="Assets\Scripts\Actions\Action.boo" Line="15" Column="29" />
-      <File FileName="Assets\Scripts\Characters\GenericChar.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Characters\Controllers\GenericCharController.boo" Line="101" Column="3" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
@@ -14,10 +8,14 @@
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
                 <Node name="Actions" expanded="True">
-                  <Node name="Action.boo" selected="True" />
+                  <Node name="ActionBaseAttack.boo" selected="True" />
                 </Node>
                 <Node name="Characters" expanded="True">
                   <Node name="Controllers" expanded="True" />
+                </Node>
+                <Node name="Interface" expanded="True">
+                  <Node name="HUD" expanded="True" />
+                  <Node name="Pause" expanded="True" />
                 </Node>
                 <Node name="Skills" expanded="True" />
               </Node>

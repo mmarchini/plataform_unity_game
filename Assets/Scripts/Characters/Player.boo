@@ -22,12 +22,11 @@ class Player (GenericChar):
 		self.passive_controller.generic_char = self
 		super.Awake()
 
-	def GetHorizontalSpeed():
-		if damaged:
-			return 0
-		return Input.GetAxisRaw("Horizontal")
+	horizontalSpeed:
+		get:
+			return Input.GetAxisRaw("Horizontal")
 	
-	def Update():
+	def Control():
 		if Input.GetButtonDown("Fire"):
 			self.SelOrbs = ["Fire"] + self.SelOrbs[:-1]
 		if Input.GetButtonDown("Water"):
@@ -37,12 +36,20 @@ class Player (GenericChar):
 		if Input.GetButtonDown("Skill"):
 			if self.skill_controller:
 				self.skill_controller.Execute(self, GetCurrentSkill(self))
+		if Input.GetButtonDown("Attack"):
+			if self.action_controller:
+				self.action_controller.Execute("BaseAttack")
+		
+	
+	def Update():
 			
 		super.Update()
 	
 	JumpAction:
 		get:
 			return Input.GetButtonDown ("Jump")
+
+	/*
 
 	def StartAttack():
 		if not self.attacking:
@@ -51,3 +58,5 @@ class Player (GenericChar):
 	
 	def ExecuteAttack():
 		return Input.GetButtonDown ("Attack") and not damaged
+
+	*/
