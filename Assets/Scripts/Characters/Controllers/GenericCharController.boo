@@ -162,10 +162,20 @@ class GenericCharController(MonoBehaviour):
 		if damaged:
 			pass
 	
+	virtual def GetAttackMaterial():
+		return 0
+	
 	def Raycast(direction as Vector3, range as single):
 		ray = Ray(GetCharPosition(), direction)
 		
-		Debug.DrawRay(ray.origin, ray.direction*range, Color.black, 0)
+		#Debug.DrawRay(ray.origin, ray.direction*range, Color.black, 0)
+		
+		line_render as LineRenderer = self.GetComponent("LineRenderer")
+		if line_render:
+			line_render.SetPosition(0, ray.origin)
+			line_render.SetPosition(1, ray.direction*range + ray.origin)
+			#line_render.material = line_render.materials[self.GetAttackMaterial()]
+		
 		
 		raycasthit as RaycastHit
 		
@@ -181,7 +191,7 @@ class GenericCharController(MonoBehaviour):
 		
 	def ApplyAttack():
 		if self.ExecuteAttack():
-			self.StartAttack()
+			self.StartAction()
 			
 		if self.attacking:
 			char_controller = self.Raycast(moveDirection, self.GetATKRange())
@@ -225,14 +235,20 @@ class GenericCharController(MonoBehaviour):
 		_animation[onHitAnimation.name].speed = onHitAnimationSpeed
 		_animation.Play(onHitAnimation.name)
 	
-	virtual def EndAttack():
-		attacking = false
-	
-	virtual def StartAttack():
+	virtual def StartAction():
 		attacking = true
 		startAttackingTime = Time.time
 		middleOfAttack = false
+		line_render as LineRenderer = self.GetComponent("LineRenderer")
+		if line_render:
+			line_render.enabled = true
 	
+	virtual def EndAction():
+		line_render as LineRenderer = self.GetComponent("LineRenderer")
+		if line_render:
+			line_render.enabled = false
+		attacking = false
+		
 	virtual JumpAction:
 		get:
 			return false

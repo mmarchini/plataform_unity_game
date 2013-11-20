@@ -6,9 +6,9 @@ class BuffLavaSword (Buff):
 		self.label = "Lava Sword"
 		self.affected_attributes = ["ATK", "ATKRange"]
 	
-	def Start():
-		halo as RenderSettings = self.gameObject.AddComponent("RenderSettings")
-		halo.haloStrength = 1
+#	def Start():
+#		halo as RenderSettings = self.gameObject.AddComponent("RenderSettings")
+#		halo.haloStrength = 1
 		
 	
 	virtual def Effect(char_controller as GenericChar) as single:

@@ -1,16 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Buffs\BuffLavaSword.boo">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Actions\Action.boo">
     <Files>
-      <File FileName="Assets\Scripts\Buffs\BuffLavaSword.boo" Line="10" Column="72" />
-      <File FileName="Assets\Scripts\SkillController.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GenericCharController.boo" Line="191" Column="37" />
-      <File FileName="Assets\Scripts\GenericChar.boo" Line="150" Column="12" />
-      <File FileName="Assets\Scripts\Interface\HUD\EnemyHP.boo" Line="22" Column="15" />
-      <File FileName="Assets\Scripts\Interface\InterfaceElement.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Enemy.boo" Line="29" Column="36" />
-      <File FileName="Assets\Scripts\GiantSkeleton.boo" Line="6" Column="1" />
-      <File FileName="Assets\Scripts\Interface\Pause\PauseMenu.boo" Line="17" Column="54" />
+      <File FileName="Assets\Scripts\Skills\SkillLavaSword.boo" Line="10" Column="3" />
+      <File FileName="Assets\Scripts\Actions\Action.boo" Line="15" Column="29" />
+      <File FileName="Assets\Scripts\Characters\GenericChar.boo" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Characters\Controllers\GenericCharController.boo" Line="101" Column="3" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -18,12 +13,11 @@
           <Node name="Assembly-Boo" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Buffs" expanded="True">
-                  <Node name="BuffLavaSword.boo" selected="True" />
+                <Node name="Actions" expanded="True">
+                  <Node name="Action.boo" selected="True" />
                 </Node>
-                <Node name="Interface" expanded="True">
-                  <Node name="HUD" expanded="True" />
-                  <Node name="Pause" expanded="True" />
+                <Node name="Characters" expanded="True">
+                  <Node name="Controllers" expanded="True" />
                 </Node>
                 <Node name="Skills" expanded="True" />
               </Node>

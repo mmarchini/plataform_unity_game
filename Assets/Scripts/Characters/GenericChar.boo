@@ -112,7 +112,9 @@ class GenericChar(GenericCharController):
 			
 	ShieldDEF:
 		get:
-			return self.GetCharAttribute("Shield") * self.CurrentHP
+			if self.CurrentHP/self.GetCharAttribute("HP") < 0.25:
+				return self.GetCharAttribute("Shield") * self.GetCharAttribute("HP") * 0.25
+			return self.GetCharAttribute("Shield") * self.LostHP
 	
 	public Type as ControllerType;
 	
@@ -158,12 +160,19 @@ class GenericChar(GenericCharController):
 		
 	def EndAttack():
 		self.already_hitted = []
-		super.EndAttack()
+		super.EndAction()
 	
-	virtual def TakeDamage(char_controller as GenericChar):
+	virtual def TakeDamage(char_controller as GenericChar, dmg as single):
+		
 		if not damaged:
-			Debug.Log(self.Block)
-			self.LostHP = self.LostHP + (char_controller.DMG - self.Block)
+			block as single = self.Block
+			if dmg - block < 0:
+				block = dmg
+			Debug.Log("****")
+			Debug.Log(dmg)
+			Debug.Log(block)
+			self.LostHP = self.LostHP + (dmg - block)
+			
 		if self.CurrentHP <= 0:
 			Destroy(self.gameObject)
 		self.StartDamage()
@@ -171,4 +180,5 @@ class GenericChar(GenericCharController):
 	virtual def DealDamage(char_controller as GenericChar):
 		if char_controller not in self.already_hitted:
 			self.already_hitted.Add(char_controller)
-			char_controller.TakeDamage(self)
+			dmg as single = self.DMG
+			char_controller.TakeDamage(self, dmg)

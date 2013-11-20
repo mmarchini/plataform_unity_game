@@ -44,15 +44,20 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Buff.boo" />
-     <Compile Include="Assets\Scripts\BuffController.boo" />
+     <Compile Include="Assets\Scripts\Actions\Action.boo" />
+     <Compile Include="Assets\Scripts\Actions\ActionBaseAttack.boo" />
+     <Compile Include="Assets\Scripts\Buffs\Buff.boo" />
      <Compile Include="Assets\Scripts\Buffs\BuffLavaSword.boo" />
-     <Compile Include="Assets\Scripts\CameraFade.boo" />
-     <Compile Include="Assets\Scripts\Enemy.boo" />
-     <Compile Include="Assets\Scripts\FreezeAxis.boo" />
-     <Compile Include="Assets\Scripts\GenericChar.boo" />
-     <Compile Include="Assets\Scripts\GenericCharController.boo" />
-     <Compile Include="Assets\Scripts\GiantSkeleton.boo" />
+     <Compile Include="Assets\Scripts\Characters\Controllers\BuffController.boo" />
+     <Compile Include="Assets\Scripts\Characters\Controllers\GenericCharController.boo" />
+     <Compile Include="Assets\Scripts\Characters\Controllers\PassiveController.boo" />
+     <Compile Include="Assets\Scripts\Characters\Controllers\SkillController.boo" />
+     <Compile Include="Assets\Scripts\Characters\Enemy.boo" />
+     <Compile Include="Assets\Scripts\Characters\GenericChar.boo" />
+     <Compile Include="Assets\Scripts\Characters\GiantSkeleton.boo" />
+     <Compile Include="Assets\Scripts\Characters\Player.boo" />
+     <Compile Include="Assets\Scripts\Characters\Util\FreezeAxis.boo" />
+     <Compile Include="Assets\Scripts\Characters\Util\ThirdPersonCamera.boo" />
      <Compile Include="Assets\Scripts\Interface\HUD\CurrentSkill.boo" />
      <Compile Include="Assets\Scripts\Interface\HUD\EnemyHP.boo" />
      <Compile Include="Assets\Scripts\Interface\HUD\HPBar.boo" />
@@ -73,8 +78,7 @@
      <Compile Include="Assets\Scripts\Interface\Pause\PassiveMenuPointsLeft.boo" />
      <Compile Include="Assets\Scripts\Interface\Pause\PauseMenu.boo" />
      <Compile Include="Assets\Scripts\Interface\Pause\PauseWindow.boo" />
-     <Compile Include="Assets\Scripts\Passive.boo" />
-     <Compile Include="Assets\Scripts\PassiveController.boo" />
+     <Compile Include="Assets\Scripts\Passives\Passive.boo" />
      <Compile Include="Assets\Scripts\Passives\PassiveATK.boo" />
      <Compile Include="Assets\Scripts\Passives\PassiveCritDamage.boo" />
      <Compile Include="Assets\Scripts\Passives\PassiveCritToHP.boo" />
@@ -82,11 +86,9 @@
      <Compile Include="Assets\Scripts\Passives\PassiveHP.boo" />
      <Compile Include="Assets\Scripts\Passives\PassiveHPtoDMG.boo" />
      <Compile Include="Assets\Scripts\Passives\PassiveMP.boo" />
-     <Compile Include="Assets\Scripts\Player.boo" />
-     <Compile Include="Assets\Scripts\Skill.boo" />
-     <Compile Include="Assets\Scripts\SkillController.boo" />
+     <Compile Include="Assets\Scripts\Skills\Skill.boo" />
      <Compile Include="Assets\Scripts\Skills\SkillLavaSword.boo" />
-     <Compile Include="Assets\Scripts\ThirdPersonCamera.boo" />
+     <Compile Include="Assets\Scripts\Util\CameraFade.boo" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />

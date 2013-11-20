@@ -6,7 +6,7 @@ class Player (GenericChar):
 	public attackClip as AudioClip
 
 	public SelOrbs as List = ["Wind", "Fire", "Water"]
-	
+
 	private _paused = false
 
 	paused:
@@ -46,7 +46,7 @@ class Player (GenericChar):
 
 	def StartAttack():
 		if not self.attacking:
-				super.StartAttack()
+				super.StartAction()
 				(self.GetComponent("AudioSource") as AudioSource).PlayOneShot(self.attackClip, 1.0)
 	
 	def ExecuteAttack():
