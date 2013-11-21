@@ -1,11 +1,10 @@
 ﻿import UnityEngine
 
-class ActionBaseAttack (Action): 
+class ActionFireSlash (Action): 
 
 	char_controller as GenericChar
 	already_hitted as List
 	line_render as LineRenderer
-	
 	
 	public material as Material
 	public StartWidth as single
@@ -15,6 +14,7 @@ class ActionBaseAttack (Action):
 		char_controller = self.GetComponent("GenericChar")
 
 	def Raycast(direction as Vector3, range as single):
+		range = range*2.0
 		ray = Ray(char_controller.GetCharPosition(), direction)
 		
 		if line_render:
@@ -48,7 +48,6 @@ class ActionBaseAttack (Action):
 					self.line_render = self.gameObject.AddComponent(LineRenderer)
 				self.line_render.material = self.material
 				self.line_render.SetWidth(self.StartWidth, self.EndWidth)
-			
 			self.already_hitted = []
 		
 	def EndAction():
@@ -64,5 +63,5 @@ class ActionBaseAttack (Action):
 	virtual def DealDamage(_char as GenericChar):
 		if _char not in self.already_hitted:
 			self.already_hitted.Add(_char)
-			dmg as single = char_controller.DMG
+			dmg as single = char_controller.DMG*1.25
 			_char.TakeDamage(char_controller, dmg)

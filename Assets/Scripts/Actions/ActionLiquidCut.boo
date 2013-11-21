@@ -1,6 +1,6 @@
 ﻿import UnityEngine
 
-class ActionBaseAttack (Action): 
+class ActionLiquidCut (Action): 
 
 	char_controller as GenericChar
 	already_hitted as List
@@ -48,7 +48,7 @@ class ActionBaseAttack (Action):
 					self.line_render = self.gameObject.AddComponent(LineRenderer)
 				self.line_render.material = self.material
 				self.line_render.SetWidth(self.StartWidth, self.EndWidth)
-			
+				
 			self.already_hitted = []
 		
 	def EndAction():
@@ -64,5 +64,6 @@ class ActionBaseAttack (Action):
 	virtual def DealDamage(_char as GenericChar):
 		if _char not in self.already_hitted:
 			self.already_hitted.Add(_char)
-			dmg as single = char_controller.DMG
+			dmg as single = char_controller.DMG/2
+			char_controller.LostHP =- dmg
 			_char.TakeDamage(char_controller, dmg)

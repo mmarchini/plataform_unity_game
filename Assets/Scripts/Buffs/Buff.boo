@@ -8,7 +8,7 @@ class Buff (MonoBehaviour):
 	private current_time = -1
 	public affected_attributes = []
 	
-	virtual def Effect(char_controller as GenericChar) as single:
+	virtual def Effect(char_controller as GenericChar, caller as string) as single:
 		return 0.0
 	
 	def Start():

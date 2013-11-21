@@ -19,7 +19,9 @@ class GenericCharController(MonoBehaviour):
 	public jumpAnimationSpeed  = 1.15f
 
 	// How high do we jump when pressing jump and letting go immediately
-	public jumpHeight = 0.5
+	virtual jumpHeight:
+		get:
+			return 0.5
 	
 	// The gravity for the character
 	public gravity = 25.0
@@ -35,8 +37,6 @@ class GenericCharController(MonoBehaviour):
 	
 	// Are we jumping? (Initiated with jump button and not grounded yet)
 	protected _jumping = false
-	
-	protected attacking = false
 	
 	def Awake():
 		_animation = GetComponent(Animation)
@@ -95,7 +95,7 @@ class GenericCharController(MonoBehaviour):
 	
 	moveSpeed:
 		get:
-			if self.currentAction and Grounded or horizontalSpeed == 0:
+			if ((self.currentAction and not self.currentAction.move) and Grounded):
 				return 0
 			if self.currentAction: 
 				return self.currentAction.char_speed 
@@ -136,20 +136,12 @@ class GenericCharController(MonoBehaviour):
 	def DidJump():
 		_jumping = true
 	
-	virtual def StartAction():
-		attacking = true
-	
-	virtual def EndAction():
-		attacking = false
-		
 	virtual JumpAction:
 		get:
 			return false
 	
 	def MoveChar():
 		movement = moveDirection * moveSpeed
-		if(attacking and Grounded):
-			movement *= 0
 		movement += Vector3 (0, verticalSpeed, 0)
 		
 		movement *= Time.deltaTime

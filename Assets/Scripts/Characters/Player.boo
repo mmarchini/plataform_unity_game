@@ -24,7 +24,7 @@ class Player (GenericChar):
 
 	horizontalSpeed:
 		get:
-			return Input.GetAxisRaw("Horizontal")
+			return Input.GetAxisRaw("Horizontal")*self.GetCharAttribute("MovementSpeed")
 	
 	def Control():
 		if Input.GetButtonDown("Fire"):

@@ -26,7 +26,7 @@ class BuffController (MonoBehaviour):
 		if buffs:
 			for buff as Buff in buffs:
 				if caller in buff.affected_attributes:
-					extra_attribute += buff.Effect(character)
+					extra_attribute += buff.Effect(character, caller)
 		return extra_attribute
 
 	

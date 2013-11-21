@@ -6,12 +6,12 @@ def skills_dict():
 		["Fire" , "Fire" , "Wind" ] : "Fire Slash",
 		["Fire" , "Fire" , "Water"] : "Lava Sword",
 		["Water", "Water", "Water"] : "Water Suit",
-		["Water", "Water", "Wind" ] : "???",
+		["Water", "Water", "Wind" ] : "Liquid Cut",
 		["Water", "Water", "Fire" ] : "Hot Steam",
 		["Wind" , "Wind" , "Wind" ] : "???",
 		["Wind" , "Wind" , "Fire" ] : "Wild Tornado",
-		["Wind" , "Wind" , "Water"] : "???",
-		["Fire" , "Water", "Wind" ] : "???",
+		["Wind" , "Wind" , "Water"] : "Aerial Movement",
+		["Fire" , "Water", "Wind" ] : "Ultimate Stab",
 	}
 
 def GetCurrentSkill(player as Player):

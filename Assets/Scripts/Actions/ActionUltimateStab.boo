@@ -1,26 +1,31 @@
 ﻿import UnityEngine
 
-class ActionBaseAttack (Action): 
+class ActionUltimateStab (Action): 
 
 	char_controller as GenericChar
 	already_hitted as List
 	line_render as LineRenderer
 	
-	
 	public material as Material
 	public StartWidth as single
-	public EndWidth as single
+	public EndWidth as single 
+	
+	public MoveSpeedMultiplier as single = 10
 
 	def Start():
 		char_controller = self.GetComponent("GenericChar")
 
 	def Raycast(direction as Vector3, range as single):
+		range = range
 		ray = Ray(char_controller.GetCharPosition(), direction)
 		
 		if line_render:
 			line_render.enabled = true
 			line_render.SetPosition(0, ray.origin)
-			line_render.SetPosition(1, ray.direction*range + ray.origin)
+			line_render.SetPosition(1, ray.direction*range + ray.origin)  
+			
+		self.char_speed = self.char_controller.GetCharAttribute("MovementSpeed")*MoveSpeedMultiplier
+		self.move = true
 		
 		raycasthit as RaycastHit
 		
@@ -41,6 +46,7 @@ class ActionBaseAttack (Action):
 	
 	def StartAction():
 		if super.StartAction():
+			
 			if self.material:
 				if self.GetComponent(LineRenderer):
 					self.line_render = self.gameObject.GetComponent(LineRenderer)
@@ -48,7 +54,6 @@ class ActionBaseAttack (Action):
 					self.line_render = self.gameObject.AddComponent(LineRenderer)
 				self.line_render.material = self.material
 				self.line_render.SetWidth(self.StartWidth, self.EndWidth)
-			
 			self.already_hitted = []
 		
 	def EndAction():
@@ -64,5 +69,5 @@ class ActionBaseAttack (Action):
 	virtual def DealDamage(_char as GenericChar):
 		if _char not in self.already_hitted:
 			self.already_hitted.Add(_char)
-			dmg as single = char_controller.DMG
+			dmg as single = char_controller.DMG*5
 			_char.TakeDamage(char_controller, dmg)

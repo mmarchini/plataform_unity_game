@@ -1,14 +1,28 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Buffs\BuffAerialMovement.boo">
+    <Files>
+      <File FileName="Assets\Scripts\Characters\GenericChar.boo" Line="49" Column="13" />
+      <File FileName="Assets\Scripts\Characters\Controllers\GenericCharController.boo" Line="22" Column="2" />
+      <File FileName="Assets\Scripts\Characters\Controllers\ActionController.boo" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Actions\ActionDamaged.boo" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Characters\Controllers\SkillController.boo" Line="11" Column="59" />
+      <File FileName="Assets\Scripts\Interface\HUD\CurrentSkill.boo" Line="13" Column="49" />
+      <File FileName="Assets\Scripts\Buffs\BuffAerialMovement.boo" Line="15" Column="67" />
+      <File FileName="Assets\Scripts\Characters\Controllers\BuffController.boo" Line="25" Column="24" />
+      <File FileName="Assets\Scripts\Buffs\BuffLavaSword.boo" Line="15" Column="3" />
+      <File FileName="Assets\Scripts\Buffs\Buff.boo" Line="13" Column="2" />
+      <File FileName="Assets\Scripts\Characters\Player.boo" Line="27" Column="78" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-Boo" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Actions" expanded="True">
-                  <Node name="ActionBaseAttack.boo" selected="True" />
+                <Node name="Actions" expanded="True" />
+                <Node name="Buffs" expanded="True">
+                  <Node name="BuffAerialMovement.boo" selected="True" />
                 </Node>
                 <Node name="Characters" expanded="True">
                   <Node name="Controllers" expanded="True" />

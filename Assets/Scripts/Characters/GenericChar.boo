@@ -45,8 +45,8 @@ class GenericChar(GenericCharController):
 		"CritDamage" : 1.5,
 		"Evasion":0.01,
 		"BAT" : 1,
-		"MovementSpeed" : 10,
-		"Jump" : 1,
+		"MovementSpeed" : 4,
+		"Jump" : 2,
 	}
 	
 	// Per Level attrbute gain
@@ -102,7 +102,10 @@ class GenericChar(GenericCharController):
 			#	
 			#	return self.GetCharAttribute("ATK")*self.GetCharAttribute("CritDamage") + self.SpearATK
 			return self.GetCharAttribute("DEF") + self.ShieldDEF
-
+	
+	virtual jumpHeight:
+		get:
+			return self.GetCharAttribute("Jump")
 
 	SpearATK:
 		get:
@@ -145,8 +148,6 @@ class GenericChar(GenericCharController):
 	*/
 	
 	virtual def TakeDamage(char_controller as GenericChar, dmg as single):
-		Debug.Log(":D:D")
-		Debug.Log(self.action_controller)
 		if self.action_controller and not self.action_controller.Executing("Damaged"):
 			block as single = self.Block
 			if dmg - block < 0:

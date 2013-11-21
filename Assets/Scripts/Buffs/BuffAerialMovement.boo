@@ -1,10 +1,10 @@
 ﻿import UnityEngine
 
-class BuffLavaSword (Buff): 
+class BuffAerialMovement (Buff): 
 
 	def Awake():
-		self.label = "Lava Sword"
-		self.affected_attributes = ["ATK", "ATKRange"]
+		self.label = "Aerial Movement"
+		self.affected_attributes = ["MovementSpeed", "Jump"]
 	
 #	def Start():
 #		halo as RenderSettings = self.gameObject.AddComponent("RenderSettings")
@@ -12,4 +12,4 @@ class BuffLavaSword (Buff):
 		
 	
 	virtual def Effect(char_controller as GenericChar, caller as string) as single:
-		return (char_controller.baseAttributes[caller] cast single)*1.5
+		return (char_controller.baseAttributes[caller] cast single)*1.15

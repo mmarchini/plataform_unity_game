@@ -10,6 +10,8 @@ class Action (MonoBehaviour):
 	public char_direction as Vector3
 	[HideInInspector]
 	public char_speed as single
+	[HideInInspector]
+	public move = false
 	
 	public _animation as AnimationClip
 	public animationSpeed = 1f
@@ -27,11 +29,10 @@ class Action (MonoBehaviour):
 	virtual def StartAction():
 		for _action as Action in self.GetComponents(Action):
 				if _action.enabled:
-					return
+					return false
 		if self.generic_char_controller and self.generic_char_controller.Jumping:
 			self.char_speed = self.generic_char_controller.moveSpeed
 		self.enabled = true
-		
 		
 		return true
 	
