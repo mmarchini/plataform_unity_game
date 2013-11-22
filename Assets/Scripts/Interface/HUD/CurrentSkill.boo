@@ -8,7 +8,7 @@ def skills_dict():
 		["Water", "Water", "Water"] : "Water Suit",
 		["Water", "Water", "Wind" ] : "Liquid Cut",
 		["Water", "Water", "Fire" ] : "Hot Steam",
-		["Wind" , "Wind" , "Wind" ] : "???",
+		["Wind" , "Wind" , "Wind" ] : "Wind Strike",
 		["Wind" , "Wind" , "Fire" ] : "Wild Tornado",
 		["Wind" , "Wind" , "Water"] : "Aerial Movement",
 		["Fire" , "Water", "Wind" ] : "Ultimate Stab",

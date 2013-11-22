@@ -12,7 +12,9 @@ class BuffController (MonoBehaviour):
 		if buff != null:
 			(buff as Buff).Reset()
 		else:
-			self.gameObject.AddComponent("Buff$(buff_name)")
+			buff = self.gameObject.AddComponent("Buff$(buff_name)")
+		if not buff:
+			Debug.Log("Nao foi possivel adicionar o buff $(buff_name)")
 	
 	def RemoveBuff(buff_name as string):
 		buff = self.GetComponent(buff_name)

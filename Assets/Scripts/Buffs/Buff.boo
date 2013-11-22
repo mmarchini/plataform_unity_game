@@ -5,7 +5,8 @@ class Buff (MonoBehaviour):
 	public label as string
 	public description as string
 	public time = 4
-	private current_time = -1
+	public current_time = -10
+	protected destroy = false
 	public affected_attributes = []
 	
 	virtual def Effect(char_controller as GenericChar, caller as string) as single:
@@ -15,10 +16,11 @@ class Buff (MonoBehaviour):
 		self.Reset()	
 	
 	def Update():
-		if Time.time - current_time > time:
+		if (self.current_time >= 0 and Time.time - self.current_time > time) or self.destroy:
 			Destroy(self)
 	
 	virtual def Reset():
 		self.current_time = Time.time
-		
+		destroy = false
+
 	

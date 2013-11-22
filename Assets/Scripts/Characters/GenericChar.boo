@@ -40,6 +40,7 @@ class GenericChar(GenericCharController):
 		"DEF" : 1,
 		"Spear" : 0.05,
 		"Shield" : 0.05,
+		"ManaShield" : 0.00,
 		"ATKRange" : 1,
 		"CritChance" : 0.10,
 		"CritDamage" : 1.5,
@@ -57,6 +58,7 @@ class GenericChar(GenericCharController):
 		"DEF" : 0,
 		"Spear" : 0,
 		"Shield" : 0,
+		"ManaShield" : 0,
 		"ATKRange" : 0,
 		"CritChance" : 0,
 		"CritDamage" : 0,
@@ -101,7 +103,7 @@ class GenericChar(GenericCharController):
 			#if Random.Range(0,100) <= self.GetCharAttribute("Evasion")*100:
 			#	
 			#	return self.GetCharAttribute("ATK")*self.GetCharAttribute("CritDamage") + self.SpearATK
-			return self.GetCharAttribute("DEF") + self.ShieldDEF
+			return self.GetCharAttribute("DEF") + self.ShieldDEF + self.Modificators("Block")
 	
 	virtual jumpHeight:
 		get:
@@ -128,7 +130,7 @@ class GenericChar(GenericCharController):
 			return points
 	
 	def Modificators(attribute as string) as single:
-		modificators = 0
+		modificators = 0.0
 		if self.passive_controller:
 			modificators += passive_controller.CallPassives(self, attribute)
 		if self.buff_controller:
@@ -148,14 +150,21 @@ class GenericChar(GenericCharController):
 	*/
 	
 	virtual def TakeDamage(char_controller as GenericChar, dmg as single):
+		self.TakeDamage(char_controller, dmg, "Damaged")
+	
+	virtual def TakeDamage(char_controller as GenericChar, dmg as single, dmg_action as string):
 		if self.action_controller and not self.action_controller.Executing("Damaged"):
 			block as single = self.Block
 			if dmg - block < 0:
 				block = dmg
-			self.LostHP = self.LostHP + (dmg - block)
+			dmg = (dmg - block)
+			if self.GetCharAttribute("ManaShield"):
+				self.LostMP = self.LostMP + dmg*self.GetCharAttribute("ManaShield")
+				dmg = dmg - dmg*self.GetCharAttribute("ManaShield")
+			self.LostHP = self.LostHP + dmg
 			
 			if self.CurrentHP <= 0:
 				Destroy(self.gameObject)
 			if self.action_controller:
-				self.action_controller.Execute("Damaged")
-	
+				self.action_controller.Execute(dmg_action)
+			

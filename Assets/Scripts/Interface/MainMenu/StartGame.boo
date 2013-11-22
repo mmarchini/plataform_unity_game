@@ -11,7 +11,7 @@ class StartGame(MainMenuItem):
 		self.y = 30
 									
 	def Action():
-		Application.LoadLevel("Test")
+		Application.LoadLevel("Map1")
 	
 			
 	

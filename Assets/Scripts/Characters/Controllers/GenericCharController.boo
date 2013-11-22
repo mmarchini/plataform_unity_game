@@ -9,6 +9,7 @@ enum CharacterState:
 	Action = 3
 
 class GenericCharController(MonoBehaviour): 
+	[HideInInspector]
 	public action_controller as ActionController
 	
 	public idleAnimation as AnimationClip

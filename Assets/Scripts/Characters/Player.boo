@@ -48,6 +48,10 @@ class Player (GenericChar):
 	JumpAction:
 		get:
 			return Input.GetButtonDown ("Jump")
+		
+	def OnControllerColliderHit(hit as ControllerColliderHit):
+		if hit.transform.tag == "ChangeScene":
+    		hit.transform.SendMessage("OnPlayerHit", SendMessageOptions.DontRequireReceiver)
 
 	/*
 
