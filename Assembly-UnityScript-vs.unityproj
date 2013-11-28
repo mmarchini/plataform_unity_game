@@ -47,6 +47,8 @@
      <Compile Include="Assets\Resources\NecromancerGUI\GUITestScript.js" />
      <Compile Include="Assets\Toon World Texture Pack\Sample\Rotater.js" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
+     <None Include="Assets\MeleeWeaponTrail\README.txt" />
+     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
      <None Include="Assets\Characters\Player\animations.txt" />
@@ -58,6 +60,9 @@
      <None Include="Assets\Standard Assets\Shaders\DifSpecTransp.shader" />
      <None Include="Assets\Characters\Monsters\Creatures\BasicSkeletons\SkeletonData\animations.txt" />
      <None Include="Assets\Toon World Texture Pack\Bumped Spec Mapped Shader\Bumped Specular mapped.shader" />
+ <Reference Include="Assembly-UnityScript-firstpass">
+ <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

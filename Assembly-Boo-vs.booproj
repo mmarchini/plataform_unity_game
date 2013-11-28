@@ -47,11 +47,13 @@
      <Compile Include="Assets\Scripts\Actions\Action.boo" />
      <Compile Include="Assets\Scripts\Actions\ActionBaseAttack.boo" />
      <Compile Include="Assets\Scripts\Actions\ActionDamaged.boo" />
+     <Compile Include="Assets\Scripts\Actions\ActionFireBall.boo" />
      <Compile Include="Assets\Scripts\Actions\ActionFireSlash.boo" />
      <Compile Include="Assets\Scripts\Actions\ActionKnockback.boo" />
      <Compile Include="Assets\Scripts\Actions\ActionLiquidCut.boo" />
      <Compile Include="Assets\Scripts\Actions\ActionUltimateStab.boo" />
      <Compile Include="Assets\Scripts\Actions\ActionWindStrike.boo" />
+     <Compile Include="Assets\Scripts\Actions\GenericBall.boo" />
      <Compile Include="Assets\Scripts\Buffs\Buff.boo" />
      <Compile Include="Assets\Scripts\Buffs\BuffAerialMovement.boo" />
      <Compile Include="Assets\Scripts\Buffs\BuffHotSteam.boo" />
@@ -103,6 +105,8 @@
      <Compile Include="Assets\Scripts\Skills\SkillLavaSword.boo" />
      <Compile Include="Assets\Scripts\Util\CameraFade.boo" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
+     <None Include="Assets\MeleeWeaponTrail\README.txt" />
+     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
      <None Include="Assets\Characters\Player\animations.txt" />
@@ -114,6 +118,9 @@
      <None Include="Assets\Standard Assets\Shaders\DifSpecTransp.shader" />
      <None Include="Assets\Characters\Monsters\Creatures\BasicSkeletons\SkeletonData\animations.txt" />
      <None Include="Assets\Toon World Texture Pack\Bumped Spec Mapped Shader\Bumped Specular mapped.shader" />
+ <Reference Include="Assembly-UnityScript-firstpass">
+ <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

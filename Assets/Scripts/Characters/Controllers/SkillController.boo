@@ -15,7 +15,9 @@ class SkillController (MonoBehaviour):
 			char_controller.buff_controller.AddBuff("WaterSuit")
 		if cur_skill == "Wild Tornado":
 			char_controller.buff_controller.AddBuff("WildTornado")
-			
+		
+		if cur_skill == "Fire Ball":
+			char_controller.action_controller.Execute("FireBall")	
 		if cur_skill == "Fire Slash":
 			char_controller.action_controller.Execute("FireSlash")
 		if cur_skill == "Wind Strike":

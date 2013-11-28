@@ -1,25 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Interface\MainMenu\StartGame.boo">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Actions\ActionFireBall.boo">
     <Files>
-      <File FileName="Assets\Scripts\Characters\GenericChar.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Characters\Enemies\Enemy.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Characters\Controllers\SkillController.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Characters\Controllers\GenericCharController.boo" Line="12" Column="18" />
-      <File FileName="Assets\Scripts\Actions\ActionDamaged.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Interface\HUD\CurrentSkill.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Characters\Util\ChangeScene.boo" Line="8" Column="31" />
-      <File FileName="Assets\Scripts\Characters\Controllers\BuffController.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Buffs\Buff.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Characters\Player.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Actions\ActionWindStrike.boo" Line="5" Column="1" />
-      <File FileName="Assets\Scripts\Buffs\BuffHotSteam.boo" Line="15" Column="16" />
-      <File FileName="Assets\Scripts\Buffs\BuffWildTornado.boo" Line="1" Column="19" />
-      <File FileName="Assets\Scripts\Actions\ActionUltimateStab.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Buffs\BuffWaterSuit.boo" Line="10" Column="16" />
-      <File FileName="Assets\Scripts\Characters\Enemies\BasicSkeleton.boo" Line="5" Column="38" />
-      <File FileName="Assets\Scripts\Interface\MainMenu\StartGame.boo" Line="14" Column="30" />
-      <File FileName="Assets\Scripts\Interface\MainMenu\MainMenuItem.boo" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Actions\GenericBall.boo" Line="24" Column="3" />
+      <File FileName="Assets\Scripts\Actions\ActionFireBall.boo" Line="17" Column="29" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -27,18 +11,13 @@
           <Node name="Assembly-Boo" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Actions" expanded="True" />
+                <Node name="Actions" expanded="True">
+                  <Node name="ActionFireBall.boo" selected="True" />
+                </Node>
                 <Node name="Buffs" expanded="True" />
                 <Node name="Characters" expanded="True">
                   <Node name="Controllers" expanded="True" />
                   <Node name="Enemies" expanded="True" />
-                  <Node name="Util" expanded="True" />
-                </Node>
-                <Node name="Interface" expanded="True">
-                  <Node name="HUD" expanded="True" />
-                  <Node name="MainMenu" expanded="True">
-                    <Node name="StartGame.boo" selected="True" />
-                  </Node>
                 </Node>
               </Node>
             </Node>
