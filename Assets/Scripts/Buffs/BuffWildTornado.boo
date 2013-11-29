@@ -3,7 +3,6 @@
 class BuffWildTornado(Buff): 
 
 	direction as int = 1
-	char_controller as GenericChar
 
 	line_render as LineRenderer
 			
@@ -16,7 +15,6 @@ class BuffWildTornado(Buff):
 		self.affected_attributes = []
 	
 	def Start():
-		char_controller = self.GetComponent(GenericChar)
 		if not self.material:
 			shaderText as string ="Shader \"Alpha Additive\" {Properties { _Color (\"Main Color\", Color) = (1,1,1,0) }SubShader {	Tags { \"Queue\" = \"Transparent\" }	Pass {		Blend One One ZWrite Off ColorMask RGB		Material { Diffuse [_Color] Ambient [_Color] }		Lighting On		SetTexture [_Dummy] { combine primary double, primary }	}}}"
 			self.material = Material(shaderText)
@@ -28,6 +26,7 @@ class BuffWildTornado(Buff):
 		self.line_render.material = self.material
 		self.line_render.SetWidth(self.StartWidth, self.EndWidth)
 		self.Reset()
+		super.Start()
 
 	def Raycast(direction as Vector3, range as single):
 		ray = Ray(char_controller.GetCharPosition(), direction)
@@ -63,6 +62,8 @@ class BuffWildTornado(Buff):
 	virtual def DealDamage(_char as GenericChar):
 		dmg as single = char_controller.DMG*0.15
 		_char.TakeDamage(char_controller, dmg)
-	
-#	virtual def Effect(char_controller as GenericChar, caller as string) as single:
-#		return (char_controller.baseAttributes[caller] cast single)*1.15
+
+	def Reset():
+		super.Reset()
+		self.HPSec = 5
+		self.MPSec = 15

@@ -1,25 +1,11 @@
 ﻿import UnityEngine
 
-def skills_dict():
-	return {
-		["Fire" , "Fire" , "Fire" ] : "Fire Ball",
-		["Fire" , "Fire" , "Wind" ] : "Fire Slash",
-		["Fire" , "Fire" , "Water"] : "Lava Sword",
-		["Water", "Water", "Water"] : "Water Suit",
-		["Water", "Water", "Wind" ] : "Liquid Cut",
-		["Water", "Water", "Fire" ] : "Hot Steam",
-		["Wind" , "Wind" , "Wind" ] : "Wind Strike",
-		["Wind" , "Wind" , "Fire" ] : "Wild Tornado",
-		["Wind" , "Wind" , "Water"] : "Aerial Movement",
-		["Fire" , "Water", "Wind" ] : "Ultimate Stab",
-	}
-
-def GetCurrentSkill(player as Player):
+def GetCurrentSkill(player as Player) as Skill:
 	orbs = player.SelOrbs
 	cur_skill as List
 	elements_list = ["Fire", "Wind", "Water"]			
 	if orbs:
-		for skill as List in skills_dict().Keys:
+		for skill as List in player.skills.Keys:
 			this_skill = true
 			for element in elements_list:
 				if Count(skill, element) != Count(orbs, element):
@@ -27,8 +13,8 @@ def GetCurrentSkill(player as Player):
 			if this_skill:
 				cur_skill = skill
 				break
-		return skills_dict()[cur_skill]
-	return ""
+		return player.skills[cur_skill]
+	return Skill()
 
 def Count(list as List, element as object):
 	return len(list.Collect({item | return item == element}))
@@ -49,4 +35,4 @@ class CurrentSkill (InterfaceElement):
 	
 	text as string:
 		get:
-			return GetCurrentSkill(self.player)
+			return GetCurrentSkill(self.player).label

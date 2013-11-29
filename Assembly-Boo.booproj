@@ -101,8 +101,6 @@
      <Compile Include="Assets\Scripts\Passives\PassiveHP.boo" />
      <Compile Include="Assets\Scripts\Passives\PassiveHPtoDMG.boo" />
      <Compile Include="Assets\Scripts\Passives\PassiveMP.boo" />
-     <Compile Include="Assets\Scripts\Skills\Skill.boo" />
-     <Compile Include="Assets\Scripts\Skills\SkillLavaSword.boo" />
      <Compile Include="Assets\Scripts\Util\CameraFade.boo" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\MeleeWeaponTrail\README.txt" />

@@ -26,13 +26,14 @@ class Player (GenericChar):
 		get:
 			return Input.GetAxisRaw("Horizontal")*self.GetCharAttribute("MovementSpeed")
 	
-	def Control():
-		if Input.GetButtonDown("Fire"):
-			self.SelOrbs = ["Fire"] + self.SelOrbs[:-1]
-		if Input.GetButtonDown("Water"):
-			self.SelOrbs = ["Water"] + self.SelOrbs[:-1]
-		if Input.GetButtonDown("Wind"):
-			self.SelOrbs = ["Wind"] + self.SelOrbs[:-1]
+	def Control(): 
+		if not self.GetComponent("Buff"):
+			if Input.GetButtonDown("Fire"):
+				self.SelOrbs = ["Fire"] + self.SelOrbs[:-1]
+			if Input.GetButtonDown("Water"):
+				self.SelOrbs = ["Water"] + self.SelOrbs[:-1]
+			if Input.GetButtonDown("Wind"):
+				self.SelOrbs = ["Wind"] + self.SelOrbs[:-1]
 		if Input.GetButtonDown("Skill"):
 			if self.skill_controller:
 				self.skill_controller.Execute(self, GetCurrentSkill(self))
@@ -42,8 +43,24 @@ class Player (GenericChar):
 		
 	
 	def Update():
-			
 		super.Update()
+	
+	skills:
+		get:
+			return {
+		["Fire" , "Fire" , "Fire" ] : Skill(label:"Fire Ball",       call:"FireBall"      , type:"Action", neededMP:30.0, spentMP:30.0),
+		["Fire" , "Fire" , "Wind" ] : Skill(label:"Fire Slash",      call:"FireSlash"     , type:"Action", neededMP:10.0, spentMP:10.0),
+		["Fire" , "Fire" , "Water"] : Skill(label:"Lava Sword",      call:"LavaSword"     , type:"PermaBuff"  , neededMP:0.0 , spentMP:0.0 ),
+		["Water", "Water", "Water"] : Skill(label:"Water Suit",      call:"WaterSuit"     , type:"PermaBuff"  , neededMP:0.0 , spentMP:0.0 ),
+		["Water", "Water", "Wind" ] : Skill(label:"Liquid Cut",      call:"LiquidCut"     , type:"Action", neededMP:20.0, spentMP:20.0),
+		["Water", "Water", "Fire" ] : Skill(label:"Hot Steam",       call:"HotSteam"      , type:"PermaBuff"  , neededMP:15.0, spentMP:15.0 ),
+		["Wind" , "Wind" , "Wind" ] : Skill(label:"Wind Strike",     call:"WindStrike"    , type:"Action", neededMP:20.0, spentMP:20.0 ),
+		["Wind" , "Wind" , "Fire" ] : Skill(label:"Wild Tornado",    call:"WildTornado"   , type:"PermaBuff"  , neededMP:0.0, spentMP:0.0 ),
+		["Wind" , "Wind" , "Water"] : Skill(label:"Aerial Movement", call:"AerialMovement", type:"PermaBuff"  , neededMP:0.0, spentMP:0.0 ),
+		
+		["Fire" , "Water", "Wind" ] : Skill(label:"Ultimate Stab",   call:"UltimateStab"  , type:"Action", 
+		neededMP:self.GetCharAttribute("MP")*0.3, spentMP:self.GetCharAttribute("MP")*0.3, neededHP:self.GetCharAttribute("HP")*0.3, spentHP:self.GetCharAttribute("HP")*0.1 ),
+	}
 	
 	JumpAction:
 		get:

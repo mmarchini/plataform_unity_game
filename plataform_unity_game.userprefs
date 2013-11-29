@@ -1,9 +1,19 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Actions\ActionFireBall.boo">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Characters\Player.boo">
     <Files>
-      <File FileName="Assets\Scripts\Actions\GenericBall.boo" Line="24" Column="3" />
+      <File FileName="Assets\Scripts\Actions\GenericBall.boo" Line="15" Column="31" />
       <File FileName="Assets\Scripts\Actions\ActionFireBall.boo" Line="17" Column="29" />
+      <File FileName="Assets\Scripts\Characters\Controllers\SkillController.boo" Line="22" Column="4" />
+      <File FileName="Assets\Scripts\Characters\Player.boo" Line="56" Column="132" />
+      <File FileName="Assets\Scripts\Interface\HUD\CurrentSkill.boo" Line="17" Column="16" />
+      <File FileName="Assets\Scripts\Characters\GenericChar.boo" Line="158" Column="1" />
+      <File FileName="Assets\Scripts\Buffs\BuffAerialMovement.boo" Line="15" Column="22" />
+      <File FileName="Assets\Scripts\Buffs\BuffLavaSword.boo" Line="13" Column="21" />
+      <File FileName="Assets\Scripts\Buffs\BuffWaterSuit.boo" Line="13" Column="21" />
+      <File FileName="Assets\Scripts\Buffs\BuffWildTornado.boo" Line="31" Column="9" />
+      <File FileName="Assets\Scripts\Buffs\Buff.boo" Line="34" Column="59" />
+      <File FileName="Assets\Scripts\Characters\Controllers\BuffController.boo" Line="29" Column="3" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -11,13 +21,14 @@
           <Node name="Assembly-Boo" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Actions" expanded="True">
-                  <Node name="ActionFireBall.boo" selected="True" />
-                </Node>
+                <Node name="Actions" expanded="True" />
                 <Node name="Buffs" expanded="True" />
                 <Node name="Characters" expanded="True">
                   <Node name="Controllers" expanded="True" />
-                  <Node name="Enemies" expanded="True" />
+                  <Node name="Player.boo" selected="True" />
+                </Node>
+                <Node name="Interface" expanded="True">
+                  <Node name="HUD" expanded="True" />
                 </Node>
               </Node>
             </Node>

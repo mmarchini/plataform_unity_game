@@ -12,13 +12,16 @@ class GenericBall (MonoBehaviour):
 	public damage as single
 	[HideInInspector]
 	public char_controller as GenericChar
+	public duration as single = 4.0
 	
 	private size = 1.3
 	private startPoint = 1.1
+	private startTime as single = 0
 	
 
 	def Start ():
 		currentSpeed = startSpeed
+		startTime = Time.time
 		
 	def Update ():
 		
@@ -30,6 +33,9 @@ class GenericBall (MonoBehaviour):
 		if cc:
 			cc.TakeDamage(self.char_controller, damage)
 			Destroy(self.gameObject)
+		if Time.time-startTime > duration:
+			Destroy(self.gameObject)
+		
 	
 
 	def Raycast(direction as Vector3, range as single):

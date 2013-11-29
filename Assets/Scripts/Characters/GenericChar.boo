@@ -36,6 +36,8 @@ class GenericChar(GenericCharController):
 	public baseAttributes = {
 		"HP" : 500,
 		"MP" : 150,
+		"HPSec" : 0,
+		"MPSec" : 1.1,
 		"ATK" : 50,
 		"DEF" : 1,
 		"Spear" : 0.05,
@@ -52,12 +54,14 @@ class GenericChar(GenericCharController):
 	
 	// Per Level attrbute gain
 	public perLevelAttributes = {
-		"HP" : 0,
-		"MP" : 0,
-		"ATK" : 0,
-		"DEF" : 0,
-		"Spear" : 0,
-		"Shield" : 0,
+		"HP" : 50,
+		"MP" : 20,
+		"HPSec" : 0,
+		"MPSec" : 0.2,
+		"ATK" : 1,
+		"DEF" : 0.1,
+		"Spear" : 0.005,
+		"Shield" : 0.005,
 		"ManaShield" : 0,
 		"ATKRange" : 0,
 		"CritChance" : 0,
@@ -73,15 +77,26 @@ class GenericChar(GenericCharController):
 		get:
 			return _LostHP
 		set:
-			if _LostHP + value > self.GetCharAttribute("HP"):
+			if value > self.GetCharAttribute("HP"):
 				_LostHP = self.GetCharAttribute("HP")
-			elif _LostHP + value < 0:
+			elif value < 0:
 				_LostHP = 0
 			else:
-				_LostHP += value
+				_LostHP = value
 
-	public LostMP = 0
-
+	public _LostMP = 0
+	LostMP:
+		get:
+			return _LostMP
+			
+		set:
+			if value > self.GetCharAttribute("MP"):
+				_LostMP = self.GetCharAttribute("MP")
+			elif value < 0:
+				_LostMP = 0
+			else:
+				_LostMP = value
+				
 	CurrentHP:
 		get:
 			return self.GetCharAttribute("HP") - self.LostHP
@@ -137,17 +152,13 @@ class GenericChar(GenericCharController):
 			modificators += buff_controller.BuffEffects(self, attribute)
 		return modificators
 		
-	
-	/*
-				
-	def ExecuteAttack():
-		return false
+	def Start():
+		#super.Start()
+		self.InvokeRepeating("RestoreEverySeconds", 1, 2)
 		
-	def EndAttack():
-		self.already_hitted = []
-		super.EndAction()
-	
-	*/
+	def RestoreEverySeconds():
+		self.LostMP -= self.GetCharAttribute("MPSec")
+		self.LostHP -= self.GetCharAttribute("HPSec")
 	
 	virtual def TakeDamage(char_controller as GenericChar, dmg as single):
 		self.TakeDamage(char_controller, dmg, "Damaged")
