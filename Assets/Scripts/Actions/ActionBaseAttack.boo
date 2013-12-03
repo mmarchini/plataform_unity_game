@@ -17,11 +17,6 @@ class ActionBaseAttack (Action):
 	def Raycast(direction as Vector3, range as single):
 		ray = Ray(char_controller.GetCharPosition(), direction)
 		
-		if line_render:
-			line_render.enabled = true
-			line_render.SetPosition(0, ray.origin)
-			line_render.SetPosition(1, ray.direction*range + ray.origin)
-		
 		raycasthit as RaycastHit
 		
 		if Physics.Raycast(ray, raycasthit, range):
@@ -41,20 +36,10 @@ class ActionBaseAttack (Action):
 	
 	def StartAction():
 		if super.StartAction():
-			if self.material:
-				if self.GetComponent(LineRenderer):
-					self.line_render = self.gameObject.GetComponent(LineRenderer)
-				if not self.line_render:
-					self.line_render = self.gameObject.AddComponent(LineRenderer)
-				self.line_render.material = self.material
-				self.line_render.SetWidth(self.StartWidth, self.EndWidth)
-			
 			self.already_hitted = []
 		
 	def EndAction():
 		super.EndAction()
-		if self.line_render:
-			self.line_render.enabled = false
 		self.already_hitted = []
 		
 	def OnDestroy():

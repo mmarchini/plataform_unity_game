@@ -46,19 +46,18 @@
   <ItemGroup>
      <Compile Include="Assets\Standard Assets\Particles\Legacy Particles\TimedObjectDestructor.js" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
-     <None Include="Assets\MeleeWeaponTrail\README.txt" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
-     <None Include="Assets\Characters\Player\animations.txt" />
+     <None Include="Assets\Resources\Characters\Player\animations.txt" />
      <None Include="Assets\Resources\NecromancerGUI\Kingthings.txt" />
-     <None Include="Assets\Characters\Monsters\Creatures\Skeleton\Model\N-Materials\Bumped Anisotropic Specular.shader" />
+     <None Include="Assets\Resources\Characters\Monsters\Creatures\Skeleton\Model\N-Materials\Bumped Anisotropic Specular.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
      <None Include="Assets\Resources\NecromancerGUI\Readme.txt" />
      <None Include="Assets\Standard Assets\Shaders\DifSpecTransp.shader" />
-     <None Include="Assets\Characters\Monsters\Creatures\BasicSkeletons\SkeletonData\animations.txt" />
-     <None Include="Assets\Toon World Texture Pack\Bumped Spec Mapped Shader\Bumped Specular mapped.shader" />
+     <None Include="Assets\Resources\Characters\Monsters\Creatures\BasicSkeletons\SkeletonData\animations.txt" />
+     <None Include="Assets\Resources\Map Stuff\Toon World Texture Pack\Bumped Spec Mapped Shader\Bumped Specular mapped.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

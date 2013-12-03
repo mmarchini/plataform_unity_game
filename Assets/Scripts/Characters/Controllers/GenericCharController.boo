@@ -19,6 +19,8 @@ class GenericCharController(MonoBehaviour):
 	public walkMaxAnimationSpeed  = 0.75f
 	public jumpAnimationSpeed  = 1.15f
 
+	public height as single = 0.4
+
 	// How high do we jump when pressing jump and letting go immediately
 	virtual jumpHeight:
 		get:
@@ -127,7 +129,10 @@ class GenericCharController(MonoBehaviour):
 			SendMessage("DidJump", SendMessageOptions.DontRequireReceiver)
 	
 	def ApplyGravity():
-		verticalSpeed -= gravity * Time.deltaTime
+		if not Grounded or Jumping:
+			verticalSpeed -= gravity * Time.deltaTime
+		else:
+			verticalSpeed = 0
 	
 	def CalculateJumpVerticalSpeed (targetJumpHeight as single):
 		// From the jump height and gravity we deduce the upwards speed 
@@ -225,7 +230,7 @@ class GenericCharController(MonoBehaviour):
 				return false
 	Grounded:
 		get:
- 	 		return (not self._jumping) or (self._controller.isGrounded)
+ 	 		return (self._controller.isGrounded)
 	
 	virtual horizontalSpeed:
 		get:

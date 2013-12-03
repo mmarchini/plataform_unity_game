@@ -24,6 +24,8 @@ class GenericChar(GenericCharController):
 		set:
 			while value >= self.nextLevelEXP:
 				self.Level += 1
+				self.LostMP = self.LostMP*0.6
+				self.LostHP = self.LostHP*0.25
 			self._currentEXP = value
 	
 	public nextLevelEXP:
@@ -37,7 +39,7 @@ class GenericChar(GenericCharController):
 		"HP" : 500,
 		"MP" : 150,
 		"HPSec" : 0,
-		"MPSec" : 1.1,
+		"MPSec" : 0.6,
 		"ATK" : 50,
 		"DEF" : 1,
 		"Spear" : 0.05,
@@ -154,28 +156,33 @@ class GenericChar(GenericCharController):
 		
 	def Start():
 		#super.Start()
-		self.InvokeRepeating("RestoreEverySeconds", 1, 2)
+		self.InvokeRepeating("RestoreEverySeconds", 1, 1)
 		
 	def RestoreEverySeconds():
-		self.LostMP -= self.GetCharAttribute("MPSec")
-		self.LostHP -= self.GetCharAttribute("HPSec")
+		if not self.GetComponent("Buff"):
+			self.LostMP -= self.GetCharAttribute("MPSec")
+			self.LostHP -= self.GetCharAttribute("HPSec")
 	
 	virtual def TakeDamage(char_controller as GenericChar, dmg as single):
 		self.TakeDamage(char_controller, dmg, "Damaged")
 	
 	virtual def TakeDamage(char_controller as GenericChar, dmg as single, dmg_action as string):
-		if self.action_controller and not self.action_controller.Executing("Damaged"):
-			block as single = self.Block
-			if dmg - block < 0:
-				block = dmg
-			dmg = (dmg - block)
-			if self.GetCharAttribute("ManaShield"):
-				self.LostMP = self.LostMP + dmg*self.GetCharAttribute("ManaShield")
-				dmg = dmg - dmg*self.GetCharAttribute("ManaShield")
-			self.LostHP = self.LostHP + dmg
-			
-			if self.CurrentHP <= 0:
-				Destroy(self.gameObject)
-			if self.action_controller:
+		block as single = self.Block
+		
+		if dmg - block < 0:
+			block = dmg
+		dmg = (dmg - block)
+		
+		if self.GetCharAttribute("ManaShield"):
+			self.LostMP = self.LostMP + dmg*self.GetCharAttribute("ManaShield")
+			dmg = dmg - dmg*self.GetCharAttribute("ManaShield")
+		self.LostHP = self.LostHP + dmg
+		
+		if self.CurrentHP <= 0:
+			Destroy(self.gameObject)
+		if self.action_controller:
+			if not self.action_controller.Executing("Damaged"):
 				self.action_controller.Execute(dmg_action)
-			
+		else:
+			Debug.Log("Char nao tem actioncontroller")
+		

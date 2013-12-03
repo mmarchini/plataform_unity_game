@@ -32,7 +32,7 @@ class Buff (MonoBehaviour):
 			go.transform.localScale = Vector3(0.4,0.4,0.4)
 			self.effect = go
 		self.char_controller = self.GetComponent("GenericChar")
-		self.InvokeRepeating("RestoreEverySeconds", 1, 1)
+		self.InvokeRepeating("LostEverySeconds", 1, 1)
 
 
 	def Update():
@@ -47,7 +47,12 @@ class Buff (MonoBehaviour):
 		if self.effect:
 			Destroy(self.effect)
 		
-	def RestoreEverySeconds():
-		Debug.Log(":D")
-		self.char_controller.LostMP += self.MPSec
+	def LostEverySeconds():
+		
 		self.char_controller.LostHP += self.HPSec
+		self.char_controller.LostMP += self.MPSec
+		
+		if self.char_controller.CurrentHP <= self.char_controller.GetCharAttribute("HP")*0.10:
+			Destroy(self)	
+		if self.char_controller.CurrentMP <= self.char_controller.GetCharAttribute("MP")*0.05:
+			Destroy(self)

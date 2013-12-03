@@ -5,9 +5,7 @@ class ActionFireBall (Action):
 	def StartAction():
 		if not self.enabled:
 			a = Resources.Load("Effects/Fire Ball", GameObject) as GameObject
-			Debug.Log(":)")
 			if a:
-				Debug.Log(":D")
 				go as GameObject = Instantiate(a)
 				go.transform.position = self.gameObject.transform.position
 				char_controller as GenericChar = self.GetComponent("GenericChar")

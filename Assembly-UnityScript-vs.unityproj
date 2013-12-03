@@ -44,25 +44,27 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Resources\Map Stuff\Exported\Toon World Texture Pack\Sample\Rotater.js" />
      <Compile Include="Assets\Resources\NecromancerGUI\GUITestScript.js" />
-     <Compile Include="Assets\Toon World Texture Pack\Sample\Rotater.js" />
-     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
-     <None Include="Assets\MeleeWeaponTrail\README.txt" />
-     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
-     <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
-     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
-     <None Include="Assets\Characters\Player\animations.txt" />
+     <Compile Include="Assets\Resources\Standard Assets\Particles\Legacy Particles\TimedObjectDestructor.js" />
+     <None Include="Assets\Resources\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
+     <None Include="Assets\Resources\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+     <None Include="Assets\Resources\Standard Assets\Skyboxes\_skybox info.txt" />
+     <None Include="Assets\Resources\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
+     <None Include="Assets\Resources\Characters\Player\animations.txt" />
      <None Include="Assets\Resources\NecromancerGUI\Kingthings.txt" />
-     <None Include="Assets\Characters\Monsters\Creatures\Skeleton\Model\N-Materials\Bumped Anisotropic Specular.shader" />
-     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
-     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
+     <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
+     <None Include="Assets\Resources\Characters\Monsters\Creatures\Skeleton\Model\N-Materials\Bumped Anisotropic Specular.shader" />
+     <None Include="Assets\Resources\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
+     <None Include="Assets\Resources\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
      <None Include="Assets\Resources\NecromancerGUI\Readme.txt" />
-     <None Include="Assets\Standard Assets\Shaders\DifSpecTransp.shader" />
-     <None Include="Assets\Characters\Monsters\Creatures\BasicSkeletons\SkeletonData\animations.txt" />
-     <None Include="Assets\Toon World Texture Pack\Bumped Spec Mapped Shader\Bumped Specular mapped.shader" />
- <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
- </Reference>
+     <None Include="Assets\Resources\Standard Assets\Shaders\DifSpecTransp.shader" />
+     <None Include="Assets\Resources\Characters\Monsters\Creatures\BasicSkeletons\SkeletonData\animations.txt" />
+     <None Include="Assets\Resources\Map Stuff\Exported\Toon World Texture Pack\Bumped Spec Mapped Shader\Bumped Specular mapped.shader" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
+      <Project>{1212DE88-9F47-2116-53CC-C8E4E9CAFA0F}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

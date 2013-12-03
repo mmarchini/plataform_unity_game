@@ -8,6 +8,9 @@ class Player (GenericChar):
 	public SelOrbs as List = ["Wind", "Fire", "Water"]
 
 	private _paused = false
+	
+	private lastLevel as string
+	private trueHero = false
 
 	paused:
 		get:
@@ -16,10 +19,17 @@ class Player (GenericChar):
 			_paused = value
 
 	def Awake():
+		if GameObject.FindGameObjectWithTag("Player") and GameObject.FindGameObjectWithTag("Player").GetInstanceID() != self.gameObject.GetInstanceID():
+			if not self.trueHero:
+				Destroy(self.transform.parent.gameObject)
+		self.trueHero = true
 		self.passive_controller = self.GetComponent("PassiveController")
 		self.skill_controller = self.GetComponent("SkillController")
 		self.buff_controller = self.GetComponent("BuffController")
 		self.passive_controller.generic_char = self
+		self.lastLevel = Application.loadedLevelName
+		Debug.Log(self.lastLevel)
+		
 		super.Awake()
 
 	horizontalSpeed:
@@ -70,14 +80,11 @@ class Player (GenericChar):
 		if hit.transform.tag == "ChangeScene":
     		hit.transform.SendMessage("OnPlayerHit", SendMessageOptions.DontRequireReceiver)
 
-	/*
-
-	def StartAttack():
-		if not self.attacking:
-				super.StartAction()
-				(self.GetComponent("AudioSource") as AudioSource).PlayOneShot(self.attackClip, 1.0)
-	
-	def ExecuteAttack():
-		return Input.GetButtonDown ("Attack") and not damaged
-
-	*/
+	def OnLevelWasLoaded(level):
+		player_position = GameObject.Find("PlayerPosition$(self.lastLevel)")
+		Debug.Log("PlayerPosition$(self.lastLevel)")
+		if player_position:
+			self.transform.position = player_position.transform.position
+			Destroy(player_position)
+		
+		self.lastLevel = Application.loadedLevelName

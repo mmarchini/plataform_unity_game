@@ -7,7 +7,6 @@ class BuffController (MonoBehaviour):
 		pass
 		
 	def AddBuff(buff_name as string):
-		Debug.Log("Add")
 		buff = self.GetComponent("Buff$(buff_name)")
 		if buff != null:
 			(buff as Buff).Reset()
@@ -17,14 +16,12 @@ class BuffController (MonoBehaviour):
 			Debug.Log("Nao foi possivel adicionar o buff $(buff_name)")
 	
 	def RemoveBuff(buff_name as string):
-		Debug.Log("Remove")
 		buff = self.GetComponent("Buff$(buff_name)")
 		
 		if buff != null:
 			self.Destroy(buff)
 		
 	def ToggleBuff(buff_name as string):
-		Debug.Log("Toggle")
 		buff = self.GetComponent("Buff$(buff_name)")
 		
 		if buff:
