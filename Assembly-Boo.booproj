@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\Characters\Controllers\PassiveController.boo" />
      <Compile Include="Assets\Scripts\Characters\Controllers\SkillController.boo" />
      <Compile Include="Assets\Scripts\Characters\Enemies\BasicSkeleton.boo" />
+     <Compile Include="Assets\Scripts\Characters\Enemies\Bosses\DarkSkeleton.boo" />
      <Compile Include="Assets\Scripts\Characters\Enemies\Enemy.boo" />
      <Compile Include="Assets\Scripts\Characters\Enemies\GiantSkeleton.boo" />
      <Compile Include="Assets\Scripts\Characters\GenericChar.boo" />
