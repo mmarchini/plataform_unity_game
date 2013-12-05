@@ -44,6 +44,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Resources\Characters\Monsters\Creatures\Monster2pack\Scripts\UVScroller.js" />
+     <Compile Include="Assets\Resources\Characters\Monsters\Creatures\fightBOT (free)\script\robo_animationCheck_free.js" />
      <Compile Include="Assets\Resources\Map Stuff\Exported\Toon World Texture Pack\Sample\Rotater.js" />
      <Compile Include="Assets\Resources\NecromancerGUI\GUITestScript.js" />
      <Compile Include="Assets\Resources\Standard Assets\Particles\Legacy Particles\TimedObjectDestructor.js" />
@@ -52,15 +54,23 @@
      <None Include="Assets\Resources\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Resources\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
      <None Include="Assets\Resources\Characters\Player\animations.txt" />
+     <None Include="Assets\Resources\Characters\Monsters\Creatures\fightBOT (free)\model\Materials\roboShader.shader" />
      <None Include="Assets\Resources\NecromancerGUI\Kingthings.txt" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
      <None Include="Assets\Resources\Characters\Monsters\Creatures\Skeleton\Model\N-Materials\Bumped Anisotropic Specular.shader" />
+     <None Include="Assets\Resources\Characters\Monsters\Creatures\Monster2pack\Shaders\OlesWaterSurfaceShader.shader" />
      <None Include="Assets\Resources\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
      <None Include="Assets\Resources\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
      <None Include="Assets\Resources\NecromancerGUI\Readme.txt" />
+     <None Include="Assets\Resources\Map Stuff\Exported\torch\readme.txt" />
      <None Include="Assets\Resources\Standard Assets\Shaders\DifSpecTransp.shader" />
      <None Include="Assets\Resources\Characters\Monsters\Creatures\BasicSkeletons\SkeletonData\animations.txt" />
      <None Include="Assets\Resources\Map Stuff\Exported\Toon World Texture Pack\Bumped Spec Mapped Shader\Bumped Specular mapped.shader" />
+     <None Include="Assets\Resources\Map Stuff\Exported\three_simple_rocks\readme.txt" />
+     <None Include="Assets\Resources\Characters\Monsters\Bosses\Robot War Tank\readme.txt" />
+ <Reference Include="Assembly-UnityScript-firstpass">
+ <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
