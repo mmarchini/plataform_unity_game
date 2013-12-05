@@ -62,6 +62,7 @@
      <None Include="Assets\Resources\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
      <None Include="Assets\Resources\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
      <None Include="Assets\Resources\NecromancerGUI\Readme.txt" />
+     <None Include="Assets\Resources\Characters\Monsters\Bosses\AntiPlayer\animations.txt" />
      <None Include="Assets\Resources\Map Stuff\Exported\torch\readme.txt" />
      <None Include="Assets\Resources\Standard Assets\Shaders\DifSpecTransp.shader" />
      <None Include="Assets\Resources\Characters\Monsters\Creatures\BasicSkeletons\SkeletonData\animations.txt" />

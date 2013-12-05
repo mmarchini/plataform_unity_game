@@ -2,7 +2,7 @@
 
 class WildTornadoRotate (MonoBehaviour): 
 
-	public RotateSpeed as single=10.0f;
+	public RotateSpeed as Vector3;
 	
 	def Update ():
-		self.transform.Rotate(0, self.RotateSpeed, 0)
+		self.transform.Rotate(self.RotateSpeed)

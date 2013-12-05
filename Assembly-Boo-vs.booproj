@@ -68,6 +68,8 @@
      <Compile Include="Assets\Scripts\Characters\Enemies\BasicSkeleton.boo" />
      <Compile Include="Assets\Scripts\Characters\Enemies\Bosses\DarkSkeleton.boo" />
      <Compile Include="Assets\Scripts\Characters\Enemies\Bosses\GiantSpider.boo" />
+     <Compile Include="Assets\Scripts\Characters\Enemies\Bosses\IceGolem.boo" />
+     <Compile Include="Assets\Scripts\Characters\Enemies\Bosses\ToonSkeleton.boo" />
      <Compile Include="Assets\Scripts\Characters\Enemies\Bosses\WarRobot.boo" />
      <Compile Include="Assets\Scripts\Characters\Enemies\Enemy.boo" />
      <Compile Include="Assets\Scripts\Characters\Enemies\GiantSkeleton.boo" />
@@ -122,6 +124,7 @@
      <None Include="Assets\Resources\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
      <None Include="Assets\Resources\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
      <None Include="Assets\Resources\NecromancerGUI\Readme.txt" />
+     <None Include="Assets\Resources\Characters\Monsters\Bosses\AntiPlayer\animations.txt" />
      <None Include="Assets\Resources\Map Stuff\Exported\torch\readme.txt" />
      <None Include="Assets\Resources\Standard Assets\Shaders\DifSpecTransp.shader" />
      <None Include="Assets\Resources\Characters\Monsters\Creatures\BasicSkeletons\SkeletonData\animations.txt" />

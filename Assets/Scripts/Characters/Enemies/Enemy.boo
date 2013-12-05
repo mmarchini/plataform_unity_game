@@ -61,6 +61,7 @@ class Enemy (GenericChar):
 		return false
 		
 	def GetRandomRange(start as int, end as int):
+		/*
 		tmp_seed = Random.Range(Random.Range(-100.0F, -0.1F), Random.Range(0.1F, 100.0F))
 		a=System.DateTime.Now.Millisecond*Random.Range(Random.Range(-10.0F, -0.1F), Random.Range(0.1F, 10.0F))
 		for i in range(0,tmp_seed):
@@ -73,11 +74,12 @@ class Enemy (GenericChar):
 		e=self.transform.position.x + self.transform.position.y + self.transform.position.z
 		f_=Random.insideUnitSphere
 		f=f_.x+f_.y+f_.z
-		
+		*/
 		#Random.seed = a + (c*e + d*a)/b + b*f
 		return Random.Range(start, end)	
 	
 	def GetRandomRange(start as single, end as single):
+		/*
 		tmp_seed = Random.Range(Random.Range(-100.0F, -0.1F), Random.Range(0.1F, 100.0F))
 		a=System.DateTime.Now.Millisecond*Random.Range(Random.Range(-10.0F, -0.1F), Random.Range(0.1F, 10.0F))
 		for i in range(0,tmp_seed):
@@ -90,6 +92,6 @@ class Enemy (GenericChar):
 		e=self.transform.position.x + self.transform.position.y + self.transform.position.z
 		f_=Random.insideUnitSphere
 		f=f_.x+f_.y+f_.z
-		
-		Random.seed = a + (c*e + d*a)/b + b*f
+		*/		
+		#Random.seed = a + (c*e + d*a)/b + b*f
 		return Random.Range(start, end)
