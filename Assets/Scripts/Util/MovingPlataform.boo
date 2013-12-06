@@ -8,11 +8,10 @@ class MovingPlataform (MonoBehaviour):
 	public direction as Vector3 = Vector3(1,0,0)
 
 	def FixedUpdate ():
-		plataform.rigidbody.AddForce(direction*speed)
+		plataform.rigidbody.angularVelocity = Vector3.zero
+		plataform.rigidbody.velocity = direction*speed
 	
 	def OnTriggerExit(collider as Collider):
 		if collider.gameObject == plataform:
-			direction = direction*-1
-			Debug.Log(":)")
-
-	
+			self.speed = speed*-1
+		

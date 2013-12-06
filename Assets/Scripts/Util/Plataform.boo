@@ -2,17 +2,19 @@
 
 class Plataform (MonoBehaviour): 
 
-	public plataform as GameObject
-	public speed as single = 1
+	original_parent as Transform
 	
-	public direction as Vector3 = Vector3(1,0,0)
-
-	def FixedUpdate ():
-		plataform.rigidbody.position += direction*speed
-	
+	def OnTriggerEnter(collider as Collider):
+		if collider.tag == "Player":
+			if collider.transform.parent != self.transform.parent:
+				self.original_parent = collider.transform.parent
+				collider.transform.parent = self.transform.parent
+				
 	def OnTriggerExit(collider as Collider):
-		if collider.gameObject == plataform:
-			direction = direction*-1
-			Debug.Log(":)")
-
+		if collider.tag == "Player":
+			collider.transform.parent = self.original_parent
 	
+	def OnTriggerStay(collider as Collider):
+		if collider.tag == "Player":
+			if (collider.gameObject.GetComponent("Player") as Player).verticalSpeed < 0:
+				(collider.gameObject.GetComponent("Player") as Player).verticalSpeed = 0

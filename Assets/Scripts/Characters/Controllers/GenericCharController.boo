@@ -36,7 +36,8 @@ class GenericCharController(MonoBehaviour):
 	private jumpTimeout = 0.15
 	
 	// The current vertical speed
-	private verticalSpeed = 0.0
+	[HideInInspector]
+	public verticalSpeed = 0.0
 	
 	// Are we jumping? (Initiated with jump button and not grounded yet)
 	protected _jumping = false
