@@ -1,6 +1,6 @@
 ﻿import UnityEngine
 
-class ToonSkeleton(Enemy): 
+class ToonSkeleton(Boss): 
 	def Start():
 		self.baseAttributes["ATKRange"] = 1
 		super.Start()

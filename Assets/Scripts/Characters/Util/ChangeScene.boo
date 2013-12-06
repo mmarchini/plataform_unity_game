@@ -1,6 +1,7 @@
 ﻿import UnityEngine
 
 class ChangeScene (MonoBehaviour): 
+	
 	public scene as string
 	
 	def OnPlayerHit():
