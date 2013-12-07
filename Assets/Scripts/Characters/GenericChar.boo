@@ -109,11 +109,15 @@ class GenericChar(GenericCharController):
 	def GetCharAttribute(attr as string):
 		return (self.baseAttributes[attr] cast single) + (self.perLevelAttributes[attr] cast single)*self.Level + self.Modificators("$(attr)")
 	
+	Crit:
+		get:
+			return self.GetCharAttribute("CritDamage") +  self.Modificators("Crit")
+	
 	DMG:
 		get:
 			if Random.Range(0,100) <= self.GetCharAttribute("CritChance")*100:
-				return self.GetCharAttribute("ATK")*self.GetCharAttribute("CritDamage") + self.SpearATK
-			return self.GetCharAttribute("ATK") + self.SpearATK
+				return self.GetCharAttribute("ATK")*self.Crit + self.SpearATK + self.Modificators("DMG")
+			return self.GetCharAttribute("ATK") + self.SpearATK + self.Modificators("DMG")
 
 	Block:
 		get:

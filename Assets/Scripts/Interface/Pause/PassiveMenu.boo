@@ -38,7 +38,6 @@ class PassiveMenu (InterfaceElement):
 	def DrawInterfaceElement():
 		
 		if Input.GetButtonDown("Attack"):
-			Debug.Log("Passei aqui")
 			(passive_items[self.current_item] as PassiveMenuItem).LevelUp()
 		
 		if Time.realtimeSinceStartup - self.lastTime >= self.changeItemTime:

@@ -27,7 +27,7 @@ class PassiveMenuItem(InterfaceElement):
 		self.DrawInterfaceElement()
 	
 	def LevelUp():
-		if self.player.Level > self.player.passivePoints:
+		if self.player.Level > self.player.passivePoints and self.passive.Level < self.passive.MaxLevel:
 			self.passive.Level += 1
 	
 	def Awake():

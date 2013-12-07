@@ -22,17 +22,17 @@ class PositionPlayer (MonoBehaviour):
 			Destroy(player_positions)
 		
 	def OnLevelWasLoaded(level):
-		
-		if Application.loadedLevelName in ["Save", "Gift", "Teleport"] and self.lastLevel not in  ["Save", "Gift", "Teleport"]:
-			change = (GameObject.Find("Change").GetComponent("ChangeScene") as ChangeScene)
+		Camera.mainCamera.GetComponent(CameraFade).FadeIn()
+		if Application.loadedLevelName in ["Save", "Gift", "Teleport"] and self.lastLevel != Application.loadedLevelName:
+			change = (GameObject.FindGameObjectWithTag("ChangeScene").GetComponent("ChangeScene") as ChangeScene)
 			if change.scene == "":
 			 	change.scene= self.lastLevel
 			player_position = GameObject.Find("PlayerStartPosition")
 			if player_position:
 				self.player.transform.position = player_position.transform.position
 				Destroy(player_position)
+				
 		else:
-		
 			player_positions = GameObject.Find("PlayerStartPosition")
 			if player_positions:
 				transf = player_positions.transform.FindChild(self.lastLevel)

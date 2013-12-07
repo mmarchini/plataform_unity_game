@@ -1,36 +1,58 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Util\Plataform.boo">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Characters\GenericChar.boo">
     <Files>
-      <File FileName="Assets\Scripts\Util\MovingPlataform.boo" Line="10" Column="11" />
-      <File FileName="Assets\Scripts\Characters\Enemies\Bosses\Boss.boo" Line="7" Column="40" />
-      <File FileName="Assets\Scripts\Util\BackgroundMusicManager.boo" Line="16" Column="19" />
-      <File FileName="Assets\Scripts\Util\PositionPlayer.boo" Line="49" Column="3" />
-      <File FileName="Assets\Scripts\Util\BackgroundMusic.boo" Line="5" Column="13" />
-      <File FileName="Assets\Scripts\Util\Plataform.boo" Line="12" Column="5" />
-      <File FileName="Assets\Scripts\Characters\Player.boo" Line="4" Column="26" />
-      <File FileName="Assets\Scripts\Characters\Controllers\GenericCharController.boo" Line="39" Column="18" />
+      <File FileName="Assets\Scripts\Characters\Enemies\Bosses\Boss.boo" Line="5" Column="2" />
+      <File FileName="Assets\Scripts\Util\BackgroundMusicManager.boo" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Util\BackgroundMusic.boo" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Util\Plataform.boo" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Characters\Player.boo" Line="19" Column="12" />
+      <File FileName="Assets\Scripts\Characters\Controllers\GenericCharController.boo" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Util\GetGift.boo" Line="26" Column="13" />
+      <File FileName="Assets\Scripts\Passives\Passive.boo" Line="21" Column="39" />
+      <File FileName="Assets\Scripts\Passives\PassiveATK.boo" Line="12" Column="2" />
+      <File FileName="Assets\Scripts\Passives\PassiveHPtoDMG.boo" Line="17" Column="2" />
+      <File FileName="Assets\Scripts\Passives\PassiveCritToHP.boo" Line="17" Column="98" />
+      <File FileName="Assets\Scripts\Characters\GenericChar.boo" Line="120" Column="58" />
+      <File FileName="Assets\Scripts\Characters\Enemies\Bosses\ToonSkeleton.boo" Line="6" Column="26" />
+      <File FileName="Assets\Scripts\Interface\Pause\PassiveMenuItem.boo" Line="30" Column="98" />
+      <File FileName="Assets\Scripts\Passives\PassiveHPReg.boo" Line="3" Column="19" />
+      <File FileName="Assets\Scripts\Passives\PassiveMPReg.boo" Line="11" Column="22" />
+      <File FileName="Assets\Scripts\Characters\Controllers\PassiveController.boo" Line="19" Column="19" />
+      <File FileName="Assets\Scripts\Characters\Util\ChangeScene.boo" Line="13" Column="1" />
+      <File FileName="Assets\Scripts\Util\PositionPlayer.boo" Line="26" Column="115" />
+      <File FileName="Assets\Scripts\Interface\Pause\PassiveMenu.boo" Line="41" Column="28" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-Boo" expanded="True">
             <Node name="Assets" expanded="True">
+              <Node name="Organizee" expanded="True">
+                <Node name="Characters" expanded="True">
+                  <Node name="Monsters" expanded="True">
+                    <Node name="Bosses" expanded="True">
+                      <Node name="Robot War Tank" expanded="True" />
+                    </Node>
+                  </Node>
+                </Node>
+              </Node>
               <Node name="Scripts" expanded="True">
                 <Node name="Actions" expanded="True" />
+                <Node name="Buffs" expanded="True" />
                 <Node name="Characters" expanded="True">
                   <Node name="Controllers" expanded="True" />
                   <Node name="Enemies" expanded="True">
                     <Node name="Bosses" expanded="True" />
                   </Node>
                   <Node name="Util" expanded="True" />
+                  <Node name="GenericChar.boo" selected="True" />
                 </Node>
                 <Node name="Interface" expanded="True">
                   <Node name="Pause" expanded="True" />
                 </Node>
-                <Node name="Util" expanded="True">
-                  <Node name="Plataform.boo" selected="True" />
-                </Node>
+                <Node name="Passives" expanded="True" />
+                <Node name="Util" expanded="True" />
               </Node>
             </Node>
           </Node>
