@@ -38,6 +38,7 @@ class GetGift (ChangeScene):
 		passive_controller = player.GetComponent(PassiveController)
 		if passive_controller:
 			for gift in self.gifts:
+				ConditionalController.SatisfyClause("Gift$(gift)")
 				passive_controller.AddPassive(gift)
 
 	def FadeOut():

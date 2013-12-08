@@ -5,4 +5,5 @@ class Boss(Enemy):
 	
 	def OnDestroy():
 		super.OnDestroy()
+		ConditionalController.SatisfyClause("Kill$(Application.loadedLevelName)")
 		Application.LoadLevel(self.afterDeath)

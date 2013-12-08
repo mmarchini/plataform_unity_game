@@ -113,6 +113,9 @@
      <Compile Include="Assets\Scripts\Util\BackgroundMusic.boo" />
      <Compile Include="Assets\Scripts\Util\BackgroundMusicManager.boo" />
      <Compile Include="Assets\Scripts\Util\CameraFade.boo" />
+     <Compile Include="Assets\Scripts\Util\ConditionalChecker.boo" />
+     <Compile Include="Assets\Scripts\Util\ConditionalController.boo" />
+     <Compile Include="Assets\Scripts\Util\DestroyOnCondition.boo" />
      <Compile Include="Assets\Scripts\Util\GetGift.boo" />
      <Compile Include="Assets\Scripts\Util\MovingPlataform.boo" />
      <Compile Include="Assets\Scripts\Util\Plataform.boo" />
