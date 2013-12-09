@@ -47,6 +47,7 @@
      <Compile Include="Assets\Scripts\Actions\Action.boo" />
      <Compile Include="Assets\Scripts\Actions\ActionBaseAttack.boo" />
      <Compile Include="Assets\Scripts\Actions\ActionDamaged.boo" />
+     <Compile Include="Assets\Scripts\Actions\ActionDeath.boo" />
      <Compile Include="Assets\Scripts\Actions\ActionFireBall.boo" />
      <Compile Include="Assets\Scripts\Actions\ActionFireSlash.boo" />
      <Compile Include="Assets\Scripts\Actions\ActionKnockback.boo" />
@@ -66,6 +67,7 @@
      <Compile Include="Assets\Scripts\Characters\Controllers\PassiveController.boo" />
      <Compile Include="Assets\Scripts\Characters\Controllers\SkillController.boo" />
      <Compile Include="Assets\Scripts\Characters\Enemies\BasicSkeleton.boo" />
+     <Compile Include="Assets\Scripts\Characters\Enemies\Bosses\AntiPlayer.boo" />
      <Compile Include="Assets\Scripts\Characters\Enemies\Bosses\Boss.boo" />
      <Compile Include="Assets\Scripts\Characters\Enemies\Bosses\DarkSkeleton.boo" />
      <Compile Include="Assets\Scripts\Characters\Enemies\Bosses\GiantSpider.boo" />
@@ -109,6 +111,7 @@
      <Compile Include="Assets\Scripts\Passives\PassiveHP.boo" />
      <Compile Include="Assets\Scripts\Passives\PassiveHPReg.boo" />
      <Compile Include="Assets\Scripts\Passives\PassiveHPtoDMG.boo" />
+     <Compile Include="Assets\Scripts\Passives\PassiveMP.boo" />
      <Compile Include="Assets\Scripts\Passives\PassiveMPReg.boo" />
      <Compile Include="Assets\Scripts\Util\BackgroundMusic.boo" />
      <Compile Include="Assets\Scripts\Util\BackgroundMusicManager.boo" />

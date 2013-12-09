@@ -15,7 +15,7 @@ class GenericCharController(MonoBehaviour):
 	public idleAnimation as AnimationClip
 	public walkAnimation as AnimationClip
 	public jumpPoseAnimation as AnimationClip
-	
+
 	public walkMaxAnimationSpeed  = 0.75f
 	public jumpAnimationSpeed  = 1.15f
 
@@ -210,10 +210,10 @@ class GenericCharController(MonoBehaviour):
 		pass
 	
 	def Update():
-		
-		Control()
-		
-		Apply()
+		if not self.action_controller.Executing("Death"):
+			Control()
+			
+			Apply()
 		
 		UpdateAnimation()
 	

@@ -22,7 +22,7 @@ class Action (MonoBehaviour):
 	def Awake():
 		_event = AnimationEvent()
 		_event.functionName = "EndAction"
-		_event.time = self._animation.length-0.1f
+		_event.time = self._animation.length*0.8f
 		self._animation.AddEvent(_event)
 		self.generic_char_controller = self.GetComponent("GenericCharController")
 		

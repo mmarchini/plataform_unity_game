@@ -2,6 +2,12 @@
 
 class ActionController (MonoBehaviour): 
 
+	def HasAction(action as string):
+		_action as Action =  self.GetComponent("Action$(action)")
+		if _action:
+			return true
+		return false
+
 	def Execute(action as string):
 		_action as Action =  self.GetComponent("Action$(action)")
 		if _action:

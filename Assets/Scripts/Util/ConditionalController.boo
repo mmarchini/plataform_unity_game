@@ -16,7 +16,6 @@ class ConditionalController (MonoBehaviour):
 	static def GetConditionalController():
 		conditionalControllerGameObject = GameObject.Find("ConditionalController")
 		if conditionalControllerGameObject:
-			Debug.Log("Yeah")
 			conditionalController = conditionalControllerGameObject.GetComponent(ConditionalController)
 			if conditionalController:
 				return conditionalController

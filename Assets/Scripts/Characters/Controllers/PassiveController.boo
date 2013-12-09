@@ -9,7 +9,7 @@ class PassiveController (MonoBehaviour):
 	def Awake():
 		self.passives = {}
 		
-		passives_names = ["ATK", "DEF", "HP", "MP", "HPtoDMG"]
+		passives_names = ["ATK", "DEF", "HP", "MP"]
 		for pn in passives_names:
 			self.AddPassive(pn)
 			

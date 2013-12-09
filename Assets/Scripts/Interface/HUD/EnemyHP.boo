@@ -3,14 +3,14 @@
 
 class EnemyHP (MonoBehaviour): 
 
-	private char_controller as Enemy
+	private char_controller as GenericChar
 	[HideInInspector]
 	public forward as Vector3
 	private text as TextMesh
 	
 	
 	def Start():
-		self.char_controller = self.transform.parent.GetComponent("Enemy")
+		self.char_controller = self.transform.parent.GetComponent("GenericChar")
 		self.text = self.GetComponent("TextMesh")
 		self.text.characterSize = 0.5
 		if not self.char_controller:

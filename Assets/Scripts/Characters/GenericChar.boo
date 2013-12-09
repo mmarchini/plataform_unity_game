@@ -7,11 +7,12 @@ enum ControllerType:
 class GenericChar(GenericCharController):
 	
 	private buffs as List = []
-			
+
+	[HideInInspector]
 	public passive_controller as PassiveController
-	
+	[HideInInspector]
 	public buff_controller as BuffController
-	
+	[HideInInspector]
 	public skill_controller as SkillController
 	
 	public Level as int = 1
@@ -60,7 +61,7 @@ class GenericChar(GenericCharController):
 		"MP" : 20,
 		"HPSec" : 0,
 		"MPSec" : 0.2,
-		"ATK" : 1,
+		"ATK" : 2,
 		"DEF" : 0.1,
 		"Spear" : 0.005,
 		"Shield" : 0.005,
@@ -70,7 +71,7 @@ class GenericChar(GenericCharController):
 		"CritDamage" : 0,
 		"Evasion":0,
 		"BAT" : 0,
-		"MovementSpeed" : 0,
+		"MovementSpeed" : 0.5,
 		"Jump" : 0,
 	}
 	
@@ -167,6 +168,18 @@ class GenericChar(GenericCharController):
 			self.LostMP -= self.GetCharAttribute("MPSec")
 			self.LostHP -= self.GetCharAttribute("HPSec")
 	
+	def DIE():
+		pass
+	
+	def HPReachZero():
+		if _controller and _controller.enabled:
+			self._controller.enabled = false
+			if action_controller.HasAction("Death"):
+				Debug.Log(":D:D:D")
+				action_controller.Execute("Death")
+			else:
+				Destroy(self.gameObject)
+	
 	virtual def TakeDamage(char_controller as GenericChar, dmg as single):
 		self.TakeDamage(char_controller, dmg, "Damaged")
 	
@@ -183,8 +196,8 @@ class GenericChar(GenericCharController):
 		self.LostHP = self.LostHP + dmg
 		
 		if self.CurrentHP <= 0:
-			Destroy(self.gameObject)
-		if self.action_controller:
+			self.HPReachZero()
+		elif self.action_controller:
 			if not self.action_controller.Executing("Damaged"):
 				self.action_controller.Execute(dmg_action)
 		else:

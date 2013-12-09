@@ -28,25 +28,26 @@ class Player (GenericChar):
 			return Input.GetAxisRaw("Horizontal")*self.GetCharAttribute("MovementSpeed")
 	
 	def Control(): 
-		if not self.GetComponent("Buff"):
-			if Input.GetButtonDown("Fire"):
-				self.SelOrbs = ["Fire"] + self.SelOrbs[:-1]
-			if Input.GetButtonDown("Water"):
-				self.SelOrbs = ["Water"] + self.SelOrbs[:-1]
-			if Input.GetButtonDown("Wind"):
-				self.SelOrbs = ["Wind"] + self.SelOrbs[:-1]
-		if Input.GetButtonDown("Skill"):
-			if self.skill_controller:
-				self.skill_controller.Execute(self, GetCurrentSkill(self))
-		if Input.GetButtonDown("Attack"):
-			if self.action_controller:
-				self.action_controller.Execute("BaseAttack")
+		if not paused:
+			if not self.GetComponent("Buff"):
+				if Input.GetButtonDown("Fire"):
+					self.SelOrbs = ["Fire"] + self.SelOrbs[:-1]
+				if Input.GetButtonDown("Water"):
+					self.SelOrbs = ["Water"] + self.SelOrbs[:-1]
+				if Input.GetButtonDown("Wind"):
+					self.SelOrbs = ["Wind"] + self.SelOrbs[:-1]
+			if Input.GetButtonDown("Skill"):
+				if self.skill_controller:
+					self.skill_controller.Execute(self, GetCurrentSkill(self))
+			if Input.GetButtonDown("Attack"):
+				if self.action_controller:
+					self.action_controller.Execute("BaseAttack")
 		
 	
 	def Update():
 		super.Update()
 	
-	skills:
+	virtual skills:
 		get:
 			return {
 		["Fire" , "Fire" , "Fire" ] : Skill(label:"Fire Ball",       call:"FireBall"      , type:"Action", neededMP:30.0, spentMP:30.0),

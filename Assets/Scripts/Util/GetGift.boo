@@ -37,6 +37,7 @@ class GetGift (ChangeScene):
 		player as GameObject = GameObject.FindGameObjectWithTag("Player")
 		passive_controller = player.GetComponent(PassiveController)
 		if passive_controller:
+			
 			for gift in self.gifts:
 				ConditionalController.SatisfyClause("Gift$(gift)")
 				passive_controller.AddPassive(gift)
@@ -48,7 +49,12 @@ class GetGift (ChangeScene):
 
 
 	def OnPlayerHit():
-		if not opened:
-			tresureBox.animation.Play(openAnimation.name)
-			self.Invoke("FadeOut", 1.3)
+		if tresureBox:
+			if not opened:
+				tresureBox.animation.Play(openAnimation.name)
+				self.Invoke("FadeOut", 1.3)
+				opened = true
+		elif not opened:
+			self.FadeOut()
 			opened = true
+			
