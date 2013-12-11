@@ -1,5 +1,9 @@
 ﻿import UnityEngine
 
+class EnemyAttack(System.Object):
+	public attack as string
+	public chance as single
+
 class Enemy (GenericChar): 
 	private lastAIMovement = -10
 	private lastAIAttack = -10
@@ -10,6 +14,7 @@ class Enemy (GenericChar):
 	public damageClip as AudioClip
 	
 	public chanceOfAttack as int = 15
+	public attacksByChance as (EnemyAttack) = (EnemyAttack(attack:"BaseAttack", chance:100),)
 		
 	def Start():
 		a = Resources.Load("Prefabs/EnemyHP", GameObject) as GameObject
@@ -50,7 +55,19 @@ class Enemy (GenericChar):
 	def Control():
 		if self.ExecuteAttack():
 			if self.action_controller:
-				self.action_controller.Execute("BaseAttack")
+				if self.attacksByChance:
+					which_attack = GetRandomRange(0.0f, 100.0f)
+					last_chance = 0
+					for attack in self.attacksByChance:
+						Debug.Log(which_attack)
+						Debug.Log(last_chance)
+						if which_attack <= attack.chance+last_chance:
+							self.action_controller.Execute(attack.attack)
+							break;
+						else:
+							last_chance += attack.chance
+							
+							
 			
 	
 	def ExecuteAttack():

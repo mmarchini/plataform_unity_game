@@ -40,7 +40,7 @@ class PositionPlayer (MonoBehaviour):
 					player_position = transf.gameObject
 				
 				if player_position:
-					self.player.transform.position = player_position.transform.localPosition
+					self.player.transform.position = player_position.transform.position
 			
 				Destroy(player_positions)
 			

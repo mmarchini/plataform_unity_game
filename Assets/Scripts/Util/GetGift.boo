@@ -1,6 +1,4 @@
 ﻿import UnityEngine 
-import UnityEditor
-
 
 class Gift(System.Object): 
 	public Map as string

@@ -74,6 +74,7 @@
      <Compile Include="Assets\Scripts\Characters\Enemies\Bosses\IceGolem.boo" />
      <Compile Include="Assets\Scripts\Characters\Enemies\Bosses\ToonSkeleton.boo" />
      <Compile Include="Assets\Scripts\Characters\Enemies\Bosses\WarRobot.boo" />
+     <Compile Include="Assets\Scripts\Characters\Enemies\CaveMonster.boo" />
      <Compile Include="Assets\Scripts\Characters\Enemies\Enemy.boo" />
      <Compile Include="Assets\Scripts\Characters\Enemies\GiantSkeleton.boo" />
      <Compile Include="Assets\Scripts\Characters\GenericChar.boo" />
