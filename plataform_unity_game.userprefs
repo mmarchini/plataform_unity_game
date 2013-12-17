@@ -1,32 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Characters\Enemies\CaveMonster.boo">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Util\GetGift.boo">
     <Files>
-      <File FileName="Assets\Scripts\Characters\Enemies\CaveMonster.boo" Line="5" Column="40" />
-      <File FileName="Assets\Scripts\Util\PositionPlayer.boo" Line="43" Column="73" />
-      <File FileName="Assets\Scripts\Util\GetGift.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Characters\Enemies\Bosses\AntiPlayer.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Characters\Enemies\Bosses\Boss.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Util\Plataform.boo" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Characters\Enemies\Enemy.boo" Line="34" Column="12" />
       <File FileName="Assets\Scripts\Interface\Pause\PassiveMenuItem.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Passives\PassiveHPReg.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Passives\PassiveMPReg.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Characters\Controllers\PassiveController.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Characters\Util\ChangeScene.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Interface\Pause\PassiveMenu.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Util\ConditionalChecker.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Passives\PassiveMP.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Characters\Player.boo" Line="74" Column="1" />
-      <File FileName="Assets\Scripts\Characters\Enemies\Enemy.boo" Line="66" Column="14" />
-      <File FileName="Assets\Scripts\Characters\Controllers\SkillController.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Interface\HUD\EnemyHP.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Interface\InterfaceElement.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Characters\GenericChar.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Characters\Controllers\GenericCharController.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Characters\Controllers\ActionController.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Actions\ActionDeath.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Actions\Action.boo" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Util\ConditionalController.boo" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Interface\Pause\PauseMenu.boo" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Interface\Pause\PassiveMenu.boo" Line="47" Column="19" />
+      <File FileName="Assets\Scripts\Characters\Controllers\GenericCharController.boo" Line="108" Column="14" />
+      <File FileName="Assets\Scripts\Characters\GenericChar.boo" Line="191" Column="9" />
+      <File FileName="Assets\Scripts\Util\GetGift.boo" Line="37" Column="42" />
+      <File FileName="Assets\Scripts\Util\PositionPlayer.boo" Line="29" Column="34" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -35,20 +18,15 @@
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
                 <Node name="Actions" expanded="True" />
+                <Node name="Buffs" expanded="True" />
                 <Node name="Characters" expanded="True">
                   <Node name="Controllers" expanded="True" />
-                  <Node name="Enemies" expanded="True">
-                    <Node name="Bosses" expanded="True" />
-                    <Node name="CaveMonster.boo" selected="True" />
-                  </Node>
+                  <Node name="Enemies" expanded="True" />
                   <Node name="Util" expanded="True" />
                 </Node>
-                <Node name="Interface" expanded="True">
-                  <Node name="HUD" expanded="True" />
-                  <Node name="Pause" expanded="True" />
+                <Node name="Util" expanded="True">
+                  <Node name="GetGift.boo" selected="True" />
                 </Node>
-                <Node name="Passives" expanded="True" />
-                <Node name="Util" expanded="True" />
               </Node>
             </Node>
           </Node>

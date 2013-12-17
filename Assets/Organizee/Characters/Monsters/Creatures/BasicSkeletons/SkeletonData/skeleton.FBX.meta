@@ -3,84 +3,84 @@ guid: 86c591ebd74142c4d93243d9fa9544da
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
-    100000: R_Forearm
-    100002: R_Shoulder
-    100004: Bip01 L Finger1
+    100000: Bip01
+    100002: Bip01 HeadNub
+    100004: Bip01 L Clavicle
     100006: Bip01 L Finger0
-    100008: L_Hand
-    100010: L_Forearm
-    100012: L_Shoulder
-    100014: Bip01 HeadNub
-    100016: Head
-    100018: Bip01 Neck
-    100020: Chest
-    100022: Bip01 Spine
-    100024: Bip01 Pelvis
-    100026: Bip01
-    100028: skeleton
-    100030: Bip01 R Thigh
-    100032: R_Shin
-    100034: Bip01 R Toe0Nub
-    100036: //RootNode
-    100038: Bip01 L Foot
-    100040: Bip01 L Toe0
-    100042: Bip01 L Toe0Nub
-    100044: Bip01 R Toe0
-    100046: Bip01 R Foot
-    100048: Bip01 R Finger1
-    100050: Bip01 L Thigh
-    100052: L_Shin
-    100054: Bip01 R Finger0
-    100056: R_Hand
-    100058: Bip01 R Clavicle
-    100060: Bip01 L Finger0Nub
-    100062: Bip01 R Finger01
-    100064: Bip01 L Finger01
-    100066: Bip01 L Clavicle
-    100068: Bip01 R Finger1Nub
-    100070: Bip01 L Finger11
-    100072: Bip01 R Finger0Nub
-    100074: Bip01 L Finger1Nub
-    100076: Bip01 R Finger11
-    400000: R_Forearm
-    400002: R_Shoulder
-    400004: Bip01 L Finger1
+    100008: Bip01 L Finger01
+    100010: Bip01 L Finger0Nub
+    100012: Bip01 L Finger1
+    100014: Bip01 L Finger11
+    100016: Bip01 L Finger1Nub
+    100018: Bip01 L Foot
+    100020: Bip01 L Thigh
+    100022: Bip01 L Toe0
+    100024: Bip01 L Toe0Nub
+    100026: Bip01 Neck
+    100028: Bip01 Pelvis
+    100030: Bip01 R Clavicle
+    100032: Bip01 R Finger0
+    100034: Bip01 R Finger01
+    100036: Bip01 R Finger0Nub
+    100038: Bip01 R Finger1
+    100040: Bip01 R Finger11
+    100042: Bip01 R Finger1Nub
+    100044: Bip01 R Foot
+    100046: Bip01 R Thigh
+    100048: Bip01 R Toe0
+    100050: Bip01 R Toe0Nub
+    100052: Bip01 Spine
+    100054: Chest
+    100056: Head
+    100058: L_Forearm
+    100060: L_Hand
+    100062: L_Shin
+    100064: L_Shoulder
+    100066: R_Forearm
+    100068: R_Hand
+    100070: R_Shin
+    100072: R_Shoulder
+    100074: //RootNode
+    100076: skeleton
+    400000: Bip01
+    400002: Bip01 HeadNub
+    400004: Bip01 L Clavicle
     400006: Bip01 L Finger0
-    400008: L_Hand
-    400010: L_Forearm
-    400012: L_Shoulder
-    400014: Bip01 HeadNub
-    400016: Head
-    400018: Bip01 Neck
-    400020: Chest
-    400022: Bip01 Spine
-    400024: Bip01 Pelvis
-    400026: Bip01
-    400028: skeleton
-    400030: Bip01 R Thigh
-    400032: R_Shin
-    400034: Bip01 R Toe0Nub
-    400036: //RootNode
-    400038: Bip01 L Foot
-    400040: Bip01 L Toe0
-    400042: Bip01 L Toe0Nub
-    400044: Bip01 R Toe0
-    400046: Bip01 R Foot
-    400048: Bip01 R Finger1
-    400050: Bip01 L Thigh
-    400052: L_Shin
-    400054: Bip01 R Finger0
-    400056: R_Hand
-    400058: Bip01 R Clavicle
-    400060: Bip01 L Finger0Nub
-    400062: Bip01 R Finger01
-    400064: Bip01 L Finger01
-    400066: Bip01 L Clavicle
-    400068: Bip01 R Finger1Nub
-    400070: Bip01 L Finger11
-    400072: Bip01 R Finger0Nub
-    400074: Bip01 L Finger1Nub
-    400076: Bip01 R Finger11
+    400008: Bip01 L Finger01
+    400010: Bip01 L Finger0Nub
+    400012: Bip01 L Finger1
+    400014: Bip01 L Finger11
+    400016: Bip01 L Finger1Nub
+    400018: Bip01 L Foot
+    400020: Bip01 L Thigh
+    400022: Bip01 L Toe0
+    400024: Bip01 L Toe0Nub
+    400026: Bip01 Neck
+    400028: Bip01 Pelvis
+    400030: Bip01 R Clavicle
+    400032: Bip01 R Finger0
+    400034: Bip01 R Finger01
+    400036: Bip01 R Finger0Nub
+    400038: Bip01 R Finger1
+    400040: Bip01 R Finger11
+    400042: Bip01 R Finger1Nub
+    400044: Bip01 R Foot
+    400046: Bip01 R Thigh
+    400048: Bip01 R Toe0
+    400050: Bip01 R Toe0Nub
+    400052: Bip01 Spine
+    400054: Chest
+    400056: Head
+    400058: L_Forearm
+    400060: L_Hand
+    400062: L_Shin
+    400064: L_Shoulder
+    400066: R_Forearm
+    400068: R_Hand
+    400070: R_Shin
+    400072: R_Shoulder
+    400074: //RootNode
+    400076: skeleton
     4300000: skeleton
     7400000: Take 001
     7400002: idle

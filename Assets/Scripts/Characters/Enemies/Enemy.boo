@@ -2,6 +2,7 @@
 
 class EnemyAttack(System.Object):
 	public attack as string
+	public distance as single
 	public chance as single
 
 class Enemy (GenericChar): 
@@ -14,9 +15,15 @@ class Enemy (GenericChar):
 	public damageClip as AudioClip
 	
 	public chanceOfAttack as int = 15
-	public attacksByChance as (EnemyAttack) = (EnemyAttack(attack:"BaseAttack", chance:100),)
+	public attacksByDistance as (EnemyAttack) = (EnemyAttack(distance:1.0f, attack:"BaseAttack", chance:100),)
+	
+	public target as GameObject
+	public closestToTarget = 1.0f
+	public farestToTarget = 10.0f
 		
 	def Start():
+		if not target:
+			target = GameObject.FindGameObjectWithTag("Player")
 		a = Resources.Load("Prefabs/EnemyHP", GameObject) as GameObject
 		if a:
 			go as GameObject = Instantiate(a)
@@ -29,53 +36,61 @@ class Enemy (GenericChar):
 		if playergo:
 			player as Player = playergo.GetComponent("Player")
 			if self.CurrentHP <= 0 and player:
-				player.currentEXP += self.dropEXP
+				player.currentEXP += self.dropEXP + self.dropEXP*(self.Level-1)*0.25
 		
 	def Update():
 		if lastAIMovement + AIMovementDuration < Time.time:
 			
 			self.AIMovementDuration = GetRandomRange(1.0F, 2.0F)
-			self.AIMovementDirection = GetRandomRange(0.0F, 100.0F)
-			if self.AIMovementDirection > 70.0:
-				self.AIMovementDirection = 0.0
-			elif self.AIMovementDirection < 35.0:
-				self.AIMovementDirection = -1.0
-			else:
-				self.AIMovementDirection = 1.0
+			
+			self.AIMovementDirection = self.target.transform.position.x - self.transform.position.x
+			
+			targetDistance = Vector3.Distance(self.transform.position, self.target.transform.position)
+			
+			if self.AIMovementDirection:
+				if targetDistance >= 10.0 or targetDistance <= 1.0:
+					self.AIMovementDirection = 0
+				else:
+					self.AIMovementDirection = self.AIMovementDirection/Mathf.Abs(self.AIMovementDirection)
+			
 			self.lastAIMovement = Time.time
 		super.Update()
 	
 	horizontalSpeed:
 		get:
+			targetDistance = Vector3.Distance(self.transform.position, self.target.transform.position)
+			if targetDistance <= closestToTarget:
+				return 0
 			return self.AIMovementDirection
 	
 	def IsJumping():
 		return false
 	
 	def Control():
-		if self.ExecuteAttack():
-			if self.action_controller:
-				if self.attacksByChance:
-					which_attack = GetRandomRange(0.0f, 100.0f)
-					last_chance = 0
-					for attack in self.attacksByChance:
-						Debug.Log(which_attack)
-						Debug.Log(last_chance)
-						if which_attack <= attack.chance+last_chance:
-							self.action_controller.Execute(attack.attack)
-							break;
-						else:
-							last_chance += attack.chance
-							
+		attack as EnemyAttack = self.ExecuteAttack()
+		if attack and self.action_controller:
+			self.action_controller.Execute(attack.attack)
+			lastAIAttack = Time.time
 							
 			
 	
 	def ExecuteAttack():
 		if Time.time - lastAIAttack > AIAttackDelay:
-			if GetRandomRange(0, 100) <= self.chanceOfAttack:
-				lastAIAttack = Time.time
-				return true
-		return false
+			
+			targetDistance = Vector3.Distance(self.transform.position, self.target.transform.position)
+			currentAttack as EnemyAttack
+			which_attack = GetRandomRange(0.0f, 100.0f)
+
+			for a in self.attacksByDistance:
+				if a.distance >= targetDistance and which_attack <= a.chance:
+					if currentAttack:
+						if currentAttack.distance >= a.distance:
+							currentAttack = a
+					else:
+						currentAttack = a
+					
+			return currentAttack
+		return null
 		
 	def GetRandomRange(start as int, end as int):
 		/*

@@ -80,14 +80,14 @@ class GenericCharController(MonoBehaviour):
 			
 			return right
 	
-	targetDirection:
+	virtual targetDirection:
 		get:
 			if self.horizontalSpeed:
 				return self.horizontalSpeed * self.rightVector
 			else:
 				return self.transform.forward.normalized
 	
-	moveDirection:
+	virtual moveDirection:
 		get:
 			_moveDirection as Vector3
 			if targetDirection != Vector3.zero and not (_characterState==CharacterState.Action):
@@ -97,15 +97,15 @@ class GenericCharController(MonoBehaviour):
 			
 			return _moveDirection.normalized
 	
-	moveSpeed:
+	virtual moveSpeed:
 		get:
 			if ((self.currentAction and not self.currentAction.move) and Grounded):
 				return 0
 			if self.currentAction: 
 				return self.currentAction.char_speed 
 				
-			if Mathf.Abs(horizontalSpeed) > 5.5:
-				return 6.5
+			if Mathf.Abs(horizontalSpeed) > 12:
+				return 12
 			if Mathf.Abs(horizontalSpeed) < 3 and horizontalSpeed != 0:
 				return 3
 			return Mathf.Abs(Mathf.Min(targetDirection.magnitude, 1.0) * horizontalSpeed)
@@ -122,7 +122,7 @@ class GenericCharController(MonoBehaviour):
 				return CharacterState.Idle
 	
 	def ApplyJumping():
-		if Grounded and Jumping:
+		if not _jumping and Jumping:
 			// Jump
 			// - Only when pressing the button down
 			// - With a timeout so you can press the button slightly before landing		

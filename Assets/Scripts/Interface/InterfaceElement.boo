@@ -13,6 +13,8 @@ class InterfaceElement (MonoBehaviour):
 	
 	public texture as Texture2D
 	
+	public _text as string
+	
 	protected gui_path as string = "NecromancerGUI/controls"
 	
 	private _style as GUIStyle
@@ -53,7 +55,7 @@ class InterfaceElement (MonoBehaviour):
 	
 	virtual text as string:
 		get:
-			return ""
+			return _text
 			
 	virtual DrawBox:
 		get:

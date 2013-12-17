@@ -15,14 +15,6 @@ class Player (GenericChar):
 		set:
 			_paused = value
 
-	def Awake():
-		self.passive_controller = self.GetComponent("PassiveController")
-		self.skill_controller = self.GetComponent("SkillController")
-		self.buff_controller = self.GetComponent("BuffController")
-		self.passive_controller.generic_char = self
-		
-		super.Awake()
-
 	horizontalSpeed:
 		get:
 			return Input.GetAxisRaw("Horizontal")*self.GetCharAttribute("MovementSpeed")
@@ -42,6 +34,14 @@ class Player (GenericChar):
 			if Input.GetButtonDown("Attack"):
 				if self.action_controller:
 					self.action_controller.Execute("BaseAttack")
+		if Input.GetButtonDown("LevelUp"):
+			self.currentEXP = self.nextLevelEXP
+			self.currentEXP = self.nextLevelEXP
+			self.currentEXP = self.nextLevelEXP
+			self.currentEXP = self.nextLevelEXP
+			self.currentEXP = self.nextLevelEXP
+			
+
 		
 	
 	def Update():

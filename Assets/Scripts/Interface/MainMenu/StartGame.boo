@@ -7,7 +7,10 @@ class StartGame(MainMenuItem):
 
 	def Awake():
 		super.Awake()
-		self.x = 15
+		self.width = 26
+		self.height = 10.6
+		self.FontSize = 7
+		self.x = 11.5
 		self.y = 30
 									
 	def Action():

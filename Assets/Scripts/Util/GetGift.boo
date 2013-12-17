@@ -25,9 +25,16 @@ class GetGift (ChangeScene):
 	
 	def ChangeScene():
 		if scene:
+			a = true
 			for nm in nextMap:
 				if nm.lastMap == scene:
 					Application.LoadLevel(nm.nextMap)
+					a=false
+			if a:
+				if self.scene:
+					Application.LoadLevel(self.scene)
+				else:
+					Application.LoadLevel("Teleport1Dest")
 		else:
 			Debug.Log("No scene name!")
 
@@ -55,4 +62,5 @@ class GetGift (ChangeScene):
 		elif not opened:
 			self.FadeOut()
 			opened = true
+			
 			

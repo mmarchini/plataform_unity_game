@@ -6,11 +6,11 @@ class SelectedOrbs(InterfaceElement):
 		super.Awake()
 		self.x = 22
 		self.y = 1
-		self.width = 30
-		self.height = 11
-		self.FontSize = 5
+		self.width = 22
+		self.height = 6
+		self.FontSize = 4
 		self.TextX = 2
-		self.TextY= 1.55
+		self.TextY= 1
 		self.texture = Resources.Load("$(self.gui_path)/Label") as Texture
 
 	private orbs_colors = {"Water":"blue", "Fire":"red", "Wind":"green"}

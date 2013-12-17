@@ -7,7 +7,9 @@ class Buff (MonoBehaviour):
 	public time = -1
 	
 	public HPSec = 0
+	public MinHP = 0.10
 	public MPSec = 0
+	public MinMP = 0.05
 	
 	[HideInInspector]
 	public current_time = -10
@@ -23,15 +25,15 @@ class Buff (MonoBehaviour):
 	
 	def Start():
 		self.Reset()
-		
+		self.char_controller = self.GetComponent("GenericChar")
 		a = Resources.Load("Effects/$(self.label)", GameObject) as GameObject
 		if a:
 			go as GameObject = Instantiate(a)
 			go.transform.parent = self.gameObject.transform
-			go.transform.localPosition = Vector3(0,0.2,0)
+			go.transform.localPosition = Vector3(0,self.char_controller.height/2,0)
 			go.transform.localScale = Vector3(0.4,0.4,0.4)
 			self.effect = go
-		self.char_controller = self.GetComponent("GenericChar")
+		
 		self.InvokeRepeating("LostEverySeconds", 1, 1)
 
 

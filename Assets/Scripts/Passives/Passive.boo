@@ -10,7 +10,7 @@ criar uma nova habilidade passiva.
 	"""
 	
 	public Level as int = 0
-	public MaxLevel as int = 10
+	public MaxLevel as int = 100
 	public PerLevel as single = 0.0f
 	required_passives = {"":0}
 	affects as string

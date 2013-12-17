@@ -5,13 +5,13 @@ class Level(InterfaceElement):
 
 	def Awake():
 		super.Awake()
-		self.x = 75
+		self.x = 80
 		self.y = 1
-		self.width = 25
-		self.height = 11
-		self.FontSize = 5
+		self.width = 19
+		self.height = 6
+		self.FontSize = 4
 		self.TextX = 2
-		self.TextY= 1.55
+		self.TextY= 1
 		self.texture = Resources.Load("$(self.gui_path)/Label") as Texture
 	
 	text as string:

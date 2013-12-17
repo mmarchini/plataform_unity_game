@@ -11,6 +11,7 @@ class ActionUltimateStab (Action):
 	public EndWidth as single 
 	
 	public MoveSpeedMultiplier as single = 10
+	public damageMultiplier as single = 5
 
 	def Start():
 		char_controller = self.GetComponent("GenericChar")
@@ -69,5 +70,5 @@ class ActionUltimateStab (Action):
 	virtual def DealDamage(_char as GenericChar):
 		if _char not in self.already_hitted:
 			self.already_hitted.Add(_char)
-			dmg as single = char_controller.DMG*5
+			dmg as single = char_controller.DMG*self.damageMultiplier
 			_char.TakeDamage(char_controller, dmg)

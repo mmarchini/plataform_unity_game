@@ -38,6 +38,14 @@ class ConditionalController (MonoBehaviour):
 					satisfied = satisfied and clause.done 
 				
 		 return satisfied
+		 
+	static def IsClauseSatisfied(name as string):
+		conditionalController = ConditionalController.GetConditionalController()
+		for condition in conditionalController.conditions:
+			for clause in condition.clauses:
+				if clause.done:
+					return true
+		return false
 		
 	static def SatisfyClause(name as string):
 		conditionalController = ConditionalController.GetConditionalController()
@@ -45,4 +53,5 @@ class ConditionalController (MonoBehaviour):
 			for clause in condition.clauses:
 				if clause.name == name:
 					clause.done = true 
-		
+	
+	

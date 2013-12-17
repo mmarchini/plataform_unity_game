@@ -42,16 +42,16 @@ class GenericChar(GenericCharController):
 		"HPSec" : 0,
 		"MPSec" : 0.6,
 		"ATK" : 50,
-		"DEF" : 1,
-		"Spear" : 0.05,
-		"Shield" : 0.05,
+		"DEF" : 10,
+		"Spear" : 0.01,
+		"Shield" : 0.01,
 		"ManaShield" : 0.00,
 		"ATKRange" : 1,
 		"CritChance" : 0.10,
 		"CritDamage" : 1.5,
 		"Evasion":0.01,
 		"BAT" : 1,
-		"MovementSpeed" : 4,
+		"MovementSpeed" : 8,
 		"Jump" : 2,
 	}
 	
@@ -62,16 +62,16 @@ class GenericChar(GenericCharController):
 		"HPSec" : 0,
 		"MPSec" : 0.2,
 		"ATK" : 2,
-		"DEF" : 0.1,
-		"Spear" : 0.005,
-		"Shield" : 0.005,
+		"DEF" : 7,
+		"Spear" : 0.001,
+		"Shield" : 0.001,
 		"ManaShield" : 0,
 		"ATKRange" : 0,
 		"CritChance" : 0,
 		"CritDamage" : 0,
 		"Evasion":0,
 		"BAT" : 0,
-		"MovementSpeed" : 0.5,
+		"MovementSpeed" : 0,
 		"Jump" : 0,
 	}
 	
@@ -139,7 +139,8 @@ class GenericChar(GenericCharController):
 		get:
 			if self.CurrentHP/self.GetCharAttribute("HP") < 0.25:
 				return self.GetCharAttribute("Shield") * self.GetCharAttribute("HP") * 0.25
-			return self.GetCharAttribute("Shield") * self.LostHP
+			#FIXME como balancear isso??
+			return 0#self.GetCharAttribute("Shield") * self.LostHP
 	
 	public Type as ControllerType;
 	
@@ -150,7 +151,17 @@ class GenericChar(GenericCharController):
 				for p as Passive in i:
 					points += p.Level
 			return points
-	
+
+	def Awake():
+		self.passive_controller = self.GetComponent("PassiveController")
+		self.skill_controller = self.GetComponent("SkillController")
+		self.buff_controller = self.GetComponent("BuffController")
+		if self.passive_controller:
+			self.passive_controller.generic_char = self
+		
+		super.Awake()
+
+			
 	def Modificators(attribute as string) as single:
 		modificators = 0.0
 		if self.passive_controller:
@@ -172,10 +183,9 @@ class GenericChar(GenericCharController):
 		pass
 	
 	def HPReachZero():
-		if _controller and _controller.enabled:
+		if _controller and _controller.enabled and (not Application.isLoadingLevel):
 			self._controller.enabled = false
 			if action_controller.HasAction("Death"):
-				Debug.Log(":D:D:D")
 				action_controller.Execute("Death")
 			else:
 				Destroy(self.gameObject)

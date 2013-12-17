@@ -8,10 +8,10 @@ class HPBar (InterfaceElement):
 		self.x = 1
 		self.y = 1
 		self.width = 22
-		self.height = 11
-		self.FontSize = 5
+		self.height = 6
+		self.FontSize = 4
 		self.TextX = 2
-		self.TextY= 1.55
+		self.TextY= 1
 		self.texture = Resources.Load("$(self.gui_path)/Label") as Texture
 	
 	text as string:

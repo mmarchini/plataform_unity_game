@@ -1,4 +1,5 @@
 ﻿import UnityEngine
+
 class MainMenuItem (InterfaceElement): 
 
 	def Awake():

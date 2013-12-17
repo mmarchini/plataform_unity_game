@@ -16,9 +16,10 @@ class SkillController (MonoBehaviour):
 		
 		if char_controller.CurrentMP >= skill.neededMP and char_controller.CurrentHP >= skill.neededHP:
 			if skill.type == "Action":
-				char_controller.LostMP += skill.spentMP
-				char_controller.LostHP += skill.spentHP
-				char_controller.action_controller.Execute(skill.call)
+				if not char_controller.action_controller.Executing(skill.call):
+					char_controller.LostMP += skill.spentMP
+					char_controller.LostHP += skill.spentHP
+					char_controller.action_controller.Execute(skill.call)
 			
 			elif skill.type == "PermaBuff":
 				char_controller.LostMP += skill.spentMP

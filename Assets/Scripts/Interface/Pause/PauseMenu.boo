@@ -32,10 +32,10 @@ Botao de Ataque: Passive Menu
 	def Awake():
 		super.Awake()
 		self.x = 0
-		self.y = 15
+		self.y = 20
 		self.width = 75
 		self.height = 95
-		self.FontSize = 5
+		self.FontSize = 7
 		self.TextX = 0
 		self.TextY= 1
 

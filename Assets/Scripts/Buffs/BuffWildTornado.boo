@@ -61,5 +61,5 @@ class BuffWildTornado(Buff):
 
 	def Reset():
 		super.Reset()
-		self.HPSec = 1
-		self.MPSec = 5
+		#self.HPSec = 1
+		#self.MPSec = 5
